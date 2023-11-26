@@ -15,6 +15,7 @@
     "503": "抱歉，伺服器目前無法處理您的請求，可能是因為過載或正在進行維護。請稍後再試。",
     "504": "抱歉，伺服器沒有收到上游伺服器的回應。請稍後再試。",
     "InvalidAccessCode": "密碼不正確或為空。請輸入正確的存取密碼，或新增自定義的 OpenAI API Key。",
+    "InsufficientBalance": "余额不足无法使用此模型",
     "OpenAIBizError": "請求 OpenAI 服務出錯。請根據以下資訊進行排查或重試。",
     "PluginMarketIndexNotFound": "抱歉，伺服器找不到外掛索引。請檢查索引地址是否正確",
     "PluginMarketIndexInvalid": "抱歉，外掛索引驗證失敗。請檢查索引檔案格式是否正確",

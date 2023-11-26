@@ -31,6 +31,11 @@ export const useStyles = createStyles(({ css, token, stylish, cx }, withBackgrou
     background: ${token.colorBgContainer};
     border-bottom: 1px solid ${token.colorBorder};
   `,
+  logo: css`
+    font-size: 16px;
+    font-weight: bolder;
+    fill: ${token.colorText};
+  `,
   markdown: stylish.markdownInChat,
   preview: cx(
     stylish.noScrollbar,

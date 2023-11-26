@@ -15,6 +15,7 @@
     "503": "Sorry, the server is currently unable to process your request, possibly due to overload or maintenance. Please try again later.",
     "504": "Sorry, the server did not receive a response from the upstream server. Please try again later.",
     "InvalidAccessCode": "The password is incorrect or empty. Please enter the correct access password or add a custom OpenAI API Key.",
+    "InsufficientBalance": "余额不足无法使用此模型",
     "OpenAIBizError": "Error requesting OpenAI service. Please troubleshoot or retry based on the following information.",
     "PluginMarketIndexNotFound": "Sorry, the server could not find the plugin index. Please check if the index address is correct",
     "PluginMarketIndexInvalid": "Sorry, the plugin index validation failed. Please check if the index file format is correct",

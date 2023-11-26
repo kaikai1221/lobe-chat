@@ -1,5 +1,5 @@
 import { Form, type ItemGroup, SelectWithImg, SliderWithInput } from '@lobehub/ui';
-import { Form as AntForm, App, Button, Input, Select } from 'antd';
+import { Form as AntForm, App, Button, Select } from 'antd';
 import isEqual from 'fast-deep-equal';
 import { debounce } from 'lodash-es';
 import { AppWindow, Monitor, Moon, Palette, Sun } from 'lucide-react';
@@ -139,12 +139,12 @@ const Common = memo(() => {
 
   const system: SettingItemGroup = {
     children: [
-      {
-        children: <Input.Password placeholder={t('settingSystem.accessCode.placeholder')} />,
-        desc: t('settingSystem.accessCode.desc'),
-        label: t('settingSystem.accessCode.title'),
-        name: 'password',
-      },
+      // {
+      //   children: <Input.Password placeholder={t('settingSystem.accessCode.placeholder')} />,
+      //   desc: t('settingSystem.accessCode.desc'),
+      //   label: t('settingSystem.accessCode.title'),
+      //   name: 'password',
+      // },
       {
         children: (
           <Button danger onClick={handleReset} type="primary">

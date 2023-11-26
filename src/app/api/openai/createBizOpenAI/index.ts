@@ -13,11 +13,19 @@ import { createOpenai } from './createOpenai';
  * createOpenAI Instance with Auth and azure openai support
  * if auth not pass ,just return error response
  */
-export const createBizOpenAI = (req: Request, model: string): Response | OpenAI => {
+export const runtime = 'nodejs';
+export const createBizOpenAI = async (req: Request, model: string): Promise<Response | OpenAI> => {
   const { apiKey, accessCode, endpoint, useAzure, apiVersion } = getOpenAIAuthFromRequest(req);
-
-  const result = checkAuth({ accessCode, apiKey });
-
+  const reqData = await req.json();
+  const allContents = reqData.messages
+    .map((msg: { content: string; role: string }) => msg.content)
+    .join('');
+  const result = await checkAuth({
+    accessCode,
+    allContents,
+    model,
+    url: req.headers.get('origin') || '',
+  });
   if (!result.auth) {
     return createErrorResponse(result.error as ErrorType);
   }

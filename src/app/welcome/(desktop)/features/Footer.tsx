@@ -1,29 +1,40 @@
 'use client';
 
-import { ActionIcon, DiscordIcon } from '@lobehub/ui';
+import { ActionIcon, Modal } from '@lobehub/ui';
 import { useTheme } from 'antd-style';
-import { Book, Github } from 'lucide-react';
-import { memo } from 'react';
+import { BookmarkPlus } from 'lucide-react';
+import Image from 'next/image';
+import { memo, useState } from 'react';
 import { Flexbox } from 'react-layout-kit';
-
-import { DISCORD, GITHUB, WIKI } from '@/const/url';
 
 const Footer = memo(() => {
   const theme = useTheme();
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <Flexbox align={'center'} horizontal justify={'space-between'} style={{ padding: 16 }}>
       <span style={{ color: theme.colorTextDescription }}>
-        ©{new Date().getFullYear()} LobeHub
+        ©{new Date().getFullYear()} AI聊天室
       </span>
       <Flexbox horizontal>
         <ActionIcon
-          icon={DiscordIcon}
-          onClick={() => window.open(DISCORD, '__blank')}
+          icon={BookmarkPlus}
+          onClick={() => setIsModalOpen(true)}
           size={'site'}
-          title={'Discord'}
+          title={'关注公众号'}
         />
-        <ActionIcon
+        <Modal
+          footer={''}
+          onCancel={() => setIsModalOpen(false)}
+          onOk={() => setIsModalOpen(false)}
+          open={isModalOpen}
+          title="关注公众号"
+        >
+          <p style={{ textAlign: 'center' }}>关注公众号，获取最新消息，领取专属礼包</p>
+          <div style={{ textAlign: 'center' }}>
+            <Image alt="公众号" height={200} src="/images/qrcode_for_gzh.jpg" width={200} />
+          </div>
+        </Modal>
+        {/* <ActionIcon
           icon={Book}
           onClick={() => window.open(WIKI, '__blank')}
           size={'site'}
@@ -34,7 +45,7 @@ const Footer = memo(() => {
           onClick={() => window.open(GITHUB, '__blank')}
           size={'site'}
           title={'GitHub'}
-        />
+        /> */}
       </Flexbox>
     </Flexbox>
   );

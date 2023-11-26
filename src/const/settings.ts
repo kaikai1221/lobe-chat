@@ -17,6 +17,7 @@ export const DEFAULT_BASE_SETTINGS: GlobalBaseSettings = {
   language: 'auto',
   password: '',
   themeMode: 'auto',
+  token: '',
 };
 
 export const DEFAUTT_AGENT_TTS_CONFIG: LobeAgentTTSConfig = {

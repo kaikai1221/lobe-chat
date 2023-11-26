@@ -1,10 +1,9 @@
 import { Upload } from 'antd';
 import { useResponsive } from 'antd-style';
-import { Feather, FileClock, HardDriveDownload, HardDriveUpload, Heart } from 'lucide-react';
+import { HardDriveDownload, HardDriveUpload } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { ABOUT, CHANGELOG, FEEDBACK } from '@/const/url';
 import { useExportConfig } from '@/hooks/useExportConfig';
 import { useImportConfig } from '@/hooks/useImportConfig';
 import { useGlobalStore } from '@/store/global';
@@ -24,24 +23,24 @@ const ExtraList = memo(() => {
       onClick: exportAll,
       value: 'export',
     },
-    {
-      icon: Feather,
-      label: t('feedback'),
-      onClick: () => window.open(FEEDBACK, '__blank'),
-      value: 'feedback',
-    },
-    {
-      icon: FileClock,
-      label: t('changelog'),
-      onClick: () => window.open(CHANGELOG, '__blank'),
-      value: 'changelog',
-    },
-    {
-      icon: Heart,
-      label: t('about'),
-      onClick: () => window.open(ABOUT, '__blank'),
-      value: 'about',
-    },
+    // {
+    //   icon: Feather,
+    //   label: t('feedback'),
+    //   onClick: () => window.open(FEEDBACK, '__blank'),
+    //   value: 'feedback',
+    // },
+    // {
+    //   icon: FileClock,
+    //   label: t('changelog'),
+    //   onClick: () => window.open(CHANGELOG, '__blank'),
+    //   value: 'changelog',
+    // },
+    // {
+    //   icon: Heart,
+    //   label: t('about'),
+    //   onClick: () => window.open(ABOUT, '__blank'),
+    //   value: 'about',
+    // },
   ];
 
   return (

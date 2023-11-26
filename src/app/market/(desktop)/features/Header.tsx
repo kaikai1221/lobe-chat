@@ -1,12 +1,14 @@
-import { ChatHeader, Logo } from '@lobehub/ui';
+import { ChatHeader } from '@lobehub/ui';
 import { createStyles } from 'antd-style';
 import Link from 'next/link';
 import { memo } from 'react';
 
-import ShareAgentButton from '../../features/ShareAgentButton';
+// import ShareAgentButton from '../../features/ShareAgentButton';
 
 export const useStyles = createStyles(({ css, token }) => ({
   logo: css`
+    font-size: 16px;
+    font-weight: bolder;
     color: ${token.colorText};
     fill: ${token.colorText};
   `,
@@ -19,10 +21,10 @@ const Header = memo(() => {
     <ChatHeader
       left={
         <Link aria-label={'home'} href={'/'}>
-          <Logo className={styles.logo} extra={'Discover'} size={36} type={'text'} />
+          <div className={styles.logo}>AI 聊天室 / 发现</div>
         </Link>
       }
-      right={<ShareAgentButton />}
+      // right={<ShareAgentButton />}
     />
   );
 });

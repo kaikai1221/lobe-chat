@@ -17,7 +17,7 @@ export const createHeaderWithOpenAI = (header?: HeadersInit): HeadersInit => {
   // eslint-disable-next-line no-undef
   const result: HeadersInit = {
     ...header,
-    [LOBE_CHAT_ACCESS_CODE]: useGlobalStore.getState().settings.password || '',
+    [LOBE_CHAT_ACCESS_CODE]: useGlobalStore.getState().settings.token || '',
     [OPENAI_API_KEY_HEADER_KEY]: apiKey,
     [OPENAI_END_POINT]: endpoint,
   };

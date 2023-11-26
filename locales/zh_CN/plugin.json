@@ -51,7 +51,7 @@
         "pattenErrorMessage": "只能输入英文字符、数字 、- 和_ 这两个符号"
       },
       "manifest": {
-        "desc": "LobeChat 将会通过该链接安装插件",
+        "desc": "AI聊天室 将会通过该链接安装插件",
         "jsonInvalid": " manifest 不符合规范，校验结果: \n\n {{error}}",
         "label": "插件描述文件 Url 地址",
         "preview": "预览 Manifest",

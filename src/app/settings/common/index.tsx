@@ -19,7 +19,7 @@ export default memo(() => {
     <>
       <PageTitle title={t('tab.common')} />
       <Common />
-      <Footer>LobeChat v{CURRENT_VERSION}</Footer>
+      <Footer>AI聊天室 v{CURRENT_VERSION}</Footer>
     </>
   );
 });

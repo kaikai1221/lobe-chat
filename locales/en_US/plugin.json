@@ -51,7 +51,7 @@
         "pattenErrorMessage": "Only alphanumeric characters, hyphen -, and underscore _ are allowed"
       },
       "manifest": {
-        "desc": "LobeChat will install the plugin using this link",
+        "desc": "AI聊天室 will install the plugin using this link",
         "invalid": "The input manifest link is invalid or does not comply with the specification",
         "label": "Plugin Manifest URL",
         "urlError": "Please enter a valid URL",

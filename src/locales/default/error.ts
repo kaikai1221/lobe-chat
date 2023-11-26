@@ -30,7 +30,7 @@ export default {
     PluginServerError:
       '插件服务端请求返回出错，请检查根据下面的报错信息检查你的插件描述文件、插件配置或服务端实现',
 
-    InvalidAccessCode: '密码不正确或为空，请输入正确的访问密码，或者添加自定义 OpenAI API Key',
+    InvalidAccessCode: '账户未登录，请先登录',
     OpenAIBizError: '请求 OpenAI 服务出错，请根据以下信息排查或重试',
     NoAPIKey: 'OpenAI API Key 为空，请添加自定义 OpenAI API Key',
     /* eslint-enable */
@@ -48,11 +48,11 @@ export default {
       title: '使用自定义 API Key',
     },
     closeMessage: '关闭提示',
-    confirm: '确认并重试',
+    confirm: '登陆并重试',
     password: {
-      description: '管理员已开启应用加密，输入应用密码后即可解锁应用。密码只需填写一次',
+      description: '新用户注册赠送1000积分体验',
       placeholder: '请输入密码',
-      title: '输入密码解锁应用',
+      title: '登陆后解锁使用',
     },
   },
 };

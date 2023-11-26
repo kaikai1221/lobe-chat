@@ -41,6 +41,7 @@ export interface GlobalBaseSettings {
   password: string;
   primaryColor?: PrimaryColors;
   themeMode: ThemeMode;
+  token: string;
 }
 
 export type GlobalDefaultAgent = Pick<LobeAgentSession, 'config' | 'meta'>;

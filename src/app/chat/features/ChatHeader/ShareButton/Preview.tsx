@@ -1,5 +1,5 @@
 import { SiOpenai } from '@icons-pack/react-simple-icons';
-import { Avatar, ChatHeaderTitle, Logo, Markdown, Tag } from '@lobehub/ui';
+import { Avatar, ChatHeaderTitle, Markdown, Tag } from '@lobehub/ui';
 import { Button, SegmentedProps } from 'antd';
 import dayjs from 'dayjs';
 import { domToJpeg, domToPng, domToSvg, domToWebp } from 'modern-screenshot';
@@ -136,7 +136,7 @@ const Preview = memo<PreviewProps>(({ withSystemRole, imageType, withBackground,
             <ChatList />
             {withFooter ? (
               <Flexbox align={'center'} className={styles.footer} gap={4}>
-                <Logo extra={'chat'} type={'combine'} />
+                <div className={styles.logo}>AI 聊天室</div>
                 <div className={styles.url}>{pkg.homepage}</div>
               </Flexbox>
             ) : (

@@ -51,7 +51,7 @@
         "pattenErrorMessage": "只允許英數字元、連字號 -，以及底線 _"
       },
       "manifest": {
-        "desc": "LobeChat 會使用此連結安裝外掛",
+        "desc": "AI聊天室 會使用此連結安裝外掛",
         "invalid": "輸入的 manifest 連結不正確或不符合標準",
         "label": "外掛 Manifest 網址",
         "urlError": "請輸入有效的網址",

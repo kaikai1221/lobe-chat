@@ -5,7 +5,7 @@
   "agentMaxToken": "Максимальная длина сессии",
   "agentModel": "Модель",
   "agentProfile": "Информация о помощнике",
-  "appInitializing": "LobeChat запускается, пожалуйста, подождите...",
+  "appInitializing": "AI聊天室 запускается, пожалуйста, подождите...",
   "archive": "Архив",
   "autoGenerate": "Автогенерация",
   "autoGenerateTooltip": "Автогенерация описания помощника на основе подсказок",

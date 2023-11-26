@@ -2,7 +2,7 @@ import { Avatar, Form, Icon, Tooltip } from '@lobehub/ui';
 import { Button, Skeleton, Space, Switch, Tag } from 'antd';
 import { createStyles } from 'antd-style';
 import isEqual from 'fast-deep-equal';
-import { LucideBlocks, LucideSettings, LucideStore, LucideTrash2 } from 'lucide-react';
+import { LucideStore, LucideTrash2 } from 'lucide-react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Flexbox } from 'react-layout-kit';
@@ -183,7 +183,7 @@ const MarketList = memo(() => {
             children: isEmpty ? loadingList : [...deprecatedList, ...customList, ...list],
             extra: (
               <Space.Compact style={{ width: 'auto' }}>
-                <Button
+                {/* <Button
                   icon={<Icon icon={LucideBlocks} />}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -192,7 +192,7 @@ const MarketList = memo(() => {
                   size={'small'}
                 >
                   {t('settingPlugin.addTooltip')}
-                </Button>
+                </Button> */}
                 {hasDeprecated ? (
                   <Tooltip title={t('settingPlugin.clearDeprecated')}>
                     <Button
@@ -207,7 +207,7 @@ const MarketList = memo(() => {
                     />
                   </Tooltip>
                 ) : null}
-                <Tooltip title={t('settingPlugin.settings')}>
+                {/* <Tooltip title={t('settingPlugin.settings')}>
                   <Button
                     icon={<Icon icon={LucideSettings} />}
                     onClick={(e) => {
@@ -216,7 +216,7 @@ const MarketList = memo(() => {
                     }}
                     size={'small'}
                   />
-                </Tooltip>
+                </Tooltip> */}
               </Space.Compact>
             ),
             icon: LucideStore,

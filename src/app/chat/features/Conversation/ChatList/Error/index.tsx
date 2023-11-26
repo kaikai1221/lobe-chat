@@ -3,6 +3,7 @@ import { ChatListProps } from '@lobehub/ui';
 
 import { ChatErrorType } from '@/types/fetch';
 
+import InsufficientBalance from './InsufficientBalance';
 import InvalidAccess from './InvalidAccess';
 import OpenAPIKey from './OpenAPIKey';
 import OpenAiBizError from './OpenAiBizError';
@@ -47,6 +48,14 @@ export const renderErrorMessages: ChatListProps['renderErrorMessages'] = {
   },
   [ChatErrorType.InvalidAccessCode]: {
     Render: InvalidAccess,
+    config: {
+      extraDefaultExpand: true,
+      extraIsolate: true,
+      type: 'warning',
+    },
+  },
+  [ChatErrorType.InsufficientBalance]: {
+    Render: InsufficientBalance,
     config: {
       extraDefaultExpand: true,
       extraIsolate: true,

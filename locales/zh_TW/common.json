@@ -4,7 +4,7 @@
   "agentMaxToken": "最大對話長度",
   "agentModel": "模型",
   "agentProfile": "助手資訊",
-  "appInitializing": "LobeChat 正在啟動，請稍候...",
+  "appInitializing": "AI聊天室 正在啟動，請稍候...",
   "archive": "歸檔",
   "autoGenerate": "自動生成",
   "autoGenerateTooltip": "基於提示詞自動生成助手描述",

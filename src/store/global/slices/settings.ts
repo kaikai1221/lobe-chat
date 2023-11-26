@@ -70,9 +70,7 @@ export const createSettingsSlice: StateCreator<
   setSettings: (settings) => {
     const prevSetting = get().settings;
     const nextSettings = merge(prevSetting, settings);
-
     if (isEqual(prevSetting, nextSettings)) return;
-
     set({ settings: merge(prevSetting, settings) }, false, t('setSettings', settings));
   },
   switchSettingTabs: (tab) => {

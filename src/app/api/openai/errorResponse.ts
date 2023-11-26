@@ -6,6 +6,9 @@ const getStatus = (errorType: ErrorType) => {
     case ChatErrorType.InvalidAccessCode: {
       return 401;
     }
+    case ChatErrorType.InsufficientBalance: {
+      return 403;
+    }
 
     case ChatErrorType.OpenAIBizError: {
       return 577;

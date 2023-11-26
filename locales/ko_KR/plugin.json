@@ -51,7 +51,7 @@
         "pattenErrorMessage": "영문자, 숫자, - 및 _만 입력할 수 있습니다."
       },
       "manifest": {
-        "desc": "LobeChat은 이 링크를 통해 플러그인을 설치합니다.",
+        "desc": "AI聊天室은 이 링크를 통해 플러그인을 설치합니다.",
         "jsonInvalid": "manifest가 규칙에 맞지 않습니다. 유효성 검사 결과: \n\n {{error}}",
         "label": "플러그인 설명 파일 URL 주소",
         "preview": "Manifest 미리보기",

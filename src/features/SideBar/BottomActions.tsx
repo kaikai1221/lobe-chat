@@ -1,22 +1,18 @@
-import { ActionIcon, DiscordIcon, Icon } from '@lobehub/ui';
+import { ActionIcon, Icon, Modal } from '@lobehub/ui';
 import { Badge, ConfigProvider, Dropdown, MenuProps, Upload } from 'antd';
 import {
-  Book,
-  Feather,
-  FileClock,
-  Github,
+  BookmarkPlus,
   HardDriveDownload,
   HardDriveUpload,
-  Heart,
   Settings,
   Settings2,
 } from 'lucide-react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Flexbox } from 'react-layout-kit';
 
-import { ABOUT, CHANGELOG, DISCORD, FEEDBACK, GITHUB, WIKI } from '@/const/url';
 import { useExportConfig } from '@/hooks/useExportConfig';
 import { useImportConfig } from '@/hooks/useImportConfig';
 import { GlobalStore, useGlobalStore } from '@/store/global';
@@ -32,13 +28,10 @@ const BottomActions = memo<BottomActionProps>(({ tab, setTab }) => {
   const { t } = useTranslation('common');
   const { exportSessions, exportSettings, exportAll, exportAgents } = useExportConfig();
   const { importConfig } = useImportConfig();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [hasNewVersion] = useGlobalStore((s) => [s.hasNewVersion, s.useCheckLatestVersion]);
 
-  const [hasNewVersion, useCheckLatestVersion] = useGlobalStore((s) => [
-    s.hasNewVersion,
-    s.useCheckLatestVersion,
-  ]);
-
-  useCheckLatestVersion();
+  // useCheckLatestVersion();
 
   const items: MenuProps['items'] = [
     {
@@ -80,33 +73,33 @@ const BottomActions = memo<BottomActionProps>(({ tab, setTab }) => {
       key: 'export',
       label: t('export'),
     },
-    {
-      type: 'divider',
-    },
-    {
-      icon: <Icon icon={Feather} />,
-      key: 'feedback',
-      label: t('feedback'),
-      onClick: () => window.open(FEEDBACK, '__blank'),
-    },
-    {
-      icon: <Icon icon={FileClock} />,
-      key: 'changelog',
-      label: t('changelog'),
-      onClick: () => window.open(CHANGELOG, '__blank'),
-    },
-    {
-      icon: <Icon icon={Book} />,
-      key: 'wiki',
-      label: 'WIKI',
-      onClick: () => window.open(WIKI, '__blank'),
-    },
-    {
-      icon: <Icon icon={Heart} />,
-      key: 'about',
-      label: t('about'),
-      onClick: () => window.open(ABOUT, '__blank'),
-    },
+    // {
+    //   type: 'divider',
+    // },
+    // {
+    //   icon: <Icon icon={Feather} />,
+    //   key: 'feedback',
+    //   label: t('feedback'),
+    //   onClick: () => window.open(FEEDBACK, '__blank'),
+    // },
+    // {
+    //   icon: <Icon icon={FileClock} />,
+    //   key: 'changelog',
+    //   label: t('changelog'),
+    //   onClick: () => window.open(CHANGELOG, '__blank'),
+    // },
+    // {
+    //   icon: <Icon icon={Book} />,
+    //   key: 'wiki',
+    //   label: 'WIKI',
+    //   onClick: () => window.open(WIKI, '__blank'),
+    // },
+    // {
+    //   icon: <Icon icon={Heart} />,
+    //   key: 'about',
+    //   label: t('about'),
+    //   onClick: () => window.open(ABOUT, '__blank'),
+    // },
     {
       type: 'divider',
     },
@@ -132,17 +125,23 @@ const BottomActions = memo<BottomActionProps>(({ tab, setTab }) => {
   return (
     <>
       <ActionIcon
-        icon={DiscordIcon}
-        onClick={() => window.open(DISCORD, '__blank')}
-        placement={'right'}
-        title={'Discord'}
+        icon={BookmarkPlus}
+        onClick={() => setIsModalOpen(true)}
+        size={'site'}
+        title={'关注公众号'}
       />
-      <ActionIcon
-        icon={Github}
-        onClick={() => window.open(GITHUB, '__blank')}
-        placement={'right'}
-        title={'GitHub'}
-      />
+      <Modal
+        footer={''}
+        onCancel={() => setIsModalOpen(false)}
+        onOk={() => setIsModalOpen(false)}
+        open={isModalOpen}
+        title="关注公众号"
+      >
+        <p style={{ textAlign: 'center' }}>关注公众号，获取最新消息，领取专属礼包</p>
+        <div style={{ textAlign: 'center' }}>
+          <Image alt="公众号" height={200} src="/images/qrcode_for_gzh.jpg" width={200} />
+        </div>
+      </Modal>
       <Dropdown arrow={false} menu={{ items }} trigger={['click']}>
         {hasNewVersion ? (
           <Flexbox>

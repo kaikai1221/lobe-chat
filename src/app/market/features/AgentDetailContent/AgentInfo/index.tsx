@@ -49,10 +49,10 @@ const AgentModalInner = memo(() => {
                 </Flexbox>
               ),
             },
-            {
-              key: InfoTabs.comment,
-              label: t('sidebar.comment'),
-            },
+            // {
+            //   key: InfoTabs.comment,
+            //   label: t('sidebar.comment'),
+            // },
           ]}
           onChange={setTab}
         />

@@ -1,6 +1,6 @@
 'use client';
 
-import { Logo } from '@lobehub/ui';
+// import { Bot } from 'lucide-react';
 import { PropsWithChildren, memo } from 'react';
 import { Center, Flexbox } from 'react-layout-kit';
 
@@ -19,7 +19,7 @@ const Desktop = memo<PropsWithChildren>(({ children }) => {
         horizontal
         style={{ position: 'relative' }}
       >
-        <Logo className={styles.logo} size={36} type={'text'} />
+        <div className={styles.logo}>AI 聊天室</div>
         <Flexbox className={styles.view} flex={1}>
           {children}
         </Flexbox>
