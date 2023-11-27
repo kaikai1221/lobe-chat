@@ -7,7 +7,7 @@ const FullscreenLoading = memo<{ title?: string }>(({ title }) => {
   return (
     <Flexbox height={'100%'} width={'100%'}>
       <Center flex={1} gap={12} width={'100%'}>
-        <div style={{ fontSize: '26px', fontWeight: 'bolder' }}>AI 聊天室 / 聊天</div>
+        <div style={{ fontSize: '26px', fontWeight: 'bolder' }}>AI 聊天室</div>
         <Center gap={16} horizontal>
           <Icon icon={Loader2} spin />
           {title}

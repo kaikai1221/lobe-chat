@@ -4,6 +4,7 @@ import { checkAuth } from '@/app/api/auth';
 import { getServerConfig } from '@/config/server';
 import { getOpenAIAuthFromRequest } from '@/const/fetch';
 import { ChatErrorType, ErrorType } from '@/types/fetch';
+import { encodeAsync } from '@/utils/tokenizer';
 
 import { createErrorResponse } from '../errorResponse';
 import { createAzureOpenai } from './createAzureOpenai';
@@ -20,10 +21,17 @@ export const createBizOpenAI = async (req: Request, model: string): Promise<Resp
   const allContents = reqData.messages
     .map((msg: { content: string; role: string }) => msg.content)
     .join('');
+  let token = 0;
+  await encodeAsync(allContents)
+    .then((e) => (token = e))
+    .catch(() => {
+      // 兜底采用字符数
+      token = allContents.length;
+    });
   const result = await checkAuth({
     accessCode,
-    allContents,
     model,
+    token,
     url: req.headers.get('origin') || '',
   });
   if (!result.auth) {

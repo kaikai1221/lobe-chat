@@ -12,6 +12,6 @@ export const POST = async (req: Request) => {
   const res = await openAI.models.list();
 
   const modelList = res.data.map((i) => i.id);
-
+  console.log(modelList);
   return new Response(JSON.stringify(modelList));
 };

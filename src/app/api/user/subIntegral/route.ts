@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
   const params = new URL(req.url).searchParams;
   const integral = params.get('integral')!;
   let res = await UserDAL.subIntegral(userId, Number(integral));
-  console.log(res);
+  console.log('剩余积分：' + res.integral);
   return NextResponse.json({
     body: res,
     status: serverStatus.success,

@@ -1,8 +1,22 @@
 import { t } from 'i18next';
 
+import { LOBE_CHAT_ACCESS_CODE } from '@/const/fetch';
+import { useGlobalStore } from '@/store/global';
 import { ChatMessageError } from '@/types/chatMessage';
 import { ErrorResponse, ErrorType } from '@/types/fetch';
+import { encodeAsync } from '@/utils/tokenizer';
 
+function roundUp(num: number) {
+  if (Number.isInteger(num)) {
+    return num;
+  }
+  // 如果是负数，则直接向下取整
+  if (num < 0) {
+    return Math.floor(num);
+  }
+  // 向上取整并加 1
+  return Math.ceil(num);
+}
 export const getMessageError = async (response: Response) => {
   let chatMessageError: ChatMessageError;
 
@@ -36,36 +50,70 @@ export interface FetchSSEOptions {
  * @param options
  */
 export const fetchSSE = async (fetchFn: () => Promise<Response>, options: FetchSSEOptions = {}) => {
-  const response = await fetchFn();
+  let content = '';
+  let token = 0;
+  try {
+    const response = await fetchFn();
 
-  // 如果不 ok 说明有请求错误
-  if (!response.ok) {
-    const chatMessageError = await getMessageError(response);
+    // 如果不 ok 说明有请求错误
+    if (!response.ok) {
+      const chatMessageError = await getMessageError(response);
 
-    options.onErrorHandle?.(chatMessageError);
-    return;
+      options.onErrorHandle?.(chatMessageError);
+      return;
+    }
+
+    const returnRes = response.clone();
+
+    const data = response.body;
+
+    if (!data) return;
+
+    const reader = data.getReader();
+    const decoder = new TextDecoder();
+
+    let done = false;
+    while (!done) {
+      const { value, done: doneReading } = await reader.read();
+      done = doneReading;
+      const chunkValue = decoder.decode(value, { stream: true });
+      content += chunkValue;
+      options.onMessageHandle?.(chunkValue);
+    }
+    await encodeAsync(content)
+      .then((e) => {
+        token = e;
+      })
+      .catch(() => {
+        // 兜底采用字符数
+        token = content.length;
+      });
+    await fetch('/api/user/subIntegral?integral=' + roundUp(token / 100), {
+      cache: 'no-cache',
+      headers: {
+        [LOBE_CHAT_ACCESS_CODE]: useGlobalStore.getState().settings.token || '',
+      },
+      method: 'GET',
+    });
+    console.log(content, token);
+    return returnRes;
+  } catch {
+    await encodeAsync(content)
+      .then((e) => {
+        token = e;
+      })
+      .catch(() => {
+        // 兜底采用字符数
+        token = content.length;
+      });
+    await fetch('/api/user/subIntegral?integral=' + roundUp(token / 100), {
+      cache: 'no-cache',
+      headers: {
+        [LOBE_CHAT_ACCESS_CODE]: useGlobalStore.getState().settings.token || '',
+      },
+      method: 'GET',
+    });
   }
-
-  const returnRes = response.clone();
-
-  const data = response.body;
-
-  if (!data) return;
-
-  const reader = data.getReader();
-  const decoder = new TextDecoder();
-
-  let done = false;
-
-  while (!done) {
-    const { value, done: doneReading } = await reader.read();
-    done = doneReading;
-    const chunkValue = decoder.decode(value, { stream: true });
-
-    options.onMessageHandle?.(chunkValue);
-  }
-
-  return returnRes;
 };
 
 interface FetchAITaskResultParams<T> {
