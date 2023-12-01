@@ -4,6 +4,7 @@ import { KeyRound, KeySquare, LogIn, SquareAsterisk, User } from 'lucide-react';
 import { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Flexbox } from 'react-layout-kit';
+import md5 from 'spark-md5';
 
 import { serverStatus } from '@/prismaClient/serverStatus';
 import { useGlobalStore } from '@/store/global';
@@ -24,7 +25,8 @@ const InvalidAccess: RenderErrorMessage['Render'] = memo(({ id }) => {
   const [mode, setMode] = useState<Tab>(Tab.Code);
   const [submitting, setSubmitting] = useState(false);
   const [logining, setLogining] = useState(false);
-  const [password, setSettings] = useGlobalStore((s) => [s.settings.token, s.setSettings]);
+  const [password, setPassword] = useState('');
+  const [setSettings] = useGlobalStore((s) => [s.setSettings]);
   const [resend, deleteMessage] = useSessionStore((s) => [s.resendMessage, s.deleteMessage]);
   useEffect(() => {
     if (time > 0) {
@@ -94,6 +96,56 @@ const InvalidAccess: RenderErrorMessage['Render'] = memo(({ id }) => {
         password,
         register_code: code,
         [type]: register,
+      }),
+      cache: 'no-store',
+      headers: { 'Content-Type': 'application/json' },
+      method: 'POST',
+    });
+    const data = await res.json();
+    setLogining(false);
+    switch (data.status) {
+      case serverStatus.success: {
+        message.success('登陆成功');
+        setSettings({ token: data.signedToken.token });
+        resend(id);
+        deleteMessage(id);
+        localStorage.setItem('InvitationCode', '');
+        break;
+      }
+      case serverStatus.notExist: {
+        message.warning('用户不存在');
+        break;
+      }
+      case serverStatus.wrongPassword: {
+        message.warning('密码错误');
+        break;
+      }
+      default: {
+        message.warning('系统异常，请稍后再试');
+        break;
+      }
+    }
+  };
+  const handlePasswordLogin = async () => {
+    if (!register || !password) return message.warning('请输入账号和密码');
+    const type = register.includes('@') ? 'email' : 'phone';
+    if (register.includes('@')) {
+      if (!/^([\w.-])+@([\w.-])+\.([A-Za-z]{2,4})$/.test(register)) {
+        message.warning('请输入正确的邮箱');
+        return;
+      }
+    } else {
+      if (!/^1[,3-9]\d{9}$/.test(register)) {
+        message.warning('请输入正确的手机号');
+        return;
+      }
+    }
+    setLogining(true);
+
+    const res = await fetch('/api/user/login', {
+      body: JSON.stringify({
+        providerContent: { content: register.trim(), password: md5.hash(password) },
+        providerId: type,
       }),
       cache: 'no-store',
       headers: { 'Content-Type': 'application/json' },
@@ -204,10 +256,16 @@ const InvalidAccess: RenderErrorMessage['Render'] = memo(({ id }) => {
               description="注册后可在个人信息页面设置密码"
               title={t('unlock.password.title')}
             >
-              <Input placeholder="请输入手机号或邮箱" prefix={<User size={16} />} />
+              <Input
+                maxLength={50}
+                onChange={(e) => setRegister(e.target.value)}
+                placeholder="请输入手机号或邮箱"
+                prefix={<User size={16} />}
+                value={register}
+              />
               <Input.Password
                 onChange={(e) => {
-                  setSettings({ password: e.target.value });
+                  setPassword(e.target.value);
                 }}
                 placeholder={t('unlock.password.placeholder')}
                 prefix={<KeyRound size={16} />}
@@ -219,7 +277,7 @@ const InvalidAccess: RenderErrorMessage['Render'] = memo(({ id }) => {
               <Button
                 disabled={logining || submitting}
                 onClick={() => {
-                  handleLogin();
+                  handlePasswordLogin();
                 }}
                 type={'primary'}
               >

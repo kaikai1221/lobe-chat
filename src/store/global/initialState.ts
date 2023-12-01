@@ -12,6 +12,7 @@ export enum SettingsTabs {
   Common = 'common',
   LLM = 'llm',
   TTS = 'tts',
+  User = 'user',
 }
 
 export interface Guide {

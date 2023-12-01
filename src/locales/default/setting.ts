@@ -276,5 +276,6 @@ export default {
     common: '通用设置',
     llm: '语言模型',
     tts: '语音服务',
+    user: '个人信息',
   },
 };

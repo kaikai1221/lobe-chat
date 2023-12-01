@@ -13,9 +13,13 @@ const useStyles = createStyles(({ css, cx, stylish }) => ({
     stylish.noScrollbar,
     css`
       position: relative;
+
       overflow: hidden auto;
+
       width: 100vw;
       height: 100%;
+
+      background-color: transparent;
     `,
   ),
   mobileNavBar: css`

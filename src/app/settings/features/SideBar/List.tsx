@@ -1,5 +1,5 @@
 import { useResponsive } from 'antd-style';
-import { Bot, Mic2, Settings2 } from 'lucide-react';
+import { Bot, Mic2, Settings2, User } from 'lucide-react';
 import Link from 'next/link';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -15,6 +15,7 @@ const List = memo(() => {
   const { mobile } = useResponsive();
 
   const items = [
+    { icon: User, label: '个人信息', value: SettingsTabs.User },
     { icon: Settings2, label: t('tab.common'), value: SettingsTabs.Common },
     // { icon: Webhook, label: t('tab.llm'), value: SettingsTabs.LLM },
     { icon: Mic2, label: t('tab.tts'), value: SettingsTabs.TTS },

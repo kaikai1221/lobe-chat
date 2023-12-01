@@ -29,7 +29,7 @@ export const checkAuth = async ({ accessCode, token, url, model }: AuthConfig) =
     method: 'GET',
   });
   const data = await res.json();
-  if (typeof data.code === 'number' && data.code !== serverStatus.success) {
+  if (typeof data.body.code === 'number' && data.body.code !== serverStatus.success) {
     return { auth: false, error: ChatErrorType.InvalidAccessCode };
   }
 
