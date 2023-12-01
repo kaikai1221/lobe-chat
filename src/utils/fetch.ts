@@ -41,6 +41,7 @@ export const getMessageError = async (response: Response) => {
 
 export interface FetchSSEOptions {
   onErrorHandle?: (error: ChatMessageError) => void;
+  onFinish?: (text: string) => Promise<void>;
   onMessageHandle?: (text: string) => void;
 }
 
@@ -50,7 +51,7 @@ export interface FetchSSEOptions {
  * @param options
  */
 export const fetchSSE = async (fetchFn: () => Promise<Response>, options: FetchSSEOptions = {}) => {
-  let content = '';
+  let output = '';
   let token = 0;
   try {
     const response = await fetchFn();
@@ -68,25 +69,28 @@ export const fetchSSE = async (fetchFn: () => Promise<Response>, options: FetchS
     const data = response.body;
 
     if (!data) return;
-
     const reader = data.getReader();
     const decoder = new TextDecoder();
 
     let done = false;
+
     while (!done) {
       const { value, done: doneReading } = await reader.read();
       done = doneReading;
       const chunkValue = decoder.decode(value, { stream: true });
-      content += chunkValue;
+
+      output += chunkValue;
       options.onMessageHandle?.(chunkValue);
     }
-    await encodeAsync(content)
+
+    await options?.onFinish?.(output);
+    await encodeAsync(output)
       .then((e) => {
         token = e;
       })
       .catch(() => {
         // 兜底采用字符数
-        token = content.length;
+        token = output.length;
       });
     await fetch('/api/user/subIntegral?integral=' + roundUp(token / 100), {
       cache: 'no-cache',
@@ -95,16 +99,16 @@ export const fetchSSE = async (fetchFn: () => Promise<Response>, options: FetchS
       },
       method: 'GET',
     });
-    console.log(content, token);
+    console.log(output, token);
     return returnRes;
   } catch {
-    await encodeAsync(content)
+    await encodeAsync(output)
       .then((e) => {
         token = e;
       })
       .catch(() => {
         // 兜底采用字符数
-        token = content.length;
+        token = output.length;
       });
     await fetch('/api/user/subIntegral?integral=' + roundUp(token / 100), {
       cache: 'no-cache',
@@ -122,6 +126,7 @@ interface FetchAITaskResultParams<T> {
    * 错误处理函数
    */
   onError?: (e: Error, rawError?: any) => void;
+  onFinish?: (text: string) => Promise<void>;
   /**
    * 加载状态变化处理函数
    * @param loading - 是否处于加载状态
@@ -132,7 +137,6 @@ interface FetchAITaskResultParams<T> {
    * @param text - 消息内容
    */
   onMessageHandle?: (text: string) => void;
-
   /**
    * 请求对象
    */
@@ -144,6 +148,7 @@ export const fetchAIFactory =
   async ({
     params,
     onMessageHandle,
+    onFinish,
     onError,
     onLoadingChange,
     abortController,
@@ -162,6 +167,7 @@ export const fetchAIFactory =
       onErrorHandle: (error) => {
         errorHandle(new Error(error.message), error);
       },
+      onFinish,
       onMessageHandle,
     }).catch(errorHandle);
 

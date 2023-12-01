@@ -1,7 +1,7 @@
 import { DEFAULT_AGENT_META } from '@/const/meta';
 import { DEFAULT_AGENT_CONFIG } from '@/const/settings';
+import { LobeAgentConfig } from '@/types/agent';
 import { MetaData } from '@/types/meta';
-import { LobeAgentConfig } from '@/types/session';
 
 export interface State {
   autocompleteLoading: SessionLoadingState;

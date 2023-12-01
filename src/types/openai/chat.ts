@@ -1,5 +1,6 @@
-import { OpenAIFunctionCall } from '@/types/chatMessage';
 import { LLMRoleType } from '@/types/llm';
+
+import { OpenAIFunctionCall } from './functionCall';
 
 interface UserMessageContentPartText {
   text: string;
@@ -31,6 +32,11 @@ export interface OpenAIChatMessage {
   role: LLMRoleType;
 }
 
+export interface OpenAIChatStringMessage {
+  content: string;
+  role: LLMRoleType;
+}
+
 /**
  * @title OpenAI Stream Payload
  */
@@ -40,6 +46,7 @@ export interface OpenAIChatStreamPayload {
    * @default 0
    */
   frequency_penalty?: number;
+  functions?: ChatCompletionFunctions[];
   /**
    * @title 生成文本的最大长度
    */

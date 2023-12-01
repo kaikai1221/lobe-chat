@@ -7,8 +7,8 @@ import { Flexbox } from 'react-layout-kit';
 import md5 from 'spark-md5';
 
 import { serverStatus } from '@/prismaClient/serverStatus';
+import { useChatStore } from '@/store/chat';
 import { useGlobalStore } from '@/store/global';
-import { useSessionStore } from '@/store/session';
 
 import { ErrorActionContainer, FormAction } from './style';
 
@@ -27,7 +27,7 @@ const InvalidAccess: RenderErrorMessage['Render'] = memo(({ id }) => {
   const [logining, setLogining] = useState(false);
   const [password, setPassword] = useState('');
   const [setSettings] = useGlobalStore((s) => [s.setSettings]);
-  const [resend, deleteMessage] = useSessionStore((s) => [s.resendMessage, s.deleteMessage]);
+  const [resend, deleteMessage] = useChatStore((s) => [s.resendMessage, s.deleteMessage]);
   useEffect(() => {
     if (time > 0) {
       setTimeout(() => {
