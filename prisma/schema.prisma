@@ -48,7 +48,20 @@ model User {
   tokens          String[]           @default([])
   invitationCodes InvitationCode[]   @relation("UserInvitationCodes") // 当前用户的邀请码，一般用户只有一个
   invitation      InvitationRecord[] @relation("InvitationOnInvitee") // 当前用户邀请的对应记录
+  inviter         InvitationRecord[] @relation("InvitationOnInviter") // 当前用户邀请的对应记录
+  integralUsed    IntegralUsed[]     @relation("UserIntegralUsed") // 当前用户邀请的对应记录
   ip              String?            @default("")
+}
+
+model IntegralUsed {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation("UserIntegralUsed", fields: [userId], references: [userId])
+  modelName String
+  model     Model    @relation("ModelIntegralUsed", fields: [modelName], references: [modelName])
+  desc      String
+  useValue  Int
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
 }
 
 model WechatInfo {
@@ -86,22 +99,24 @@ model InvitationRecord {
   inviterId Int // 邀请者
   inviteeId Int  @unique // 被邀请者
   invitee   User @relation("InvitationOnInvitee", fields: [inviterId], references: [userId])
+  inviter   User @relation("InvitationOnInviter", fields: [inviteeId], references: [userId])
 
   code    String
   codeRaw InvitationCode @relation("InvitationOnCode", fields: [code, inviterId], references: [code, ownerId])
 }
 
 model Model {
-  modelId     Int           @id @default(autoincrement())
-  modelName   String        @unique
-  available   Boolean       @default(true)
-  isShow      Boolean       @default(true)
-  unitPrice   Int           @default(10) // 1000token多少积分 
-  inputPrice  Int           @default(10) // 1000token多少积分 
-  outPrice    Int           @default(10) // 1000token多少积分 
-  limits      Limits[]      @relation("LimitsWithModel")
-  chatHistory ChatHistory[] @relation("ChatHistoryWithModel")
-  userLimits  UserLimits[]  @relation("UserLimitsWithModel")
+  modelId     Int            @id @default(autoincrement())
+  modelName   String         @unique
+  available   Boolean        @default(true)
+  isShow      Boolean        @default(true)
+  unitPrice   Int            @default(10) // 1000token多少积分 
+  inputPrice  Int            @default(10) // 1000token多少积分 
+  outPrice    Int            @default(10) // 1000token多少积分 
+  limits      Limits[]       @relation("LimitsWithModel")
+  chatHistory ChatHistory[]  @relation("ChatHistoryWithModel")
+  userLimits  UserLimits[]   @relation("UserLimitsWithModel")
+  useList     IntegralUsed[] @relation("ModelIntegralUsed")
 
   @@unique([modelId, modelName])
 }

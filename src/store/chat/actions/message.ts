@@ -5,6 +5,7 @@ import { template } from 'lodash-es';
 import useSWR, { SWRResponse, mutate } from 'swr';
 import { StateCreator } from 'zustand/vanilla';
 
+import { LOBE_CHAT_ACCESS_CODE } from '@/const/fetch';
 import { VISION_MODEL_WHITE_LIST } from '@/const/llm';
 import { LOADING_FLAT } from '@/const/message';
 import { VISION_MODEL_DEFAULT_MAX_TOKENS } from '@/const/settings';
@@ -15,12 +16,14 @@ import { messageService } from '@/services/message';
 import { topicService } from '@/services/topic';
 import { chatHelpers } from '@/store/chat/helpers';
 import { ChatStore } from '@/store/chat/store';
+import { useGlobalStore } from '@/store/global';
 import { useSessionStore } from '@/store/session';
 import { agentSelectors } from '@/store/session/selectors';
 import { ChatMessage } from '@/types/chatMessage';
 import { fetchSSE } from '@/utils/fetch';
 import { isFunctionMessageAtStart, testFunctionMessageAtEnd } from '@/utils/message';
 import { setNamespace } from '@/utils/storeDebug';
+import { encodeAsync } from '@/utils/tokenizer';
 
 import { MessageDispatch, messagesReducer } from '../reducers/message';
 import { chatSelectors } from '../selectors';
@@ -78,6 +81,25 @@ export interface ChatMessageAction {
 
 const getAgentConfig = () => agentSelectors.currentAgentConfig(useSessionStore.getState());
 
+const subIntegral = async (output: string, model: string) => {
+  let token: number = 0;
+  await encodeAsync(output)
+    .then((e) => {
+      token = e;
+    })
+    .catch(() => {
+      // 兜底采用字符数
+      token = output.length;
+    });
+  await fetch(`/api/user/subIntegral?token=${token}&modelName=${model}&desc=输出&type=out`, {
+    cache: 'no-cache',
+    headers: {
+      [LOBE_CHAT_ACCESS_CODE]: useGlobalStore.getState().settings.token || '',
+    },
+    method: 'GET',
+  });
+  console.log(output, token);
+};
 export const chatMessage: StateCreator<
   ChatStore,
   [['zustand/devtools', never]],
@@ -355,27 +377,32 @@ export const chatMessage: StateCreator<
     let isFunctionCall = false;
     let functionCallAtEnd = false;
     let functionCallContent = '';
+    try {
+      await fetchSSE(fetcher, {
+        onErrorHandle: async (error) => {
+          await messageService.updateMessageError(assistantId, error);
+          await refreshMessages();
+        },
+        onFinish: async (content) => {
+          // update the content after fetch result
+          subIntegral(output, config.model);
+          await messageService.updateMessageContent(assistantId, content);
+          await refreshMessages();
+        },
+        onMessageHandle: async (text) => {
+          output += text;
 
-    await fetchSSE(fetcher, {
-      onErrorHandle: async (error) => {
-        await messageService.updateMessageError(assistantId, error);
-        await refreshMessages();
-      },
-      onFinish: async (content) => {
-        // update the content after fetch result
-        await messageService.updateMessageContent(assistantId, content);
-        await refreshMessages();
-      },
-      onMessageHandle: async (text) => {
-        output += text;
+          await messageService.updateMessageContent(assistantId, output);
+          await refreshMessages();
 
-        await messageService.updateMessageContent(assistantId, output);
-        await refreshMessages();
-
-        // is this message is just a function call
-        if (isFunctionMessageAtStart(output)) isFunctionCall = true;
-      },
-    });
+          // is this message is just a function call
+          if (isFunctionMessageAtStart(output)) isFunctionCall = true;
+        },
+      });
+    } catch {
+      console.log('终止输出');
+      subIntegral(output, config.model);
+    }
 
     toggleChatLoading(false, undefined, t('generateMessage(end)') as string);
 

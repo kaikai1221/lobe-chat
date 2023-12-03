@@ -39,7 +39,17 @@ interface Data {
 function getRandom(min: number, max: number) {
   return Math.round(Math.random() * (max - min) + min);
 }
-
+function roundUp(num: number) {
+  if (Number.isInteger(num)) {
+    return num;
+  }
+  // 如果是负数，则直接向下取整
+  if (num < 0) {
+    return Math.floor(num);
+  }
+  // 向上取整并加 1
+  return Math.ceil(num);
+}
 function getCode() {
   let code = '';
   for (let i = 0; i < 6; i++) {
@@ -332,21 +342,12 @@ export class UserDAL {
       });
 
       if (code /* If invitee id is exists, then make a record*/ && code.ownerId && code.owner) {
-        const invitationRecordInput: Prisma.InvitationRecordCreateInput = {
-          codeRaw: {
-            connect: {
-              code: code.code,
-            },
-          },
-          invitee: {
-            connect: {
-              userId: user.userId,
-            },
-          },
-          inviteeId: code.ownerId,
-        };
         await client.invitationRecord.create({
-          data: invitationRecordInput,
+          data: {
+            code: code.code,
+            inviteeId: user.userId,
+            inviterId: code.ownerId,
+          },
         });
         await this.setLimits(5, code.owner);
       }
@@ -450,6 +451,7 @@ export class UserDAL {
     {
       email?: string | null;
       hasPassword?: boolean;
+      invitation: any;
       passwordHash?: undefined;
       phone?: string | null;
       userId?: number;
@@ -462,11 +464,7 @@ export class UserDAL {
     const res = await client.user.findUnique({
       select: {
         email: true,
-        invitation: {
-          where: {
-            inviterId: userId,
-          },
-        },
+        integral: true,
         invitationCodes: {
           select: {
             code: true,
@@ -512,10 +510,7 @@ export class UserDAL {
           },
           where: {
             expiredAt: {
-              gte: new Date() /* Includes time offset for UTC */,
-            },
-            startAt: {
-              lte: new Date(),
+              gte: new Date(),
             },
           },
         },
@@ -525,6 +520,19 @@ export class UserDAL {
     return {
       ...res,
       hasPassword: !!res?.passwordHash,
+      invitation:
+        (await client.user.findMany({
+          select: {
+            createdAt: true,
+            email: true,
+            phone: true,
+          },
+          where: {
+            inviter: {
+              some: { inviterId: userId },
+            },
+          },
+        })) || [],
       passwordHash: undefined,
     };
   }
@@ -889,7 +897,41 @@ export class UserDAL {
       return { code: serverStatus.invalidToken, msg: 'token不正确或已失效' };
     }
   }
-  static async subIntegral(userId: number, integral: number) {
+  static async subIntegral(
+    userId: number,
+    token: number,
+    modelName: string,
+    desc: string,
+    type: 'in' | 'out',
+  ) {
+    let integral = 0;
+    const data = await client.model.findUnique({
+      where: {
+        modelName,
+      },
+    });
+    const { inputPrice, outPrice } = data || { inputPrice: 10, outPrice: 20 };
+    switch (type) {
+      case 'in': {
+        integral = roundUp((token / 1000) * inputPrice);
+        break;
+      }
+      case 'out': {
+        integral = roundUp((token / 1000) * outPrice);
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+    await client.integralUsed.create({
+      data: {
+        desc,
+        modelName,
+        useValue: integral,
+        userId,
+      },
+    });
     return await client.user.update({
       data: {
         integral: {
@@ -900,5 +942,24 @@ export class UserDAL {
         userId,
       },
     });
+  }
+  static async getUsed(userId: number, pageNo: number, pageSize: number) {
+    return {
+      list: await client.integralUsed.findMany({
+        select: {
+          createdAt: true,
+          desc: true,
+          id: true,
+          modelName: true,
+          useValue: true,
+        },
+        skip: (pageNo - 1) * pageSize,
+        take: pageSize,
+        where: {
+          userId,
+        },
+      }),
+      total: await client.integralUsed.count(),
+    };
   }
 }

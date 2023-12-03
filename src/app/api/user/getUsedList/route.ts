@@ -10,12 +10,9 @@ export async function GET(req: NextRequest) {
   const { accessCode } = getOpenAIAuthFromRequest(req);
   const userId = await parseUserId(accessCode || '');
   const params = new URL(req.url).searchParams;
-  const token = params.get('token')!;
-  const modelName = params.get('modelName')!;
-  const type = params.get('type')! as 'in' | 'out';
-  const desc = params.get('desc')!;
-  let res = await UserDAL.subIntegral(userId, Number(token), modelName, desc, type);
-  console.log('剩余积分：' + res.integral);
+  const pageNo = params.get('pageNo')!;
+  const pageSize = params.get('pageSize') || 10;
+  let res = await UserDAL.getUsed(userId, Number(pageNo), Number(pageSize));
   return NextResponse.json({
     body: res,
     status: serverStatus.success,
