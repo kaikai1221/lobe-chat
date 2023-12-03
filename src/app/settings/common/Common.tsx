@@ -11,7 +11,7 @@ import { DEFAULT_SETTINGS } from '@/const/settings';
 import AvatarWithUpload from '@/features/AvatarWithUpload';
 import { localeOptions } from '@/locales/options';
 import { useChatStore } from '@/store/chat';
-import { useFileStore } from '@/store/files';
+import { useFileStore } from '@/store/file';
 import { settingsSelectors, useGlobalStore } from '@/store/global';
 import { usePluginStore } from '@/store/plugin';
 import { useSessionStore } from '@/store/session';
@@ -21,7 +21,11 @@ import { ThemeSwatchesNeutral, ThemeSwatchesPrimary } from '../features/ThemeSwa
 
 type SettingItemGroup = ItemGroup;
 
-const Common = memo(() => {
+export interface SettingsCommonProps {
+  showAccessCodeConfig: boolean;
+}
+
+const Common = memo<SettingsCommonProps>(() => {
   const { t } = useTranslation('setting');
   const [form] = AntForm.useForm();
 
@@ -154,6 +158,7 @@ const Common = memo(() => {
       // {
       //   children: <Input.Password placeholder={t('settingSystem.accessCode.placeholder')} />,
       //   desc: t('settingSystem.accessCode.desc'),
+      //   hidden: !showAccessCodeConfig,
       //   label: t('settingSystem.accessCode.title'),
       //   name: 'password',
       // },

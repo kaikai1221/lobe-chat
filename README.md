@@ -1,4 +1,6 @@
-<a name="readme-top"></a><div align="center">
+<a name="readme-top"></a>
+
+<div align="center">
 
 <img height="120" src="https://registry.npmmirror.com/@lobehub/assets-logo/1.0.0/files/assets/logo-3d.webp">
 <img height="120" src="https://gw.alipayobjects.com/zos/kitchen/qJ3l3EPsdW/split.svg">
@@ -24,7 +26,8 @@ Supports one-click free deployment of your private ChatGPT/LLM web application.
 [![][github-forks-shield]][github-forks-link]
 [![][github-stars-shield]][github-stars-link]
 [![][github-issues-shield]][github-issues-link]
-[![][github-license-shield]][github-license-link]
+[![][github-license-shield]][github-license-link]<br>
+[![](https://img.shields.io/badge/-Sponsor%20LobeHub-f04f88?logo=opencollective&logoColor=white&style=flat-square)](https://opencollective.com/lobehub 'Sponsor LobeHub on open-collective')
 
 **Share LobeChat Repository**
 
@@ -49,9 +52,8 @@ Supports one-click free deployment of your private ChatGPT/LLM web application.
 - [✨ Features](#-features)
 - [⚡️ Performance](#️-performance)
 - [🛳 Self Hosting](#-self-hosting)
-  - [`A` Deploying with Vercel](#a-deploying-with-vercel)
+  - [`A` Deploying with Vercel or Zeabur](#a-deploying-with-vercel-or-zeabur)
   - [`B` Deploying with Docker](#b-deploying-with-docker)
-  - [`C` Deploying with Zeabur](#c-deploying-with-zeabur)
   - [Environment Variable](#environment-variable)
 - [📦 Ecosystem](#-ecosystem)
 - [🧩 Plugins](#-plugins)
@@ -203,12 +205,12 @@ Our marketplace is not just a showcase platform but also a collaborative space. 
 
 | Recent Submits                                                                                                                                                                            | Description                                                                                                                                                                                                                                                                                  |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Organic Chemistry Researcher](https://chat-preview.lobehub.com/market?agent=organic-chemistry-researcher)<br/><sup>By **[y22emc2](https://github.com/y22emc2)** on **2023-12-02**</sup>  | Specializes in academic translation and writing in the field of organic chemistry<br/>`organic-chemistry` `research` `translation` `writing` `academic-articles`                                                                                                                             |
 | [JS Code Quality Optimization](https://chat-preview.lobehub.com/market?agent=js-code-quality)<br/><sup>By **[canisminor1990](https://github.com/canisminor1990)** on **2023-11-22**</sup> | Dedicated to clean and elegant code refactoring<br/>`refactoring` `code-optimization` `code-quality`                                                                                                                                                                                         |
 | [LobeChat Test Engineer](https://chat-preview.lobehub.com/market?agent=lobe-chat-unit-test-dev)<br/><sup>By **[arvinxx](https://github.com/arvinxx)** on **2023-11-22**</sup>             | Proficient in writing frontend automation tests, especially comprehensive test coverage for TypeScript applications. Skilled in using the Vitest testing framework with a deep understanding of testing principles and strategies.<br/>`automation-testing` `testing` `lobe-chat` `frontend` |
 | [Q\&A Document Conversion Expert](https://chat-preview.lobehub.com/market?agent=q-a-helper)<br/><sup>By **[barryWang12138](https://github.com/barryWang12138)** on **2023-11-22**</sup>   | Please provide your document content, and I will segment and clean it according to your requirements, and provide answers in a standardized format.<br/>`q-a` `document`                                                                                                                     |
-| [True Friend](https://chat-preview.lobehub.com/market?agent=ai-0x0-old-friends)<br/><sup>By **[mushan0x0](https://github.com/mushan0x0)** on **2023-11-21**</sup>                         | You can talk to me about anything. I can give you some thoughts and advice as a friend. Relax.<br/>`friendship` `humor` `authentic` `simulation`                                                                                                                                             |
 
-> 📊 Total agents: [<kbd>**52**</kbd> ](https://github.com/lobehub/lobe-chat-agents)
+> 📊 Total agents: [<kbd>**53**</kbd> ](https://github.com/lobehub/lobe-chat-agents)
 
  <!-- AGENT LIST -->
 
@@ -322,18 +324,20 @@ Beside these features, LobeChat also have much better basic technique undergroun
 
 LobeChat provides Self-Hosted Version with Vercel and [Docker Image][docker-release-link]. This allows you to deploy your own chatbot within a few minutes without any prior knowledge.
 
-### `A` Deploying with Vercel
+### `A` Deploying with Vercel or Zeabur
 
-If you want to deploy this service yourself on Vercel, you can follow these steps:
+If you want to deploy this service yourself on either Vercel or Zeabur, you can follow these steps:
 
 - Prepare your [OpenAI API Key](https://platform.openai.com/account/api-keys).
-- Click the button below to start deployment: Deploy with Vercel. Log in directly with your GitHub account, and remember to fill in the `OPENAI_API_KEY`(required) and `ACCESS_CODE` (recommended) on the environment variable section.
+- Click the button below to start deployment: Log in directly with your GitHub account, and remember to fill in the `OPENAI_API_KEY`(required) and `ACCESS_CODE` (recommended) on the environment variable section.
 - After deployment, you can start using it.
 - Bind a custom domain (optional): The DNS of the domain assigned by Vercel is polluted in some areas; binding a custom domain can connect directly.
 
 <div align="center">
 
-[![][deploy-button-image]][deploy-link]
+|           Deploy with Vercel            |                     Deploy with Zeabur                      |
+| :-------------------------------------: | :---------------------------------------------------------: |
+| [![][deploy-button-image]][deploy-link] | [![][deploy-on-zeabur-button-image]][deploy-on-zeabur-link] |
 
 </div>
 
@@ -379,21 +383,6 @@ $ docker run -d -p 3210:3210 \
 > For detailed instructions on deploying with Docker, please refer to the [📘 Docker Deployment Guide](https://github.com/lobehub/lobe-chat/wiki/Docker-Deployment)
 
 <br/>
-
-### `C` Deploying with Zeabur
-
-If you want to deploy this service yourself on Zeabur, you can follow these steps:
-
-- Prepare your [OpenAI API Key](https://platform.openai.com/account/api-keys).
-- Click the button below to start deployment: Deploy with Zeabur.
-- You can start using it after the deployment.
-- You can bind a custom domain or use the subdomain provided by Zeabur.
-
-<div align="center">
-
-[![][deploy-on-zeabur-button-image]][deploy-on-zeabur-link]
-
-</div>
 
 ### Environment Variable
 
@@ -485,7 +474,37 @@ Contributions of all types are more than welcome; if you are interested in contr
 [![][submit-agents-shield]][submit-agents-link]
 [![][submit-plugin-shield]][submit-plugin-link]
 
-[![][contributors-contrib]][contributors-link]
+<a href="https://github.com/lobehub/lobe-chat/graphs/contributors" target="_blank">
+  <table>
+    <tr>
+      <th colspan="2">
+        <br><img src="https://contrib.rocks/image?repo=lobehub/lobe-chat"><br><br>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://next.ossinsight.io/widgets/official/compose-org-active-contributors/thumbnail.png?activity=active&period=past_28_days&owner_id=131470832&repo_ids=643445235&image_size=2x3&color_scheme=dark">
+          <img src="https://next.ossinsight.io/widgets/official/compose-org-active-contributors/thumbnail.png?activity=active&period=past_28_days&owner_id=131470832&repo_ids=643445235&image_size=2x3&color_scheme=light">
+        </picture>
+      </td>
+      <td rowspan="2">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://next.ossinsight.io/widgets/official/compose-org-participants-growth/thumbnail.png?activity=active&period=past_28_days&owner_id=131470832&repo_ids=643445235&image_size=4x7&color_scheme=dark">
+          <img src="https://next.ossinsight.io/widgets/official/compose-org-participants-growth/thumbnail.png?activity=active&period=past_28_days&owner_id=131470832&repo_ids=643445235&image_size=4x7&color_scheme=light">
+        </picture>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://next.ossinsight.io/widgets/official/compose-org-active-contributors/thumbnail.png?activity=new&period=past_28_days&owner_id=131470832&repo_ids=643445235&image_size=2x3&color_scheme=dark">
+          <img src="https://next.ossinsight.io/widgets/official/compose-org-active-contributors/thumbnail.png?activity=new&period=past_28_days&owner_id=131470832&repo_ids=643445235&image_size=2x3&color_scheme=light">
+        </picture>
+      </td>
+    </tr>
+  </table>
+</a>
 
 <div align="right">
 
@@ -530,8 +549,6 @@ This project is [MIT](./LICENSE) licensed.
 [chat-plugins-gateway]: https://github.com/lobehub/chat-plugins-gateway
 [codespaces-link]: https://codespaces.new/lobehub/lobe-chat
 [codespaces-shield]: https://github.com/codespaces/badge.svg
-[contributors-contrib]: https://contrib.rocks/image?repo=lobehub/lobe-chat
-[contributors-link]: https://github.com/lobehub/lobe-chat/graphs/contributors
 [deploy-button-image]: https://vercel.com/button
 [deploy-link]: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Flobehub%2Flobe-chat&env=OPENAI_API_KEY&envDescription=Find%20your%20OpenAI%20API%20Key%20by%20click%20the%20right%20Learn%20More%20button.&envLink=https%3A%2F%2Fplatform.openai.com%2Faccount%2Fapi-keys&project-name=lobe-chat&repository-name=lobe-chat
 [deploy-on-zeabur-button-image]: https://zeabur.com/button.svg

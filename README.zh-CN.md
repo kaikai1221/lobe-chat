@@ -25,7 +25,8 @@ LobeChat 是开源的高性能聊天机器人框架，支持语音合成、多�
 [![][github-forks-shield]][github-forks-link]
 [![][github-stars-shield]][github-stars-link]
 [![][github-issues-shield]][github-issues-link]
-[![][github-license-shield]][github-license-link]
+[![][github-license-shield]][github-license-link]<br>
+[![](https://img.shields.io/badge/-Sponsor%20LobeHub-f04f88?logo=opencollective&logoColor=white&style=flat-square)](https://opencollective.com/lobehub 'Sponsor LobeHub on open-collective')
 
 **分享 LobeChat 给你的好友**
 
@@ -48,9 +49,8 @@ LobeChat 是开源的高性能聊天机器人框架，支持语音合成、多�
 - [✨ 特性一览](#-特性一览)
 - [⚡️ 性能测试](#️-性能测试)
 - [🛳 开箱即用](#-开箱即用)
-  - [`A` 使用 Vercel 部署](#a-使用-vercel-部署)
+  - [`A` 使用 Vercel 或 Zeabur 部署](#a-使用-vercel-或-zeabur-部署)
   - [`B` 使用 Docker 部署](#b-使用-docker-部署)
-  - [`C` 使用 Zeabur 部署](#c-使用-zeabur-部署)
   - [环境变量](#环境变量)
 - [📦 生态系统](#-生态系统)
 - [🧩 插件体系](#-插件体系)
@@ -182,12 +182,12 @@ LobeChat 的插件生态系统是其核心功能的重要扩展，它极大地�
 
 | 最近新增                                                                                                                                                                     | 助手说明                                                                                                                                                          |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [有机化学研究员](https://chat-preview.lobehub.com/market?agent=organic-chemistry-researcher)<br/><sup>By **[y22emc2](https://github.com/y22emc2)** on **2023-12-02**</sup>   | 擅长有机化学领域的学术翻译和写作<br/>`有机化学` `科研` `翻译` `写作` `学术文章`                                                                                   |
 | [JS 代码质量优化](https://chat-preview.lobehub.com/market?agent=js-code-quality)<br/><sup>By **[canisminor1990](https://github.com/canisminor1990)** on **2023-11-22**</sup> | 致力于干净和优雅的代码重构<br/>`重构` `代码优化` `代码质量`                                                                                                       |
 | [LobeChat 测试工程师](https://chat-preview.lobehub.com/market?agent=lobe-chat-unit-test-dev)<br/><sup>By **[arvinxx](https://github.com/arvinxx)** on **2023-11-22**</sup>   | 擅长编写前端自动化测试，特别是 TypeScript 应用的全面测试覆盖。熟练使用 Vitest 测试框架，具备深入的测试原理和策略理解。<br/>`自动化测试` `测试` `lobe-chat` `前端` |
 | [问答文档转换专家](https://chat-preview.lobehub.com/market?agent=q-a-helper)<br/><sup>By **[barryWang12138](https://github.com/barryWang12138)** on **2023-11-22**</sup>     | 请提供您的文档内容，我将根据您的要求进行分段和清洗，并按照规范的格式回答。<br/>`q-a` `文档`                                                                       |
-| [真实的老友](https://chat-preview.lobehub.com/market?agent=ai-0x0-old-friends)<br/><sup>By **[mushan0x0](https://github.com/mushan0x0)** on **2023-11-21**</sup>             | 可以跟我谈论一切，我可以给你作为老友的一些想法和建议，放轻松<br/>`友情` `幽默` `真实` `模拟`                                                                      |
 
-> 📊 Total agents: [<kbd>**52**</kbd> ](https://github.com/lobehub/lobe-chat-agents)
+> 📊 Total agents: [<kbd>**53**</kbd> ](https://github.com/lobehub/lobe-chat-agents)
 
  <!-- AGENT LIST -->
 
@@ -296,18 +296,20 @@ LobeChat 提供了 Vercel 的 自托管版本 和 [Docker 镜像][docker-release
 
 <br/>
 
-### `A` 使用 Vercel 部署
+### `A` 使用 Vercel 或 Zeabur 部署
 
-如果想在 Vercel 上部署该服务，可以按照以下步骤进行操作：
+如果想在 Vercel 或 Zeabur 上部署该服务，可以按照以下步骤进行操作：
 
 - 准备好你的 [OpenAI API Key](https://platform.openai.com/account/api-keys) 。
-- 点击下方按钮开始部署： Deploy with Vercel，直接使用 GitHub 账号登录即可，记得在环境变量页填入 `OPENAI_API_KEY` （必填） and `ACCESS_CODE`（推荐）；
+- 点击下方按钮开始部署： 直接使用 GitHub 账号登录即可，记得在环境变量页填入 `OPENAI_API_KEY` （必填） and `ACCESS_CODE`（推荐）；
 - 部署完毕后，即可开始使用；
-- 绑定自定义域名（可选）：Vercel 分配的域名 DNS 在某些区域被污染了，绑定自定义域名即可直连。
+- 绑定自定义域名（可选）：Vercel 分配的域名 DNS 在某些区域被污染了，绑定自定义域名即可直连。目前 Zeabur 提供的域名还未被污染，大多数地区都可以直连。
 
 <div align="center">
 
-[![][deploy-button-image]][deploy-link]
+|            使用 Vercel 部署             |                      使用 Zeabur 部署                       |
+| :-------------------------------------: | :---------------------------------------------------------: |
+| [![][deploy-button-image]][deploy-link] | [![][deploy-on-zeabur-button-image]][deploy-on-zeabur-link] |
 
 </div>
 
@@ -353,21 +355,6 @@ $ docker run -d -p 3210:3210 \
 > 有关 Docker 部署的详细说明，详见 [📘 使用 Docker 部署](https://github.com/lobehub/lobe-chat/wiki/Docker-Deployment.zh-CN)
 
 <br/>
-
-### `C` 使用 Zeabur 部署
-
-如果想在 Zeabur 上部署该服务，可以按照以下步骤进行操作：
-
-- 准备好你的 [OpenAI API Key](https://platform.openai.com/account/api-keys) 。
-- 点击下方按钮开始部署： Deploy to Zeabur
-- 部署完毕后，即可开始使用；
-- 绑定自定义域名（可选）：你可以使用 Zeabur 提供的子域名，也可以选择绑定自定义域名。目前 Zeabur 提供的域名还未被污染，大多数地区都可以直连。
-
-<div align="center">
-
-[![][deploy-on-zeabur-button-image]][deploy-on-zeabur-link]
-
-</div>
 
 ### 环境变量
 
@@ -459,7 +446,37 @@ $ bun run dev
 [![][submit-agents-shield]][submit-agents-link]
 [![][submit-plugin-shield]][submit-plugin-link]
 
-[![][contributors-contrib]][contributors-link]
+<a href="https://github.com/lobehub/lobe-chat/graphs/contributors" target="_blank">
+  <table>
+    <tr>
+      <th colspan="2">
+        <br><img src="https://contrib.rocks/image?repo=lobehub/lobe-chat"><br><br>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://next.ossinsight.io/widgets/official/compose-org-active-contributors/thumbnail.png?activity=active&period=past_28_days&owner_id=131470832&repo_ids=643445235&image_size=2x3&color_scheme=dark">
+          <img src="https://next.ossinsight.io/widgets/official/compose-org-active-contributors/thumbnail.png?activity=active&period=past_28_days&owner_id=131470832&repo_ids=643445235&image_size=2x3&color_scheme=light">
+        </picture>
+      </td>
+      <td rowspan="2">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://next.ossinsight.io/widgets/official/compose-org-participants-growth/thumbnail.png?activity=active&period=past_28_days&owner_id=131470832&repo_ids=643445235&image_size=4x7&color_scheme=dark">
+          <img src="https://next.ossinsight.io/widgets/official/compose-org-participants-growth/thumbnail.png?activity=active&period=past_28_days&owner_id=131470832&repo_ids=643445235&image_size=4x7&color_scheme=light">
+        </picture>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://next.ossinsight.io/widgets/official/compose-org-active-contributors/thumbnail.png?activity=new&period=past_28_days&owner_id=131470832&repo_ids=643445235&image_size=2x3&color_scheme=dark">
+          <img src="https://next.ossinsight.io/widgets/official/compose-org-active-contributors/thumbnail.png?activity=new&period=past_28_days&owner_id=131470832&repo_ids=643445235&image_size=2x3&color_scheme=light">
+        </picture>
+      </td>
+    </tr>
+  </table>
+</a>
 
 <div align="right">
 
@@ -504,8 +521,6 @@ This project is [MIT](./LICENSE) licensed.
 [chat-plugins-gateway]: https://github.com/lobehub/chat-plugins-gateway
 [codespaces-link]: https://codespaces.new/lobehub/lobe-chat
 [codespaces-shield]: https://github.com/codespaces/badge.svg
-[contributors-contrib]: https://contrib.rocks/image?repo=lobehub/lobe-chat
-[contributors-link]: https://github.com/lobehub/lobe-chat/graphs/contributors
 [deploy-button-image]: https://vercel.com/button
 [deploy-link]: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Flobehub%2Flobe-chat&env=OPENAI_API_KEY&envDescription=Find%20your%20OpenAI%20API%20Key%20by%20click%20the%20right%20Learn%20More%20button.&envLink=https%3A%2F%2Fplatform.openai.com%2Faccount%2Fapi-keys&project-name=lobe-chat&repository-name=lobe-chat
 [deploy-on-zeabur-button-image]: https://zeabur.com/button.svg

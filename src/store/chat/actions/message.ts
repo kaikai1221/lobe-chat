@@ -28,7 +28,7 @@ import { encodeAsync } from '@/utils/tokenizer';
 import { MessageDispatch, messagesReducer } from '../reducers/message';
 import { chatSelectors } from '../selectors';
 
-const t = setNamespace('message');
+const n = setNamespace('message');
 
 export interface ChatMessageAction {
   // create
@@ -168,9 +168,12 @@ export const chatMessage: StateCreator<
   },
   sendMessage: async (message, files) => {
     const { coreProcessMessage, activeTopicId, activeId } = get();
-    if (!message || !activeId) return;
+    if (!activeId) return;
 
     const fileIdList = files?.map((f) => f.id);
+
+    // if message is empty and no files, then stop
+    if (!message && (!fileIdList || fileIdList?.length === 0)) return;
 
     let newMessage: CreateMessageParams = {
       content: message,
@@ -210,10 +213,10 @@ export const chatMessage: StateCreator<
 
     abortController.abort();
 
-    toggleChatLoading(false, undefined, t('stopGenerateMessage') as string);
+    toggleChatLoading(false, undefined, n('stopGenerateMessage') as string);
   },
   updateInputMessage: (message) => {
-    set({ inputMessage: message }, false, t('updateInputMessage', message));
+    set({ inputMessage: message }, false, n('updateInputMessage', message));
   },
   updateMessageContent: async (id, content) => {
     const { dispatchMessage, refreshMessages } = get();
@@ -236,7 +239,7 @@ export const chatMessage: StateCreator<
           set(
             { activeId: sessionId, messages, messagesInit: true },
             false,
-            t('useFetchMessages', {
+            n('useFetchMessages', {
               messages,
               queryKey: key,
             }),
@@ -310,7 +313,7 @@ export const chatMessage: StateCreator<
 
     const messages = messagesReducer(get().messages, payload);
 
-    set({ messages }, false, t(`dispatchMessage/${payload.type}`, payload));
+    set({ messages }, false, n(`dispatchMessage/${payload.type}`, payload));
   },
   fetchAIChatMessage: async (messages, assistantId) => {
     const { toggleChatLoading, refreshMessages } = get();
@@ -318,7 +321,7 @@ export const chatMessage: StateCreator<
     const abortController = toggleChatLoading(
       true,
       assistantId,
-      t('generateMessage(start)', { assistantId, messages }) as string,
+      n('generateMessage(start)', { assistantId, messages }) as string,
     );
 
     const config = getAgentConfig();
@@ -404,7 +407,7 @@ export const chatMessage: StateCreator<
       subIntegral(output, config.model);
     }
 
-    toggleChatLoading(false, undefined, t('generateMessage(end)') as string);
+    toggleChatLoading(false, undefined, n('generateMessage(end)') as string);
 
     // also exist message like this:
     // 请稍等，我帮您查询一下。{"function_call": {"name": "plugin-identifier____recommendClothes____standalone", "arguments": "{\n "mood": "",\n "gender": "man"\n}"}}

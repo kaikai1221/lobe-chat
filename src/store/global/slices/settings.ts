@@ -12,7 +12,7 @@ import { setNamespace } from '@/utils/storeDebug';
 
 import type { GlobalStore } from '../store';
 
-const t = setNamespace('settings');
+const n = setNamespace('settings');
 
 /**
  * 设置操作
@@ -58,10 +58,10 @@ export const createSettingsSlice: StateCreator<
     const settings = produce(get().settings, (draft: GlobalSettings) => {
       draft.defaultAgent = DEFAULT_AGENT;
     });
-    set({ settings }, false, t('resetDefaultAgent'));
+    set({ settings }, false, n('resetDefaultAgent'));
   },
   resetSettings: () => {
-    set({ settings: DEFAULT_SETTINGS }, false, t('resetSettings'));
+    set({ settings: DEFAULT_SETTINGS }, false, n('resetSettings'));
   },
   setOpenAIConfig: (config) => {
     get().setSettings({ languageModel: { openAI: config } });
@@ -71,10 +71,8 @@ export const createSettingsSlice: StateCreator<
     const prevSetting = get().settings;
     const nextSettings = merge(prevSetting, settings);
     if (isEqual(prevSetting, nextSettings)) return;
-    console.log(prevSetting);
-    console.log(nextSettings);
-    console.log(merge(prevSetting, settings));
-    set({ settings: merge(prevSetting, settings) }, false, t('setSettings', settings));
+
+    set({ settings: merge(prevSetting, settings) }, false, n('setSettings', settings));
   },
   switchSettingTabs: (tab) => {
     set({ settingsTab: tab });
