@@ -23,7 +23,7 @@
   "author": "LobeHub <i@lobehub.com>",
   "sideEffects": false,
   "scripts": {
-    "build": "next build",
+    "build": "prisma generate && next build",
     "build:analyze": "ANALYZE=true next build",
     "build:docker": "DOCKER=true next build",
     "dev": "next dev -p 3010",
