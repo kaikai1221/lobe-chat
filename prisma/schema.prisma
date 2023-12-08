@@ -181,8 +181,8 @@ model Order {
   createdAt DateTime @default(now()) @db.Timestamptz(6)
   updatedAt DateTime @default(now()) @updatedAt
 
-  priceId Int
-  price   Prices @relation("OrderPrices", fields: [priceId], references: [id])
+  priceId Int?
+  price   Prices? @relation("OrderPrices", fields: [priceId], references: [id])
 
   subscription Subscription? @relation("OrderSubscription")
 }

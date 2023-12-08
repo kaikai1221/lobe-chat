@@ -6,6 +6,7 @@ import {
   HardDriveUpload,
   Settings,
   Settings2,
+  User,
 } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -118,6 +119,12 @@ const BottomActions = memo<BottomActionProps>(({ tab, setTab }) => {
 
   return (
     <>
+      <ActionIcon
+        icon={User}
+        onClick={() => router.push('/settings/user')}
+        size={'site'}
+        title={'个人信息'}
+      />
       <ActionIcon
         icon={BookmarkPlus}
         onClick={() => setIsModalOpen(true)}

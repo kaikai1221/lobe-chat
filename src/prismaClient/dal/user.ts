@@ -959,7 +959,7 @@ export class UserDAL {
           userId,
         },
       }),
-      total: await client.integralUsed.count(),
+      total: await client.integralUsed.count({ where: { userId } }),
     };
   }
 }

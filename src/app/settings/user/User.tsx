@@ -21,6 +21,7 @@ import useSWR from 'swr';
 
 import { FormAction } from '@/app/chat/features/Conversation/ChatList/Error/style';
 import FullscreenLoading from '@/components/FullscreenLoading';
+import PayModal from '@/components/PayModal/index';
 import { LOBE_CHAT_ACCESS_CODE } from '@/const/fetch';
 import { FORM_STYLE } from '@/const/layoutTokens';
 import { serverStatus } from '@/prismaClient/serverStatus';
@@ -513,6 +514,7 @@ const User = memo(() => {
   const [form] = AntForm.useForm();
   const [userInfo, setUserInfo] = useState<any>();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPayOpen, setIsPayOpen] = useState(false);
   const [passwordModal, setIspasswordModal] = useState(false);
   const [redeemsModal, setRedeemsModal] = useState(false);
   const [setSettings] = useGlobalStore((s) => [s.setSettings]);
@@ -633,7 +635,15 @@ const User = memo(() => {
         title: (
           <>
             基本信息
-            <Button size="small" style={{ marginLeft: '5px' }} type="primary">
+            <Button
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsPayOpen(true);
+              }}
+              size="small"
+              style={{ marginLeft: '5px' }}
+              type="primary"
+            >
               充值积分
             </Button>
           </>
@@ -676,10 +686,10 @@ const User = memo(() => {
   return userInfo ? (
     <>
       <Form form={form} items={[info, limit]} {...FORM_STYLE} />
-      <Button onClick={() => setRedeemsModal(true)} style={{ width: '100%' }}>
+      <Button onClick={() => setRedeemsModal(true)} style={{ maxWidth: '1024px', width: '100%' }}>
         兑换码
       </Button>
-      <Button danger onClick={logout} style={{ width: '100%' }}>
+      <Button danger onClick={logout} style={{ maxWidth: '1024px', width: '100%' }}>
         退出登陆
       </Button>
       <Modal
@@ -712,6 +722,7 @@ const User = memo(() => {
           userInfo={userInfo}
         />
       </Modal>
+      <PayModal onOpenChange={setIsPayOpen} open={isPayOpen} />
     </>
   ) : (
     <InvalidAccess setUserInfo={setUserInfo} />
