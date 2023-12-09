@@ -66,7 +66,7 @@ const persistOptions: PersistOptions<GlobalStore, GlobalPersist> = {
 
   storage: createHyperStorage({
     localStorage: {
-      dbName: 'LobeHub',
+      dbName: 'AI 聊天室',
       selectors: ['preference', 'settings'],
     },
   }),

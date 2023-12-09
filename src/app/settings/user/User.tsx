@@ -26,6 +26,8 @@ import { LOBE_CHAT_ACCESS_CODE } from '@/const/fetch';
 import { FORM_STYLE } from '@/const/layoutTokens';
 import { serverStatus } from '@/prismaClient/serverStatus';
 import { settingsSelectors, useGlobalStore } from '@/store/global';
+import { useSwitchSideBarOnInit } from '@/store/global/hooks/useSwitchSettingsOnInit';
+import { SettingsTabs } from '@/store/global/initialState';
 
 enum Tab {
   Code = 'code',
@@ -505,6 +507,7 @@ const UseList = () => {
             showTotal: (total) => `共${total}条`,
             total: total,
           }}
+          rowKey="id"
         ></Table>
       </Modal>
     </>
@@ -521,6 +524,7 @@ const User = memo(() => {
   const settings = useGlobalStore(settingsSelectors.currentSettings, isEqual);
   const [isSubmitting, setSubmitting] = useState(false);
   const [redeemCode, setSedeemCode] = useState('');
+  useSwitchSideBarOnInit(SettingsTabs.User);
   const logout = () => {
     setSettings({ token: '' });
     setUserInfo(null);

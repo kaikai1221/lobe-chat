@@ -27,7 +27,7 @@ Supports one-click free deployment of your private ChatGPT/LLM web application.
 [![][github-stars-shield]][github-stars-link]
 [![][github-issues-shield]][github-issues-link]
 [![][github-license-shield]][github-license-link]<br>
-[![](https://img.shields.io/badge/-Sponsor%20LobeHub-f04f88?logo=opencollective&logoColor=white&style=flat-square)](https://opencollective.com/lobehub 'Sponsor LobeHub on open-collective')
+[![][sponsor-shield]][sponsor-link]
 
 **Share LobeChat Repository**
 
@@ -59,6 +59,7 @@ Supports one-click free deployment of your private ChatGPT/LLM web application.
 - [🧩 Plugins](#-plugins)
 - [⌨️ Local Development](#️-local-development)
 - [🤝 Contributing](#-contributing)
+- [🩷 Sponsor](#-sponsor)
 - [🔗 More Products](#-more-products)
 
 ####
@@ -203,14 +204,14 @@ Our marketplace is not just a showcase platform but also a collaborative space. 
 
 <!-- AGENT LIST -->
 
-| Recent Submits                                                                                                                                                                            | Description                                                                                                                                                                                                                                                                                  |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Organic Chemistry Researcher](https://chat-preview.lobehub.com/market?agent=organic-chemistry-researcher)<br/><sup>By **[y22emc2](https://github.com/y22emc2)** on **2023-12-02**</sup>  | Specializes in academic translation and writing in the field of organic chemistry<br/>`organic-chemistry` `research` `translation` `writing` `academic-articles`                                                                                                                             |
-| [JS Code Quality Optimization](https://chat-preview.lobehub.com/market?agent=js-code-quality)<br/><sup>By **[canisminor1990](https://github.com/canisminor1990)** on **2023-11-22**</sup> | Dedicated to clean and elegant code refactoring<br/>`refactoring` `code-optimization` `code-quality`                                                                                                                                                                                         |
-| [LobeChat Test Engineer](https://chat-preview.lobehub.com/market?agent=lobe-chat-unit-test-dev)<br/><sup>By **[arvinxx](https://github.com/arvinxx)** on **2023-11-22**</sup>             | Proficient in writing frontend automation tests, especially comprehensive test coverage for TypeScript applications. Skilled in using the Vitest testing framework with a deep understanding of testing principles and strategies.<br/>`automation-testing` `testing` `lobe-chat` `frontend` |
-| [Q\&A Document Conversion Expert](https://chat-preview.lobehub.com/market?agent=q-a-helper)<br/><sup>By **[barryWang12138](https://github.com/barryWang12138)** on **2023-11-22**</sup>   | Please provide your document content, and I will segment and clean it according to your requirements, and provide answers in a standardized format.<br/>`q-a` `document`                                                                                                                     |
+| Recent Submits                                                                                                                                                                           | Description                                                                                                                                                                                                   |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Recipe Generator](https://chat-preview.lobehub.com/market?agent=recipe-generator)<br/><sup>By **[Igroshka](https://github.com/Igroshka)** on **2023-12-08**</sup>                       | Describe the recipe, or send the name of the dish.<br/>`kitchen` `baking` `food` `recipes` `cook`                                                                                                             |
+| [Code Wizard](https://chat-preview.lobehub.com/market?agent=friend-developer)<br/><sup>By **[Igroshka](https://github.com/Igroshka)** on **2023-12-07**</sup>                            | Master of programming in various languages<br/>`programming` `coding` `consultation` `friend` `helper` `it` `it`                                                                                              |
+| [Mr. Feynman](https://chat-preview.lobehub.com/market?agent=mrfeynman)<br/><sup>By **[jjy1000](https://github.com/jjy1000)** on **2023-12-04**</sup>                                     | Explains complex knowledge concepts in a popular way to help you understand complex knowledge concepts. It can also explain knowledge types containing answers and questions.<br/>`general-teacher-assistant` |
+| [Organic Chemistry Researcher](https://chat-preview.lobehub.com/market?agent=organic-chemistry-researcher)<br/><sup>By **[y22emc2](https://github.com/y22emc2)** on **2023-12-02**</sup> | Specializes in academic translation and writing in the field of organic chemistry<br/>`organic-chemistry` `research` `translation` `writing` `academic-articles`                                              |
 
-> 📊 Total agents: [<kbd>**53**</kbd> ](https://github.com/lobehub/lobe-chat-agents)
+> 📊 Total agents: [<kbd>**56**</kbd> ](https://github.com/lobehub/lobe-chat-agents)
 
  <!-- AGENT LIST -->
 
@@ -393,7 +394,7 @@ This project provides some additional configuration items set with environment v
 | `OPENAI_API_KEY`          | Yes      | This is the API key you apply on the OpenAI account page                                                                                                                                                                     | `sk-xxxxxx...xxxxxx`                                                                      |
 | `OPENAI_PROXY_URL`        | No       | If you manually configure the OpenAI interface proxy, you can use this configuration item to override the default OpenAI API request base URL                                                                                | `https://api.chatanywhere.cn/v1`<br/>The default value is<br/>`https://api.openai.com/v1` |
 | `OPENAI_FUNCTION_REGIONS` | No       | When you deploy Lobe-Chat using Vercel and need to specify the region for the Edge Function that handles requests to the OpenAI API, you can use this configuration. The value should be a comma-separated array of strings. | `iad1,sfo1`                                                                               |
-| `ACCESS_CODE`             | No       | Add a password to access this service; the password should be a 6-digit number or letter                                                                                                                                     | `awCT74` or `e3@09!`                                                                      |
+| `ACCESS_CODE`             | No       | Add a password to access this service; you can set a long password to avoid leaking                                                                                                                                          | `awCTe)re_r74` or `rtrt_ewee3@09!`                                                        |
 
 > \[!NOTE]
 >
@@ -512,6 +513,23 @@ Contributions of all types are more than welcome; if you are interested in contr
 
 </div>
 
+## 🩷 Sponsor
+
+Every bit counts and your one-time donation sparkles in our galaxy of support! You're a shooting star, making a swift and bright impact on our journey. Thank you for believing in us – your generosity guides us toward our mission, one brilliant flash at a time.
+
+<a href="https://opencollective.com/lobehub" target="_blank">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://readme-wizard.lobehub.com/api/sponsor?themeMode=dark">
+    <img  src="https://readme-wizard.lobehub.com/api/sponsor">
+  </picture>
+</a>
+
+<div align="right">
+
+[![][back-to-top]](#readme-top)
+
+</div>
+
 ## 🔗 More Products
 
 - **[🤯 Lobe Theme][lobe-theme]:** The modern theme for Stable Diffusion WebUI, exquisite interface design, highly customizable UI, and efficiency-boosting features.
@@ -613,6 +631,8 @@ This project is [MIT](./LICENSE) licensed.
 [share-whatsapp-shield]: https://img.shields.io/badge/-share%20on%20whatsapp-black?labelColor=black&logo=whatsapp&logoColor=white&style=flat-square
 [share-x-link]: https://x.com/intent/tweet?hashtags=chatbot%2CchatGPT%2CopenAI&text=Check%20this%20GitHub%20repository%20out%20%F0%9F%A4%AF%20LobeChat%20-%20An%20open-source%2C%20extensible%20%28Function%20Calling%29%2C%20high-performance%20chatbot%20framework.%20It%20supports%20one-click%20free%20deployment%20of%20your%20private%20ChatGPT%2FLLM%20web%20application.&url=https%3A%2F%2Fgithub.com%2Flobehub%2Flobe-chat
 [share-x-shield]: https://img.shields.io/badge/-share%20on%20x-black?labelColor=black&logo=x&logoColor=white&style=flat-square
+[sponsor-link]: https://opencollective.com/lobehub 'Become 🩷 LobeHub Sponsor'
+[sponsor-shield]: https://img.shields.io/badge/-Sponsor%20LobeHub-f04f88?logo=opencollective&logoColor=white&style=flat-square
 [submit-agents-link]: https://github.com/lobehub/lobe-chat-agents
 [submit-agents-shield]: https://img.shields.io/badge/🤖/🏪_submit_agent-%E2%86%92-c4f042?labelColor=black&style=for-the-badge
 [submit-plugin-link]: https://github.com/lobehub/lobe-chat-plugins

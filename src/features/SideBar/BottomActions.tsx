@@ -29,7 +29,7 @@ const BottomActions = memo<BottomActionProps>(({ tab, setTab }) => {
   const { t } = useTranslation('common');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hasNewVersion] = useGlobalStore((s) => [s.hasNewVersion, s.useCheckLatestVersion]);
-
+  const [switchSettingTabs] = useGlobalStore((s) => [s.switchSettingTabs]);
   // useCheckLatestVersion();
 
   const items: MenuProps['items'] = [
@@ -121,7 +121,10 @@ const BottomActions = memo<BottomActionProps>(({ tab, setTab }) => {
     <>
       <ActionIcon
         icon={User}
-        onClick={() => router.push('/settings/user')}
+        onClick={() => {
+          switchSettingTabs(SettingsTabs.User);
+          router.push('/settings/user');
+        }}
         size={'site'}
         title={'个人信息'}
       />

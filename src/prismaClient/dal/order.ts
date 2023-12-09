@@ -137,8 +137,18 @@ export const OrderDAL = {
         }
       }
       await client.userLimits.createMany(userLimitsInput);
+    } else {
+      await client.user.update({
+        data: {
+          integral: {
+            increment: newOrder.amount * 10,
+          },
+        },
+        where: {
+          userId: newOrder.userId,
+        },
+      });
     }
-
     return {
       order: newOrder,
     };

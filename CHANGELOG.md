@@ -2,6 +2,173 @@
 
 # Changelog
 
+### [Version 0.110.4](https://github.com/lobehub/lobe-chat/compare/v0.110.3...v0.110.4)
+
+<sup>Released on **2023-12-08**</sup>
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 0.110.3](https://github.com/lobehub/lobe-chat/compare/v0.110.2...v0.110.3)
+
+<sup>Released on **2023-12-08**</sup>
+
+#### ♻ Code Refactoring
+
+- **misc**: Refactor with new plugin implement with dexie db.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### Code refactoring
+
+- **misc**: Refactor with new plugin implement with dexie db, closes [#596](https://github.com/lobehub/lobe-chat/issues/596) ([f3b5e7b](https://github.com/lobehub/lobe-chat/commit/f3b5e7b))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 0.110.2](https://github.com/lobehub/lobe-chat/compare/v0.110.1...v0.110.2)
+
+<sup>Released on **2023-12-08**</sup>
+
+#### 💄 Styles
+
+- **misc**: Fix ChatInputArea style and typo (resolve.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### Styles
+
+- **misc**: Fix ChatInputArea style and typo (resolve, closes [#599](https://github.com/lobehub/lobe-chat/issues/599) ([0d08f3b](https://github.com/lobehub/lobe-chat/commit/0d08f3b))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 0.110.1](https://github.com/lobehub/lobe-chat/compare/v0.110.0...v0.110.1)
+
+<sup>Released on **2023-12-08**</sup>
+
+#### 🐛 Bug Fixes
+
+- **misc**: Sharp missing in production.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### What's fixed
+
+- **misc**: Sharp missing in production, closes [#598](https://github.com/lobehub/lobe-chat/issues/598) ([c8ef782](https://github.com/lobehub/lobe-chat/commit/c8ef782))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+## [Version 0.110.0](https://github.com/lobehub/lobe-chat/compare/v0.109.1...v0.110.0)
+
+<sup>Released on **2023-12-07**</sup>
+
+#### ✨ Features
+
+- **misc**: Local TTS Player.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### What's improved
+
+- **misc**: Local TTS Player, closes [#587](https://github.com/lobehub/lobe-chat/issues/587) ([87b51bd](https://github.com/lobehub/lobe-chat/commit/87b51bd))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 0.109.1](https://github.com/lobehub/lobe-chat/compare/v0.109.0...v0.109.1)
+
+<sup>Released on **2023-12-07**</sup>
+
+#### 🐛 Bug Fixes
+
+- **misc**: Fix agent settings crash with old pluginManifest.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### What's fixed
+
+- **misc**: Fix agent settings crash with old pluginManifest ([8b80dfd](https://github.com/lobehub/lobe-chat/commit/8b80dfd))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+## [Version 0.109.0](https://github.com/lobehub/lobe-chat/compare/v0.108.0...v0.109.0)
+
+<sup>Released on **2023-12-06**</sup>
+
+#### ✨ Features
+
+- **misc**: Introducing plugin store and refactor with tool concept.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### What's improved
+
+- **misc**: Introducing plugin store and refactor with tool concept, closes [#573](https://github.com/lobehub/lobe-chat/issues/573) ([92f43d1](https://github.com/lobehub/lobe-chat/commit/92f43d1))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
 ## [Version 0.108.0](https://github.com/lobehub/lobe-chat/compare/v0.107.16...v0.108.0)
 
 <sup>Released on **2023-12-03**</sup>

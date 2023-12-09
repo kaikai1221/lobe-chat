@@ -12,7 +12,6 @@ export const runtime = 'nodejs';
  */
 export async function POST(req: NextRequest) {
   const orderId = await handleCallback(req);
-  console.log(orderId);
   if (!orderId) return new Response('FAIL');
   await OrderDAL.payOrder(orderId);
   return new Response('SUCCESS'); // 规定返回值 不可修改

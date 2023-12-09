@@ -41,7 +41,7 @@ const DataStyleModal = memo<DataStyleModalProps>(({ onOpenChange, open, width = 
     }
     const res = await fetch('/api/user/pay', {
       body: JSON.stringify({
-        price: value,
+        price: Math.floor(value * 100),
         type: 1,
       }),
       cache: 'no-store',

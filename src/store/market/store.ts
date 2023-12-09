@@ -20,7 +20,7 @@ const persistOptions: PersistOptions<Store> = {
 
   storage: createHyperStorage({
     localStorage: {
-      dbName: 'LobeHub',
+      dbName: 'AI 聊天室',
       selectors: ['agentMap'],
     },
     url: {
