@@ -492,6 +492,9 @@ export class UserDAL {
         },
         userId: true,
         userLimits: {
+          orderBy: {
+            startAt: 'asc',
+          },
           select: {
             expiredAt: true,
             modelName: true,
@@ -588,7 +591,9 @@ export class UserDAL {
       } else {
         await client.userLimits.update({
           data: {
-            times: targetRes.times + (num || 1),
+            times: {
+              increment: num || 1,
+            },
             updatedAt: new Date(),
           },
           where: {
@@ -904,48 +909,103 @@ export class UserDAL {
     desc: string,
     type: 'in' | 'out',
   ) {
-    let integral = 0;
-    const data = await client.model.findUnique({
-      where: {
-        modelName,
-      },
-    });
-    const { inputPrice, outPrice } = data || { inputPrice: 10, outPrice: 20 };
-    switch (type) {
-      case 'in': {
-        integral = roundUp((token / 1000) * inputPrice);
-        break;
-      }
-      case 'out': {
-        integral = roundUp((token / 1000) * outPrice);
-        break;
-      }
-      default: {
-        break;
-      }
-    }
-    await client.integralUsed.create({
-      data: {
-        desc,
-        modelName,
-        useValue: integral,
-        userId,
-      },
-    });
-    return await client.user.update({
-      data: {
-        integral: {
-          decrement: integral,
+    const changeSubIntegral = async () => {
+      let integral = 0;
+      const data = await client.model.findUnique({
+        where: {
+          modelName,
         },
-      },
-      where: {
-        userId,
-      },
-    });
+      });
+      const { inputPrice, outPrice } = data || { inputPrice: 10, outPrice: 20 };
+      switch (type) {
+        case 'in': {
+          integral = roundUp((token / 1000) * inputPrice);
+          break;
+        }
+        case 'out': {
+          integral = roundUp((token / 1000) * outPrice);
+          break;
+        }
+        default: {
+          break;
+        }
+      }
+      await client.integralUsed.create({
+        data: {
+          desc,
+          modelName,
+          useValue: integral,
+          userId,
+        },
+      });
+      return await client.user.update({
+        data: {
+          integral: {
+            decrement: integral,
+          },
+        },
+        where: {
+          userId,
+        },
+      });
+    };
+    const userLimits =
+      (await client.userLimits.findMany({
+        orderBy: {
+          subscription: {
+            plan: {
+              level: 'asc',
+            },
+          },
+        },
+        select: {
+          id: true,
+          subscription: {
+            select: {
+              plan: {
+                select: {
+                  limits: {
+                    select: {
+                      times: true,
+                    },
+                    where: {
+                      modelName: modelName,
+                    },
+                  },
+                },
+              },
+            },
+          },
+          times: true,
+        },
+        where: {
+          expiredAt: {
+            gte: new Date() /* Includes time offset for UTC */,
+          },
+          modelName: modelName,
+          startAt: {
+            lte: new Date(),
+          },
+          userId: userId,
+        },
+      })) || [];
+    if (userLimits.length) {
+      const targetRes = userLimits.find((item) => {
+        return item.times <= item.subscription.plan.limits[0].times;
+      });
+      if (!targetRes) {
+        return await changeSubIntegral();
+      }
+    } else {
+      return await changeSubIntegral();
+    }
   }
   static async getUsed(userId: number, pageNo: number, pageSize: number) {
     return {
       list: await client.integralUsed.findMany({
+        orderBy: {
+          createdAt: 'desc',
+        },
         select: {
           createdAt: true,
           desc: true,

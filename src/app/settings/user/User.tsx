@@ -1,7 +1,7 @@
 'use client';
 
 import { Form, Icon, type ItemGroup, Snippet } from '@lobehub/ui';
-import { Form as AntForm, Button, Input, Modal, Segmented, Space, Table, message } from 'antd';
+import { Form as AntForm, Button, Input, Modal, Segmented, Space, Table, Tag, message } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import isEqual from 'fast-deep-equal';
 import {
@@ -22,6 +22,7 @@ import useSWR from 'swr';
 import { FormAction } from '@/app/chat/features/Conversation/ChatList/Error/style';
 import FullscreenLoading from '@/components/FullscreenLoading';
 import PayModal from '@/components/PayModal/index';
+import PlanModal from '@/components/PayModal/plan';
 import { LOBE_CHAT_ACCESS_CODE } from '@/const/fetch';
 import { FORM_STYLE } from '@/const/layoutTokens';
 import { serverStatus } from '@/prismaClient/serverStatus';
@@ -181,48 +182,53 @@ const InvalidAccess = (props: { setUserInfo: (value: any) => void }) => {
       }
     }
     setLogining(true);
-    const res = await fetch('/api/user/login', {
-      body: JSON.stringify({
-        providerContent: { content: register.trim(), password: md5.hash(password) },
-        providerId: type,
-      }),
-      cache: 'no-store',
-      headers: { 'Content-Type': 'application/json' },
-      method: 'POST',
-    });
-    const data = await res.json();
-    switch (data.status) {
-      case serverStatus.success: {
-        setSettings({ token: data.signedToken.token });
-        localStorage.setItem('InvitationCode', '');
-        const res = await fetch('/api/user/info', {
-          cache: 'no-cache',
-          headers: {
-            [LOBE_CHAT_ACCESS_CODE]: data.signedToken.token || '',
-          },
-          method: 'GET',
-        });
-        const josnData = await res.json();
-        props.setUserInfo(josnData.body);
-        message.success('登陆成功');
-        setLogining(false);
-        break;
+    try {
+      const res = await fetch('/api/user/login', {
+        body: JSON.stringify({
+          providerContent: { content: register.trim(), password: md5.hash(password) },
+          providerId: type,
+        }),
+        cache: 'no-store',
+        headers: { 'Content-Type': 'application/json' },
+        method: 'POST',
+      });
+      const data = await res.json();
+      switch (data.status) {
+        case serverStatus.success: {
+          setSettings({ token: data.signedToken.token });
+          localStorage.setItem('InvitationCode', '');
+          const res = await fetch('/api/user/info', {
+            cache: 'no-cache',
+            headers: {
+              [LOBE_CHAT_ACCESS_CODE]: data.signedToken.token || '',
+            },
+            method: 'GET',
+          });
+          const josnData = await res.json();
+          props.setUserInfo(josnData.body);
+          message.success('登陆成功');
+          setLogining(false);
+          break;
+        }
+        case serverStatus.notExist: {
+          message.warning('用户不存在');
+          setLogining(false);
+          break;
+        }
+        case serverStatus.wrongPassword: {
+          message.warning('密码错误');
+          setLogining(false);
+          break;
+        }
+        default: {
+          message.warning('系统异常，请稍后再试');
+          setLogining(false);
+          break;
+        }
       }
-      case serverStatus.notExist: {
-        message.warning('用户不存在');
-        setLogining(false);
-        break;
-      }
-      case serverStatus.wrongPassword: {
-        message.warning('密码错误');
-        setLogining(false);
-        break;
-      }
-      default: {
-        message.warning('系统异常，请稍后再试');
-        setLogining(false);
-        break;
-      }
+    } catch {
+      message.warning('系统异常，请稍后再试');
+      setLogining(false);
     }
   };
   return (
@@ -454,6 +460,7 @@ const UseList = () => {
       dataIndex: 'desc',
       key: 'desc',
       title: '描述',
+      width: 60,
     },
     {
       dataIndex: 'useValue',
@@ -494,6 +501,7 @@ const UseList = () => {
         onCancel={() => setIsModalOpen(false)}
         open={isModalOpen}
         title="积分消耗记录"
+        width={600}
       >
         <Table
           columns={columns}
@@ -518,6 +526,7 @@ const User = memo(() => {
   const [userInfo, setUserInfo] = useState<any>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPayOpen, setIsPayOpen] = useState(false);
+  const [isPlanOpen, setIsPlanOpen] = useState(false);
   const [passwordModal, setIspasswordModal] = useState(false);
   const [redeemsModal, setRedeemsModal] = useState(false);
   const [setSettings] = useGlobalStore((s) => [s.setSettings]);
@@ -529,7 +538,16 @@ const User = memo(() => {
     setSettings({ token: '' });
     setUserInfo(null);
   };
-
+  const getUserInfo = async () => {
+    const res = await fetch('/api/user/info', {
+      cache: 'no-cache',
+      headers: {
+        [LOBE_CHAT_ACCESS_CODE]: settings.token || '',
+      },
+      method: 'GET',
+    });
+    return await res.json();
+  };
   const { data, isLoading = true } = useSWR(settings.token ? '/api/user/info' : '', async () => {
     const res = await fetch('/api/user/info', {
       cache: 'no-cache',
@@ -540,7 +558,14 @@ const User = memo(() => {
     });
     return await res.json();
   });
-
+  const translateTag = (item: any) => {
+    const nowDate = new Date();
+    if (nowDate > new Date(item.startAt) && nowDate < new Date(item.expiredAt)) {
+      return <Tag color="success">生效中</Tag>;
+    } else if (nowDate < new Date(item.startAt)) {
+      return <Tag>未到生效时间</Tag>;
+    }
+  };
   useEffect(() => {
     setUserInfo(data?.body);
   }, [data]);
@@ -666,7 +691,12 @@ const User = memo(() => {
               desc: `${new Date(item.startAt).toLocaleString()} - ${new Date(
                 item.expiredAt,
               ).toLocaleString()} 的用量`,
-              label: `${item.modelName} (${item.subscription.plan.name})`,
+              label: (
+                <>
+                  {`${item.modelName} (${item.subscription.plan.name})`}
+                  {translateTag(item)}
+                </>
+              ),
               minWidth: undefined,
             }))
           : [
@@ -679,7 +709,15 @@ const User = memo(() => {
         title: (
           <>
             套餐用量
-            <Button size="small" style={{ marginLeft: '5px' }} type="primary">
+            <Button
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsPlanOpen(true);
+              }}
+              size="small"
+              style={{ marginLeft: '5px' }}
+              type="primary"
+            >
               购买套餐
             </Button>
           </>
@@ -726,7 +764,22 @@ const User = memo(() => {
           userInfo={userInfo}
         />
       </Modal>
-      <PayModal onOpenChange={setIsPayOpen} open={isPayOpen} />
+      <PayModal
+        onOpenChange={(e) => {
+          setIsPayOpen(e);
+          if (!e) getUserInfo();
+        }}
+        open={isPayOpen}
+      />
+      {isPlanOpen && (
+        <PlanModal
+          onOpenChange={(e) => {
+            setIsPlanOpen(e);
+            if (!e) getUserInfo();
+          }}
+          open={isPlanOpen}
+        />
+      )}
     </>
   ) : (
     <InvalidAccess setUserInfo={setUserInfo} />

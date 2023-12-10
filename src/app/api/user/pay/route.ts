@@ -34,7 +34,7 @@ export const POST = async (req: NextRequest) => {
       attach: '',
       isMobile,
       orderId: order.orderId.toString(),
-      price: order.amount,
+      price: 1 || order.amount,
       title: 'AI聊天室付费购买',
     }),
   );

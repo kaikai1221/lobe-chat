@@ -47,11 +47,6 @@ export class ServerError extends Error {
     Error.captureStackTrace(this, this.constructor);
   }
 }
-// 将原来的命名空间重构为模块
-// 修改前
-// namespace DALType {
-//   // 类型和接口定义
-// }
 
 // 修改后
 export type Price = {

@@ -58,7 +58,7 @@ model IntegralUsed {
   userId    Int
   user      User     @relation("UserIntegralUsed", fields: [userId], references: [userId])
   modelName String
-  model     Model    @relation("ModelIntegralUsed", fields: [modelName], references: [modelName])
+  model     Model?    @relation("ModelIntegralUsed", fields: [modelName], references: [modelName])
   desc      String
   useValue  Int
   createdAt DateTime @default(now()) @db.Timestamptz(6)

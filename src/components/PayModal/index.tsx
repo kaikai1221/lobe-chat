@@ -3,7 +3,7 @@ import { InputNumber, Modal, Radio, Spin, message } from 'antd';
 import isEqual from 'fast-deep-equal';
 import { CreditCard } from 'lucide-react';
 import Image from 'next/image';
-import { memo, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { Flexbox } from 'react-layout-kit';
 
 import { LOBE_CHAT_ACCESS_CODE } from '@/const/fetch';
@@ -16,8 +16,9 @@ interface DataStyleModalProps {
   open: boolean;
   width?: number;
 }
+// global.navigator={ userAgent: 'node.js', };
 // 获取用户代理字符串
-const userAgent = navigator.userAgent;
+const userAgent = global.navigator?.userAgent || '';
 
 // 使用正则表达式匹配常见的移动设备用户代理字符串
 const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|micromessenger/i;
@@ -32,6 +33,9 @@ const DataStyleModal = memo<DataStyleModalProps>(({ onOpenChange, open, width = 
   const settings = useGlobalStore(settingsSelectors.currentSettings, isEqual);
   const [QRcode, setQRcode] = useState<string>('');
   const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setQRcode('');
+  }, [value]);
   const getQRcode = async () => {
     if (loading) return;
     setLoading(true);
@@ -130,6 +134,7 @@ const DataStyleModal = memo<DataStyleModalProps>(({ onOpenChange, open, width = 
             <div style={{ textAlign: 'center' }}>
               <p>使用微信扫码，或长按识别二维码</p>
               <p>或者保存到相册后使用微信扫码识别</p>
+              <p>支付后请刷新页面</p>
               <Image alt="微信支付" height={200} src={QRcode} width={200} />
             </div>
           </div>

@@ -10,29 +10,68 @@ interface AuthConfig {
   url: string;
 }
 export const checkAuth = async ({ accessCode, token, url, model }: AuthConfig) => {
-  const res = await fetch(url + '/api/user/verify', {
-    cache: 'no-cache',
-    headers: {
-      [LOBE_CHAT_ACCESS_CODE]: accessCode || '',
-    },
-    method: 'GET',
-  });
-  const data = await res.json();
-  if (typeof data.body.code === 'number' && data.body.code !== serverStatus.success) {
-    return { auth: false, error: ChatErrorType.InvalidAccessCode };
+  try {
+    const res = await fetch(url + '/api/user/verify', {
+      cache: 'no-cache',
+      headers: {
+        [LOBE_CHAT_ACCESS_CODE]: accessCode || '',
+      },
+      method: 'GET',
+    });
+    const data = await res.json();
+    if (typeof data.body.code === 'number' && data.body.code !== serverStatus.success) {
+      return { auth: false, error: ChatErrorType.InvalidAccessCode };
+    }
+    if (data.body.code === serverStatus.success && data.body.data === 'system') {
+      return { auth: true };
+    }
+    const targetUserLimits = (data.body.userLimits || []).filter((item: any) => {
+      return item.modelName === model;
+    });
+    if ((!targetUserLimits || targetUserLimits.length === 0) && data.body.integral === 0)
+      return { auth: false, error: ChatErrorType.InsufficientBalance };
+    if (
+      targetUserLimits &&
+      targetUserLimits.every(
+        (item: { subscription: { plan: { limits: [{ times: number }] } }; times: number }) => {
+          return item.times >= item.subscription.plan.limits[0].times;
+        },
+      )
+    ) {
+      if (data.body.integral === 0) {
+        return { auth: false, error: ChatErrorType.InsufficientBalance };
+      } else {
+        let minIntegral = 20;
+        let denominator = 100;
+        if (model.includes('gpt-4')) {
+          minIntegral = 2000;
+          denominator = 5;
+        }
+        if (data.body.integral < token / denominator + minIntegral)
+          return { auth: false, error: ChatErrorType.InsufficientBalance };
+        await fetch(
+          `${url}/api/user/subIntegral?token=${token}&modelName=${model}&desc=输入&type=in`,
+          {
+            cache: 'no-cache',
+            headers: {
+              [LOBE_CHAT_ACCESS_CODE]: accessCode || '',
+            },
+            method: 'GET',
+          },
+        );
+        return { auth: true };
+      }
+    } else {
+      await fetch(`${url}/api/user/subQuota?model=${model}`, {
+        cache: 'no-cache',
+        headers: {
+          [LOBE_CHAT_ACCESS_CODE]: accessCode || '',
+        },
+        method: 'GET',
+      });
+      return { auth: true };
+    }
+  } catch {
+    return { auth: false, error: ChatErrorType.InternalServerError };
   }
-
-  console.log(token, '----', model);
-  let minIntegral = 10;
-  if (model.includes('gpt-4')) minIntegral = 600;
-  if (data.body.integral < token / 100 + minIntegral)
-    return { auth: false, error: ChatErrorType.InsufficientBalance };
-  await fetch(`${url}/api/user/subIntegral?token=${token}&modelName=${model}&desc=输入&type=in`, {
-    cache: 'no-cache',
-    headers: {
-      [LOBE_CHAT_ACCESS_CODE]: accessCode || '',
-    },
-    method: 'GET',
-  });
-  return { auth: true };
 };

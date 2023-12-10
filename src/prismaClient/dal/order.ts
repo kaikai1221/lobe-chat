@@ -1,4 +1,5 @@
 import client, { type Order, OrderStatus, Prisma } from '../client';
+import { serverStatus } from '../serverStatus';
 
 export const OrderDAL = {
   getNextId(): string {
@@ -20,7 +21,7 @@ export const OrderDAL = {
     userId: number;
   }): Promise<Order> {
     let price = undefined;
-    if (!amount) {
+    if (priceId) {
       price = await client.prices.findUniqueOrThrow({
         where: {
           id: priceId,
@@ -48,7 +49,13 @@ export const OrderDAL = {
     return await client.order.create({ data: orderInput });
   },
 
-  async payOrder(orderId: string): Promise<{ order: Order }> {
+  async payOrder(orderId: string): Promise<{ code: number; order?: Order }> {
+    const orderData = await client.order.findUnique({
+      where: {
+        orderId: orderId,
+      },
+    });
+    if (orderData?.status === 'Paid') return { code: 500, order: undefined };
     const newOrder = await client.order.update({
       data: {
         status: OrderStatus.Paid,
@@ -148,8 +155,17 @@ export const OrderDAL = {
           userId: newOrder.userId,
         },
       });
+      await client.integralUsed.create({
+        data: {
+          desc: '充值',
+          modelName: '',
+          useValue: newOrder.amount * 10,
+          userId: newOrder.userId,
+        },
+      });
     }
     return {
+      code: serverStatus.success,
       order: newOrder,
     };
   },

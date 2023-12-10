@@ -141,39 +141,43 @@ const InvalidAccess: RenderErrorMessage['Render'] = memo(({ id }) => {
       }
     }
     setLogining(true);
-
-    const res = await fetch('/api/user/login', {
-      body: JSON.stringify({
-        providerContent: { content: register.trim(), password: md5.hash(password) },
-        providerId: type,
-      }),
-      cache: 'no-store',
-      headers: { 'Content-Type': 'application/json' },
-      method: 'POST',
-    });
-    const data = await res.json();
-    setLogining(false);
-    switch (data.status) {
-      case serverStatus.success: {
-        message.success('登陆成功');
-        setSettings({ token: data.signedToken.token });
-        resend(id);
-        deleteMessage(id);
-        localStorage.setItem('InvitationCode', '');
-        break;
+    try {
+      const res = await fetch('/api/user/login', {
+        body: JSON.stringify({
+          providerContent: { content: register.trim(), password: md5.hash(password) },
+          providerId: type,
+        }),
+        cache: 'no-store',
+        headers: { 'Content-Type': 'application/json' },
+        method: 'POST',
+      });
+      const data = await res.json();
+      setLogining(false);
+      switch (data.status) {
+        case serverStatus.success: {
+          message.success('登陆成功');
+          setSettings({ token: data.signedToken.token });
+          resend(id);
+          deleteMessage(id);
+          localStorage.setItem('InvitationCode', '');
+          break;
+        }
+        case serverStatus.notExist: {
+          message.warning('用户不存在');
+          break;
+        }
+        case serverStatus.wrongPassword: {
+          message.warning('密码错误');
+          break;
+        }
+        default: {
+          message.warning('系统异常，请稍后再试');
+          break;
+        }
       }
-      case serverStatus.notExist: {
-        message.warning('用户不存在');
-        break;
-      }
-      case serverStatus.wrongPassword: {
-        message.warning('密码错误');
-        break;
-      }
-      default: {
-        message.warning('系统异常，请稍后再试');
-        break;
-      }
+    } catch {
+      setLogining(false);
+      message.warning('系统异常，请稍后再试');
     }
   };
   return (

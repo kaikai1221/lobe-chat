@@ -7,7 +7,7 @@ import { serverStatus } from '@/prismaClient/serverStatus';
 export async function GET(req: NextRequest) {
   const { accessCode } = getOpenAIAuthFromRequest(req);
   return NextResponse.json({
-    body: await accessTokenUtils.verify(accessCode || ''),
+    body: await accessTokenUtils.verifyLimit(accessCode || ''),
     status: serverStatus.success,
   });
 }

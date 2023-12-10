@@ -1,21 +1,28 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import { getOpenAIAuthFromRequest } from '@/const/fetch';
-import { UserDAL, parseUserId } from '@/prismaClient';
+import { UserDAL } from '@/prismaClient';
 import { serverStatus } from '@/prismaClient/serverStatus';
 
 export const runtime = 'nodejs';
 
 export async function GET(req: NextRequest) {
   const { accessCode } = getOpenAIAuthFromRequest(req);
-  const userId = await parseUserId(accessCode || '');
   const params = new URL(req.url).searchParams;
-  const token = params.get('token')!;
-  const modelName = params.get('modelName')!;
-  const type = params.get('type')! as 'in' | 'out';
-  const desc = params.get('desc')!;
-  let res = await UserDAL.subIntegral(userId, Number(token), modelName, desc, type);
-  console.log('剩余积分：' + res?.integral);
+  const model = params.get('model')!;
+  const token = accessCode;
+  let res = await UserDAL.subQuota(token || '', model);
+  if (res.code === serverStatus.quotaEmpty) {
+    return NextResponse.json(
+      {
+        error: true,
+        msg: res.msg,
+      },
+      {
+        status: 200,
+      },
+    );
+  }
   return NextResponse.json({
     body: res,
     status: serverStatus.success,
