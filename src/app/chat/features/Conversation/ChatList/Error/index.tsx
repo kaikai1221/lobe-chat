@@ -38,6 +38,12 @@ export const renderErrorMessages: ChatListProps['renderErrorMessages'] = {
   [PluginErrorType.PluginServerError]: {
     Render: PluginError,
   },
+  [PluginErrorType.PluginGatewayError]: {
+    Render: PluginError,
+  },
+  [PluginErrorType.PluginOpenApiInitError]: {
+    Render: PluginError,
+  },
   [PluginErrorType.PluginSettingsInvalid]: {
     Render: PluginSettings,
     config: {

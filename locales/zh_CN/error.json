@@ -26,6 +26,8 @@
     "PluginServerError": "插件服务端请求返回出错，请检查根据下面的报错信息检查你的插件描述文件、插件配置或服务端实现",
     "InvalidAccessCode": "账户未登录，请先登录",
     "InsufficientBalance": "余额不足无法使用此模型，请更换模型或充值",
+    "PluginGatewayError": "很抱歉，插件网关出现错误，请检查插件网关配置是否正确",
+    "PluginOpenApiInitError": "很抱歉，OpenAPI 客户端初始化失败，请检查 OpenAPI 的配置信息是否正确",
     "OpenAIBizError": "请求 OpenAI 服务出错，请根据以下信息排查或重试",
     "NoAPIKey": "OpenAI API Key 为空，请添加自定义 OpenAI API Key"
   },

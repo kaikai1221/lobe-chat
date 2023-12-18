@@ -77,7 +77,6 @@ export const accessTokenUtils = {
   verifyLimit: async function verifyLimit(token: string) {
     try {
       const { payload } = await jwtVerify(token, new TextEncoder().encode(process.env.JWT_SECRET!));
-      if (payload.roleName === 'system') return { code: serverStatus.success, data: 'system' };
       const user = await client.user.findUnique({
         select: {
           integral: true,
@@ -117,6 +116,7 @@ export const accessTokenUtils = {
       if (userTokens.every((item) => item !== token)) {
         return { code: serverStatus.fullToken, msg: '登陆设备到达上限' };
       }
+      if (payload.roleName === 'system') return { code: serverStatus.success, data: 'system' };
       return {
         ...payload,
         code: serverStatus.success,

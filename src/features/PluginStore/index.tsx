@@ -1,17 +1,14 @@
-import { Icon, Modal, SpotlightCard, TabsNav } from '@lobehub/ui';
-import { Button, Empty } from 'antd';
-import isEqual from 'fast-deep-equal';
-import { ServerCrash } from 'lucide-react';
+import { Modal } from '@lobehub/ui';
+import { Segmented } from 'antd';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Center, Flexbox } from 'react-layout-kit';
 
 import MobilePadding from '@/components/MobilePadding';
 import { useToolStore } from '@/store/tool';
-import { pluginStoreSelectors } from '@/store/tool/selectors';
 
-import Loading from './Loading';
-import PluginItem from './PluginItem';
+import InstalledPluginList from './InstalledPluginList';
+import OnlineList from './OnlineList';
 
 interface PluginStoreProps {
   open?: boolean;
@@ -20,15 +17,7 @@ interface PluginStoreProps {
 export const PluginStore = memo<PluginStoreProps>(({ setOpen, open }) => {
   const { t } = useTranslation('plugin');
 
-  const [listType, useFetchPluginList, installPlugins] = useToolStore((s) => [
-    s.listType,
-    s.useFetchPluginStore,
-    s.installPlugins,
-  ]);
-
-  const pluginStoreList = useToolStore(pluginStoreSelectors.onlinePluginStore, isEqual);
-  const { isLoading, error } = useFetchPluginList();
-  const isEmpty = pluginStoreList.length === 0;
+  const [listType] = useToolStore((s) => [s.listType]);
 
   return (
     <Modal
@@ -43,48 +32,20 @@ export const PluginStore = memo<PluginStoreProps>(({ setOpen, open }) => {
       <MobilePadding>
         <Center>
           <Flexbox gap={24} width={'100%'}>
-            <Flexbox align={'center'} horizontal justify={'space-between'}>
-              <TabsNav
-                activeKey={listType}
-                items={[
-                  { key: 'all', label: t('store.tabs.all') },
-                  { key: 'installed', label: t('store.tabs.installed') },
-                ]}
-                onChange={(v) => {
-                  useToolStore.setState({ listType: v as any });
-                }}
-              />
-              <Flexbox gap={8} horizontal>
-                {listType === 'all' && (
-                  <Button
-                    onClick={() => {
-                      installPlugins(pluginStoreList.map((item) => item.identifier));
-                    }}
-                  >
-                    {t('store.installAllPlugins')}
-                  </Button>
-                )}
-              </Flexbox>
-            </Flexbox>
-            {isLoading ? (
-              <Loading />
-            ) : isEmpty ? (
-              <Center gap={12} padding={40}>
-                {error ? (
-                  <>
-                    <Icon icon={ServerCrash} size={{ fontSize: 80 }} />
-                    {t('store.networkError')}
-                  </>
-                ) : (
-                  <Empty
-                    description={t('store.empty')}
-                    image={Empty.PRESENTED_IMAGE_SIMPLE}
-                  ></Empty>
-                )}
-              </Center>
-            ) : (
-              <SpotlightCard columns={2} gap={16} items={pluginStoreList} renderItem={PluginItem} />
-            )}
+            <Segmented
+              block
+              onChange={(v) => {
+                useToolStore.setState({ listType: v as any });
+              }}
+              options={[
+                { label: t('store.tabs.all'), value: 'all' },
+                { label: t('store.tabs.installed'), value: 'installed' },
+              ]}
+              style={{ flex: 1 }}
+              value={listType}
+            />
+
+            {listType === 'all' ? <OnlineList /> : <InstalledPluginList />}
           </Flexbox>
         </Center>
       </MobilePadding>

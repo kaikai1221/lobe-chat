@@ -85,7 +85,7 @@ export default {
     waitingForMore: '更多模型正在 <1>计划接入</1> 中，敬请期待 ✨',
   },
   plugin: {
-    addTooltip: '添加自定义插件',
+    addTooltip: '自定义插件',
     clearDeprecated: '移除无效插件',
     empty: '暂无已安装插件，欢迎前往 <1>插件商店</1> 探索',
     installStatus: {
@@ -153,8 +153,8 @@ export default {
       unlimited: '不限历史消息数',
     },
     historyCount: {
-      desc: '每次请求携带的历史消息数',
-      title: '附带历史消息数',
+      desc: '每次请求携带的消息数（包括最新编写的提问。每个提问和回答都计算1）',
+      title: '附带消息数',
     },
     inputTemplate: {
       desc: '用户最新的一条消息会填充到此模板',
@@ -251,6 +251,11 @@ export default {
     },
     fontSize: {
       desc: '聊天内容的字体大小',
+      marks: {
+        large: '大',
+        normal: '标准',
+        small: '小',
+      },
       title: '字体大小',
     },
     lang: {
