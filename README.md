@@ -52,7 +52,7 @@ Supports one-click free deployment of your private ChatGPT/LLM web application.
 - [✨ Features](#-features)
 - [⚡️ Performance](#️-performance)
 - [🛳 Self Hosting](#-self-hosting)
-  - [`A` Deploying with Vercel or Zeabur](#a-deploying-with-vercel-or-zeabur)
+  - [`A` Deploying with Vercel, Zeabur or Sealos](#a-deploying-with-vercel-zeabur-or-sealos)
   - [`B` Deploying with Docker](#b-deploying-with-docker)
   - [Environment Variable](#environment-variable)
 - [📦 Ecosystem](#-ecosystem)
@@ -167,18 +167,14 @@ e-commerce platform data access, and various third-party services.
 
 <!-- PLUGIN LIST -->
 
-| Recent Submits                                                                                                      | Repository                                                                                      | Description                                                                                                                                  |
-| ------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| [weather GPT](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **Steven Tey** on **2023-12-16**</sup>   | [steven-tey/weathergpt](https://github.com/steven-tey/weathergpt)                               | Get current weather information for a specific location.<br/>`weather`                                                                       |
-| [Ask Your PDF](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **AskYourPDF** on **2023-12-16**</sup>  | [undefined](https://askyourpdf.com/)                                                            | Unlock the power of your PDFs!, dive into your documents, find answers, and bring information to your fingertips.<br/>`pdf` `document` `web` |
-| [Clock Time](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **LobeHub** on **2023-11-01**</sup>       | [lobehub/chat-plugin-clock-time](https://github.com/lobehub/chat-plugin-clock-time)             | Display a clock to show current time<br/>`clock` `time`                                                                                      |
-| [Pollinate drawing](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **AI0x0** on **2023-12-10**</sup>  | [mushan0x0/lobe-pollinations-ai](https://github.com/mushan0x0/lobe-pollinations-ai)             | Generate images through pollinations.ai<br/>`drawing` `image`                                                                                |
-| [Realtime Weather](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **LobeHub** on **2023-08-12**</sup> | [lobehub/chat-plugin-realtime-weather](https://github.com/lobehub/chat-plugin-realtime-weather) | Get realtime weather information<br/>`weather` `realtime`                                                                                    |
-| [Search Engine](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **LobeHub** on **2023-08-15**</sup>    | [lobehub/chat-plugin-search-engine](https://github.com/lobehub/chat-plugin-search-engine)       | Query search engine to get information<br/>`web` `search`                                                                                    |
-| [SEO](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **Orren Prunckun** on **2023-12-16**</sup>       | [undefined](https://orrenprunckun.com)                                                          | Enter any URL and keyword and get an On-Page SEO analysis & insights!<br/>`seo`                                                              |
-| [Website Crawler](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **LobeHub** on **2023-08-17**</sup>  | [lobehub/chat-plugin-web-crawler](https://github.com/lobehub/chat-plugin-web-crawler)           | Extract content from web links<br/>`web` `content-crawler`                                                                                   |
+| Recent Submits                                                                                                     | Description                                                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| [weather GPT](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **Steven Tey** on **2023-12-16**</sup>  | Get current weather information for a specific location.<br/>`weather`                                                                       |
+| [Ask Your PDF](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **AskYourPDF** on **2023-12-16**</sup> | Unlock the power of your PDFs!, dive into your documents, find answers, and bring information to your fingertips.<br/>`pdf` `document` `web` |
+| [Clock Time](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **LobeHub** on **2023-11-01**</sup>      | Display a clock to show current time<br/>`clock` `time`                                                                                      |
+| [Mindmap](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **Moonlit7** on **2023-12-19**</sup>        | A mindmap generation assistant<br/>`mindmap`                                                                                                 |
 
-> 📊 Total plugins: [<kbd>**8**</kbd>](https://github.com/lobehub/lobe-chat-plugins)
+> 📊 Total plugins: [<kbd>**9**</kbd>](https://github.com/lobehub/lobe-chat-plugins)
 
  <!-- PLUGIN LIST -->
 
@@ -210,14 +206,14 @@ Our marketplace is not just a showcase platform but also a collaborative space. 
 
 <!-- AGENT LIST -->
 
-| Recent Submits                                                                                                                                                               | Description                                                                                                                                                                                                     |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Simulated ChatGPT Web](https://chat-preview.lobehub.com/market?agent=chat-gpt-web)<br/><sup>By **[pzcn](https://github.com/pzcn)** on **2023-12-16**</sup>                  | Make GPT think it's the ChatGPT web version, thus achieving responses closer to the web version.<br/>`assistant` `conversation`                                                                                 |
-| [Greeting](https://chat-preview.lobehub.com/market?agent=congratulations-with-smileys)<br/><sup>By **[almaziphone](https://github.com/almaziphone)** on **2023-12-16**</sup> | Compose a beautiful and brief greeting with emojis<br/>`greeting` `celebration` `kind`                                                                                                                          |
-| [Real Estate Agent](https://chat-preview.lobehub.com/market?agent=estate-agency)<br/><sup>By **[ccsen](https://github.com/ccsen)** on **2023-12-16**</sup>                   | Professional real estate agent expert, proficient in property consultation and management.<br/>`real-estate` `real-estate-agent` `knowledge-expert` `property-appraisal` `buying-a-house` `property-management` |
-| [Criminal Defense Expert](https://chat-preview.lobehub.com/market?agent=yundaodev-1)<br/><sup>By **[SuperLande](https://github.com/SuperLande)** on **2023-12-16**</sup>     | A Chinese criminal law expert who has been engaged in criminal defense practice for many years and understands the theory of criminal law and criminal procedure law<br/>`criminal-defense`                     |
+| Recent Submits                                                                                                                                                                 | Description                                                                                                                                                                                                                                                                   |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Facebook Ads Expert](https://chat-preview.lobehub.com/market?agent=facebook-ads-expert)<br/><sup>By **[alissonryan](https://github.com/alissonryan)** on **2023-12-20**</sup> | Create a Facebook Ads with a expert<br/>`copywriting` `facebook-ads` `lead-generation`                                                                                                                                                                                        |
+| [Dream Painter](https://chat-preview.lobehub.com/market?agent=dream-painter)<br/><sup>By **[ccdanpian](https://github.com/ccdanpian)** on **2023-12-19**</sup>                 | A dream artist who can bring your dreams into reality.<br/>`txt-2-img` `painter`                                                                                                                                                                                              |
+| [News Hub](https://chat-preview.lobehub.com/market?agent=news-hub)<br/><sup>By **[ccdanpian](https://github.com/ccdanpian)** on **2023-12-19**</sup>                           | News Search Assistant, proficient in locating and presenting relevant news based on user requests. Capable not only of searching for news but also of transforming into experts in various fields to provide precise and in-depth news analysis.<br/>`news` `search` `helper` |
+| [Research Assistant](https://chat-preview.lobehub.com/market?agent=research-assistant)<br/><sup>By **[ccsen](https://github.com/ccsen)** on **2023-12-19**</sup>               | Capable of answering questions, conducting research, drafting content, and more, utilizing scientific research papers.<br/>`research-assistant` `literature-retrieval` `writing` `scientific-research` `citation`                                                             |
 
-> 📊 Total agents: [<kbd>**73**</kbd> ](https://github.com/lobehub/lobe-chat-agents)
+> 📊 Total agents: [<kbd>**77**</kbd> ](https://github.com/lobehub/lobe-chat-agents)
 
  <!-- AGENT LIST -->
 
@@ -331,7 +327,7 @@ Beside these features, LobeChat also have much better basic technique undergroun
 
 LobeChat provides Self-Hosted Version with Vercel and [Docker Image][docker-release-link]. This allows you to deploy your own chatbot within a few minutes without any prior knowledge.
 
-### `A` Deploying with Vercel or Zeabur
+### `A` Deploying with Vercel, Zeabur or Sealos
 
 If you want to deploy this service yourself on either Vercel or Zeabur, you can follow these steps:
 
@@ -342,9 +338,9 @@ If you want to deploy this service yourself on either Vercel or Zeabur, you can 
 
 <div align="center">
 
-|           Deploy with Vercel            |                     Deploy with Zeabur                      |
-| :-------------------------------------: | :---------------------------------------------------------: |
-| [![][deploy-button-image]][deploy-link] | [![][deploy-on-zeabur-button-image]][deploy-on-zeabur-link] |
+|           Deploy with Vercel            |                     Deploy with Zeabur                      |                     Deploy with Sealos                      |
+| :-------------------------------------: | :---------------------------------------------------------: | :---------------------------------------------------------: |
+| [![][deploy-button-image]][deploy-link] | [![][deploy-on-zeabur-button-image]][deploy-on-zeabur-link] | [![][deploy-on-sealos-button-image]][deploy-on-sealos-link] |
 
 </div>
 
@@ -395,12 +391,12 @@ $ docker run -d -p 3210:3210 \
 
 This project provides some additional configuration items set with environment variables:
 
-| Environment Variable      | Required | Description                                                                                                                                                                                                                  | Example                                                                                   |
-| ------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `OPENAI_API_KEY`          | Yes      | This is the API key you apply on the OpenAI account page                                                                                                                                                                     | `sk-xxxxxx...xxxxxx`                                                                      |
-| `OPENAI_PROXY_URL`        | No       | If you manually configure the OpenAI interface proxy, you can use this configuration item to override the default OpenAI API request base URL                                                                                | `https://api.chatanywhere.cn/v1`<br/>The default value is<br/>`https://api.openai.com/v1` |
-| `OPENAI_FUNCTION_REGIONS` | No       | When you deploy Lobe-Chat using Vercel and need to specify the region for the Edge Function that handles requests to the OpenAI API, you can use this configuration. The value should be a comma-separated array of strings. | `iad1,sfo1`                                                                               |
-| `ACCESS_CODE`             | No       | Add a password to access this service; you can set a long password to avoid leaking. If this value contains a comma, it is a password array.                                                                                 | `awCTe)re_r74` or `rtrt_ewee3@09!` or `code1,code2,code3`                                 |
+| Environment Variable | Required | Description                                                                                                                                                               | Example                                                                                   |
+| -------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `OPENAI_API_KEY`     | Yes      | This is the API key you apply on the OpenAI account page                                                                                                                  | `sk-xxxxxx...xxxxxx`                                                                      |
+| `OPENAI_PROXY_URL`   | No       | If you manually configure the OpenAI interface proxy, you can use this configuration item to override the default OpenAI API request base URL                             | `https://api.chatanywhere.cn/v1`<br/>The default value is<br/>`https://api.openai.com/v1` |
+| `ACCESS_CODE`        | No       | Add a password to access this service; you can set a long password to avoid leaking. If this value contains a comma, it is a password array.                              | `awCTe)re_r74` or `rtrt_ewee3@09!` or `code1,code2,code3`                                 |
+| `CUSTOM_MODELS`      | No       | Used to control the model list. Use `+` to add a model, `-` to hide a model, and `model_name=display_name` to customize the display name of a model, separated by commas. | `qwen-7b-chat,+glm-6b,-gpt-3.5-turbo`                                                     |
 
 > \[!NOTE]
 >
@@ -575,6 +571,8 @@ This project is [MIT](./LICENSE) licensed.
 [codespaces-shield]: https://github.com/codespaces/badge.svg
 [deploy-button-image]: https://vercel.com/button
 [deploy-link]: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Flobehub%2Flobe-chat&env=OPENAI_API_KEY&envDescription=Find%20your%20OpenAI%20API%20Key%20by%20click%20the%20right%20Learn%20More%20button.&envLink=https%3A%2F%2Fplatform.openai.com%2Faccount%2Fapi-keys&project-name=lobe-chat&repository-name=lobe-chat
+[deploy-on-sealos-button-image]: https://raw.githubusercontent.com/labring-actions/templates/main/Deploy-on-Sealos.svg
+[deploy-on-sealos-link]: https://cloud.sealos.io/?openapp=system-template%3FtemplateName%3Dlobe-chat
 [deploy-on-zeabur-button-image]: https://zeabur.com/button.svg
 [deploy-on-zeabur-link]: https://zeabur.com/templates/VZGGTI
 [discord-link]: https://discord.gg/AYFPHvv2jT

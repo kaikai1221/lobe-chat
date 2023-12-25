@@ -3,12 +3,9 @@ import {
   LobeChatPluginsMarketIndex,
   pluginManifestSchema,
 } from '@lobehub/chat-plugin-sdk';
-import { OpenAPIConvertor } from '@lobehub/chat-plugin-sdk/openapi';
-import YAML from 'yaml';
 
-import { getPluginIndexJSON } from '@/const/url';
 import { PluginModel } from '@/database/models/plugin';
-import { PROXY_URL } from '@/services/_url';
+import { PLUGINS_URLS, URLS } from '@/services/_url';
 import { globalHelpers } from '@/store/global/helpers';
 import { OpenAIPluginManifest } from '@/types/openai/plugin';
 import { LobeTool } from '@/types/tool';
@@ -24,7 +21,7 @@ class PluginService {
     // 2. 发送请求
     let res: Response;
     try {
-      res = await (proxy ? fetch(PROXY_URL, { body: url, method: 'POST' }) : fetch(url));
+      res = await (proxy ? fetch(URLS.proxy, { body: url, method: 'POST' }) : fetch(url));
     } catch {
       throw new TypeError('fetchError');
     }
@@ -40,6 +37,8 @@ class PluginService {
       if (contentType === 'application/json') {
         data = await res.json();
       } else {
+        const { default: YAML } = await import('yaml');
+
         const yaml = await res.text();
         data = YAML.parse(yaml);
       }
@@ -52,14 +51,12 @@ class PluginService {
   /**
    * get plugin list from store
    */
-  getPluginList = async () => {
-    const url = getPluginIndexJSON(globalHelpers.getCurrentLanguage());
+  getPluginList = async (): Promise<LobeChatPluginsMarketIndex> => {
+    const locale = globalHelpers.getCurrentLanguage();
 
-    const res = await fetch(url);
+    const res = await fetch(`${PLUGINS_URLS.store}?locale=${locale}`);
 
-    const data: LobeChatPluginsMarketIndex = await res.json();
-
-    return data;
+    return res.json();
   };
 
   getPluginManifest = async (
@@ -94,6 +91,8 @@ class PluginService {
       const openapiJson = await this._fetchJSON(parser.data.openapi, useProxy);
 
       try {
+        const { OpenAPIConvertor } = await import('@lobehub/chat-plugin-sdk/openapi');
+
         const convertor = new OpenAPIConvertor(openapiJson);
         const openAPIs = await convertor.convertOpenAPIToPluginSchema();
         data.api = [...data.api, ...openAPIs];

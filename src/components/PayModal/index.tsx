@@ -7,7 +7,8 @@ import { memo, useEffect, useState } from 'react';
 import { Flexbox } from 'react-layout-kit';
 
 import { LOBE_CHAT_ACCESS_CODE } from '@/const/fetch';
-import { settingsSelectors, useGlobalStore } from '@/store/global';
+import { useGlobalStore } from '@/store/global';
+import { settingsSelectors } from '@/store/global/selectors';
 
 import WechatPay from './wechatPay.svg';
 
