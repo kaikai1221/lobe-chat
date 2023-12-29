@@ -19,16 +19,17 @@ import { Flexbox } from 'react-layout-kit';
 import md5 from 'spark-md5';
 import useSWR from 'swr';
 
-import { FormAction } from '@/app/chat/features/Conversation/ChatList/Error/style';
 import FullscreenLoading from '@/components/FullscreenLoading';
 import PayModal from '@/components/PayModal/index';
 import PlanModal from '@/components/PayModal/plan';
 import { LOBE_CHAT_ACCESS_CODE } from '@/const/fetch';
 import { FORM_STYLE } from '@/const/layoutTokens';
+import { FormAction } from '@/features/Conversation/ChatList/Error/style';
 import { serverStatus } from '@/prismaClient/serverStatus';
-import { settingsSelectors, useGlobalStore } from '@/store/global';
+import { useGlobalStore } from '@/store/global';
 import { useSwitchSideBarOnInit } from '@/store/global/hooks/useSwitchSettingsOnInit';
 import { SettingsTabs } from '@/store/global/initialState';
+import { settingsSelectors } from '@/store/global/selectors';
 
 enum Tab {
   Code = 'code',

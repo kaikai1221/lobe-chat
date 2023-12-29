@@ -3,12 +3,13 @@ import { DeepPartial } from 'utility-types';
 import { BaseModel } from '@/database/core';
 import { DBModel } from '@/database/core/types/db';
 import { DB_Message, DB_MessageSchema } from '@/database/schemas/message';
-import { ChatMessage } from '@/types/chatMessage';
+import { ChatMessage } from '@/types/message';
 import { nanoid } from '@/utils/uuid';
 
 export interface CreateMessageParams
   extends Partial<Omit<ChatMessage, 'content' | 'role'>>,
     Pick<ChatMessage, 'content' | 'role'> {
+  fromModel?: string;
   sessionId: string;
 }
 
@@ -179,11 +180,7 @@ class _MessageModel extends BaseModel {
     tts,
     ...item
   }: DBModel<DB_Message>): ChatMessage => {
-    return {
-      ...item,
-      extra: { fromModel: fromModel, translate: translate, tts: tts },
-      meta: {},
-    };
+    return { ...item, extra: { fromModel, translate, tts }, meta: {} };
   };
 }
 

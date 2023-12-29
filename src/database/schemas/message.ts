@@ -11,7 +11,7 @@ const PluginSchema = z.object({
   identifier: z.string(),
   arguments: z.string(),
   apiName: z.string(),
-  type: z.enum(['default', 'standalone']).default('default'),
+  type: z.enum(['default', 'standalone', 'builtin']).default('default'),
 });
 
 export const DB_MessageSchema = z.object({
@@ -24,7 +24,7 @@ export const DB_MessageSchema = z.object({
   plugin: PluginSchema.optional(),
   pluginState: z.any().optional(),
   fromModel: z.string().optional(),
-  translate: TranslateSchema.optional().or(z.null()),
+  translate: TranslateSchema.optional().or(z.literal(false)),
   tts: z.any().optional(),
 
   // foreign keys

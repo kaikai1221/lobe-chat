@@ -35,6 +35,7 @@ LobeChat 是开源的高性能聊天机器人框架，支持语音合成、多�
 [![][share-whatsapp-shield]][share-whatsapp-link]
 [![][share-reddit-shield]][share-reddit-link]
 [![][share-weibo-shield]][share-weibo-link]
+[![][share-mastodon-shield]][share-mastodon-link]
 
 ![](https://gw.alipayobjects.com/zos/kitchen/RKnWrrfuMl/welcome.webp)
 
@@ -49,7 +50,7 @@ LobeChat 是开源的高性能聊天机器人框架，支持语音合成、多�
 - [✨ 特性一览](#-特性一览)
 - [⚡️ 性能测试](#️-性能测试)
 - [🛳 开箱即用](#-开箱即用)
-  - [`A` 使用 Vercel 或 Zeabur 部署](#a-使用-vercel-或-zeabur-部署)
+  - [`A` 使用 Vercel、Zeabur 或 Sealos 部署](#a-使用-vercelzeabur-或-sealos-部署)
   - [`B` 使用 Docker 部署](#b-使用-docker-部署)
   - [环境变量](#环境变量)
 - [📦 生态系统](#-生态系统)
@@ -148,18 +149,14 @@ LobeChat 的插件生态系统是其核心功能的重要扩展，它极大地�
 
 <!-- PLUGIN LIST -->
 
-| 最近新增                                                                                                        | 仓库                                                                                            | 插件描述                                                                                   |
-| --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| [天气 GPT](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **Steven Tey** on **2023-12-16**</sup>  | [steven-tey/weathergpt](https://github.com/steven-tey/weathergpt)                               | 获取特定位置的当前天气信息。<br/>`天气`                                                    |
-| [AskYouPDF](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **AskYourPDF** on **2023-12-16**</sup> | [undefined](https://askyourpdf.com/)                                                            | 释放您的 PDF 的力量！深入您的文档，找到答案，并将信息带到您的指尖。<br/>`pdf` `文档` `web` |
-| [时钟时间](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **LobeHub** on **2023-11-01**</sup>     | [lobehub/chat-plugin-clock-time](https://github.com/lobehub/chat-plugin-clock-time)             | 显示一个时钟来展示当前时间<br/>`时钟` `时间`                                               |
-| [授粉绘画](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **AI0x0** on **2023-12-10**</sup>       | [mushan0x0/lobe-pollinations-ai](https://github.com/mushan0x0/lobe-pollinations-ai)             | 通过 pollinations.ai 进行图像生成<br/>`drawing` `image`                                    |
-| [实时天气](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **LobeHub** on **2023-08-12**</sup>     | [lobehub/chat-plugin-realtime-weather](https://github.com/lobehub/chat-plugin-realtime-weather) | 获取实时天气信息<br/>`天气` `实时`                                                         |
-| [搜索引擎](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **LobeHub** on **2023-08-15**</sup>     | [lobehub/chat-plugin-search-engine](https://github.com/lobehub/chat-plugin-search-engine)       | 查询搜索引擎以获取信息<br/>`网络` `搜索`                                                   |
-| [SEO](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **Orren Prunckun** on **2023-12-16**</sup>   | [undefined](https://orrenprunckun.com)                                                          | 输入任何 URL 和关键词，获取页面 SEO 分析和见解！<br/>`seo`                                 |
-| [网站爬虫](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **LobeHub** on **2023-08-17**</sup>     | [lobehub/chat-plugin-web-crawler](https://github.com/lobehub/chat-plugin-web-crawler)           | 从网页链接中提取内容<br/>`网页` `内容爬取器`                                               |
+| 最近新增                                                                                                        | 插件描述                                                                                   |
+| --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| [天气 GPT](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **Steven Tey** on **2023-12-16**</sup>  | 获取特定位置的当前天气信息。<br/>`天气`                                                    |
+| [AskYouPDF](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **AskYourPDF** on **2023-12-16**</sup> | 释放您的 PDF 的力量！深入您的文档，找到答案，并将信息带到您的指尖。<br/>`pdf` `文档` `web` |
+| [时钟时间](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **LobeHub** on **2023-11-01**</sup>     | 显示一个时钟来展示当前时间<br/>`时钟` `时间`                                               |
+| [思维导图](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **Moonlit7** on **2023-12-19**</sup>    | 思维导图生成助手<br/>`思维导图` `脑图`                                                     |
 
-> 📊 Total plugins: [<kbd>**8**</kbd>](https://github.com/lobehub/lobe-chat-plugins)
+> 📊 Total plugins: [<kbd>**9**</kbd>](https://github.com/lobehub/lobe-chat-plugins)
 
  <!-- PLUGIN LIST -->
 
@@ -187,14 +184,14 @@ LobeChat 的插件生态系统是其核心功能的重要扩展，它极大地�
 
 <!-- AGENT LIST -->
 
-| 最近新增                                                                                                                                                                 | 助手说明                                                                                                           |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| [模拟 ChatGPT Web](https://chat-preview.lobehub.com/market?agent=chat-gpt-web)<br/><sup>By **[pzcn](https://github.com/pzcn)** on **2023-12-16**</sup>                   | 使 GPT 认为自己是 ChatGPT 网页版，从而达到更加接近于网页版的回复<br/>`助手` `对话`                                 |
-| [祝贺](https://chat-preview.lobehub.com/market?agent=congratulations-with-smileys)<br/><sup>By **[almaziphone](https://github.com/almaziphone)** on **2023-12-16**</sup> | 用表情符号编写美丽而简短的祝贺<br/>`祝贺` `节日` `善良`                                                            |
-| [房地产经纪人](https://chat-preview.lobehub.com/market?agent=estate-agency)<br/><sup>By **[ccsen](https://github.com/ccsen)** on **2023-12-16**</sup>                    | 专业的房地产经纪人专家，精通房地产咨询和管理。<br/>`房地产` `房地产经纪人` `知识专家` `房产评估` `购房` `物业管理` |
-| [刑辩专家](https://chat-preview.lobehub.com/market?agent=yundaodev-1)<br/><sup>By **[SuperLande](https://github.com/SuperLande)** on **2023-12-16**</sup>                | 一位中国刑事法律专家，从事多年刑事辩护实务工作，了解刑法与刑事诉讼法理论<br/>`刑辩`                                |
+| 最近新增                                                                                                                                                                         | 助手说明                                                                                           |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| [部署专家代理](https://chat-preview.lobehub.com/market?agent=deployment-agent)<br/><sup>By **[amitalokbera](https://github.com/amitalokbera)** on **2023-12-27**</sup>           | AI 部署专家是管理软件应用的完整部署生命周期的专家，特别是 Web 应用。<br/>`代码` `部署` `容器化`    |
+| [美术论文概述专家](https://chat-preview.lobehub.com/market?agent=thesis-overview)<br/><sup>By **[caoyang2002](https://github.com/caoyang2002)** on **2023-12-27**</sup>          | 擅长论文简述与美术评论<br/>`美术` `论文` `评论`                                                    |
+| [美式英语转译专家](https://chat-preview.lobehub.com/market?agent=to-local-english)<br/><sup>By **[doresu](https://github.com/doresu)** on **2023-12-27**</sup>                   | 粗鲁老编辑、资深作家和翻译家，擅长直译英文并转化为地道的美式英语<br/>`翻译` `编辑` `写作` `翻译家` |
+| [学术润色专家](https://chat-preview.lobehub.com/market?agent=academic-paragraph-refiner)<br/><sup>By **[Feliks151450](https://github.com/Feliks151450)** on **2023-12-26**</sup> | 高级研究校对及语言编辑，专业于多个研究领域，精通学术英语。<br/>`校对` `写作` `研究`                |
 
-> 📊 Total agents: [<kbd>**73**</kbd> ](https://github.com/lobehub/lobe-chat-agents)
+> 📊 Total agents: [<kbd>**82**</kbd> ](https://github.com/lobehub/lobe-chat-agents)
 
  <!-- AGENT LIST -->
 
@@ -303,7 +300,7 @@ LobeChat 提供了 Vercel 的 自托管版本 和 [Docker 镜像][docker-release
 
 <br/>
 
-### `A` 使用 Vercel 或 Zeabur 部署
+### `A` 使用 Vercel、Zeabur 或 Sealos 部署
 
 如果想在 Vercel 或 Zeabur 上部署该服务，可以按照以下步骤进行操作：
 
@@ -314,9 +311,9 @@ LobeChat 提供了 Vercel 的 自托管版本 和 [Docker 镜像][docker-release
 
 <div align="center">
 
-|            使用 Vercel 部署             |                      使用 Zeabur 部署                       |
-| :-------------------------------------: | :---------------------------------------------------------: |
-| [![][deploy-button-image]][deploy-link] | [![][deploy-on-zeabur-button-image]][deploy-on-zeabur-link] |
+|            使用 Vercel 部署             |                      使用 Zeabur 部署                       |                      使用 Sealos 部署                       |
+| :-------------------------------------: | :---------------------------------------------------------: | :---------------------------------------------------------: |
+| [![][deploy-button-image]][deploy-link] | [![][deploy-on-zeabur-button-image]][deploy-on-zeabur-link] | [![][deploy-on-sealos-button-image]][deploy-on-sealos-link] |
 
 </div>
 
@@ -342,6 +339,7 @@ LobeChat 提供了 Vercel 的 自托管版本 和 [Docker 镜像][docker-release
 $ docker run -d -p 3210:3210 \
   -e OPENAI_API_KEY=sk-xxxx \
   -e ACCESS_CODE=lobe66 \
+  --name lobe-chat \
   lobehub/lobe-chat
 ```
 
@@ -354,6 +352,7 @@ $ docker run -d -p 3210:3210 \
   -e OPENAI_API_KEY=sk-xxxx \
   -e OPENAI_PROXY_URL=https://api-proxy.com/v1 \
   -e ACCESS_CODE=lobe66 \
+  --name lobe-chat \
   lobehub/lobe-chat
 ```
 
@@ -367,12 +366,12 @@ $ docker run -d -p 3210:3210 \
 
 本项目提供了一些额外的配置项，使用环境变量进行设置：
 
-| 环境变量                  | 类型 | 描述                                                                                                                                                            | 示例                                                                         |
-| ------------------------- | ---- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `OPENAI_API_KEY`          | 必选 | 这是你在 OpenAI 账户页面申请的 API 密钥                                                                                                                         | `sk-xxxxxx...xxxxxx`                                                         |
-| `OPENAI_PROXY_URL`        | 可选 | 如果你手动配置了 OpenAI 接口代理，可以使用此配置项来覆盖默认的 OpenAI API 请求基础 URL                                                                          | `https://api.chatanywhere.cn/v1`<br/>默认值:<br/>`https://api.openai.com/v1` |
-| `OPENAI_FUNCTION_REGIONS` | 可选 | 当你使用 Vercel 部署 Lobe-Chat，而且有需求指定响应调用 OpenAI 接口的请求的 Edge Function 的 Region 时，可以使用该配置进行配置，该值的类型为逗号分隔的字符串数组 | `iad1,sfo1`                                                                  |
-| `ACCESS_CODE`             | 可选 | 添加访问此服务的密码，你可以设置一个长密码以防被爆破，该值用逗号分隔时为密码数组                                                                                | `awCTe)re_r74` or `rtrt_ewee3@09!` or `code1,code2,code3`                    |
+| 环境变量           | 类型 | 描述                                                                                                                          | 示例                                                                         |
+| ------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `OPENAI_API_KEY`   | 必选 | 这是你在 OpenAI 账户页面申请的 API 密钥                                                                                       | `sk-xxxxxx...xxxxxx`                                                         |
+| `OPENAI_PROXY_URL` | 可选 | 如果你手动配置了 OpenAI 接口代理，可以使用此配置项来覆盖默认的 OpenAI API 请求基础 URL                                        | `https://api.chatanywhere.cn/v1`<br/>默认值:<br/>`https://api.openai.com/v1` |
+| `ACCESS_CODE`      | 可选 | 添加访问此服务的密码，你可以设置一个长密码以防被爆破，该值用逗号分隔时为密码数组                                              | `awCTe)re_r74` or `rtrt_ewee3@09!` or `code1,code2,code3`                    |
+| `CUSTOM_MODELS`    | 可选 | 用来控制模型列表，使用 `+` 增加一个模型，使用 `-` 来隐藏一个模型，使用 `模型名=展示名` 来自定义模型的展示名，用英文逗号隔开。 | `qwen-7b-chat,+glm-6b,-gpt-3.5-turbo`                                        |
 
 > \[!NOTE]
 >
@@ -547,6 +546,8 @@ This project is [MIT](./LICENSE) licensed.
 [codespaces-shield]: https://github.com/codespaces/badge.svg
 [deploy-button-image]: https://vercel.com/button
 [deploy-link]: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Flobehub%2Flobe-chat&env=OPENAI_API_KEY&envDescription=Find%20your%20OpenAI%20API%20Key%20by%20click%20the%20right%20Learn%20More%20button.&envLink=https%3A%2F%2Fplatform.openai.com%2Faccount%2Fapi-keys&project-name=lobe-chat&repository-name=lobe-chat
+[deploy-on-sealos-button-image]: https://raw.githubusercontent.com/labring-actions/templates/main/Deploy-on-Sealos.svg
+[deploy-on-sealos-link]: https://cloud.sealos.io/?openapp=system-template%3FtemplateName%3Dlobe-chat
 [deploy-on-zeabur-button-image]: https://zeabur.com/button.svg
 [deploy-on-zeabur-link]: https://zeabur.com/templates/VZGGTI
 [discord-link]: https://discord.gg/AYFPHvv2jT
@@ -599,6 +600,8 @@ This project is [MIT](./LICENSE) licensed.
 [pr-welcome-link]: https://github.com/lobehub/lobe-chat/pulls
 [pr-welcome-shield]: https://img.shields.io/badge/🤯_pr_welcome-%E2%86%92-ffcb47?labelColor=black&style=for-the-badge
 [profile-link]: https://github.com/lobehub
+[share-mastodon-link]: https://mastodon.social/share?text=Check%20this%20GitHub%20repository%20out%20%F0%9F%A4%AF%20LobeChat%20-%20An%20open-source,%20extensible%20(Function%20Calling),%20high-performance%20chatbot%20framework.%20It%20supports%20one-click%20free%20deployment%20of%20your%20private%20ChatGPT/LLM%20web%20application.%20https://github.com/lobehub/lobe-chat%20#chatbot%20#chatGPT%20#openAI
+[share-mastodon-shield]: https://img.shields.io/badge/-share%20on%20mastodon-black?labelColor=black&logo=mastodon&logoColor=white&style=flat-square
 [share-reddit-link]: https://www.reddit.com/submit?title=%E6%8E%A8%E8%8D%90%E4%B8%80%E4%B8%AA%20GitHub%20%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%20%F0%9F%A4%AF%20LobeChat%20-%20%E5%BC%80%E6%BA%90%E7%9A%84%E3%80%81%E5%8F%AF%E6%89%A9%E5%B1%95%E7%9A%84%EF%BC%88Function%20Calling%EF%BC%89%E9%AB%98%E6%80%A7%E8%83%BD%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6%E3%80%82%0A%E5%AE%83%E6%94%AF%E6%8C%81%E4%B8%80%E9%94%AE%E5%85%8D%E8%B4%B9%E9%83%A8%E7%BD%B2%E7%A7%81%E4%BA%BA%20ChatGPT%2FLLM%20%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%20%23chatbot%20%23chatGPT%20%23openAI&url=https%3A%2F%2Fgithub.com%2Flobehub%2Flobe-chat
 [share-reddit-shield]: https://img.shields.io/badge/-share%20on%20reddit-black?labelColor=black&logo=reddit&logoColor=white&style=flat-square
 [share-telegram-link]: https://t.me/share/url"?text=%E6%8E%A8%E8%8D%90%E4%B8%80%E4%B8%AA%20GitHub%20%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%20%F0%9F%A4%AF%20LobeChat%20-%20%E5%BC%80%E6%BA%90%E7%9A%84%E3%80%81%E5%8F%AF%E6%89%A9%E5%B1%95%E7%9A%84%EF%BC%88Function%20Calling%EF%BC%89%E9%AB%98%E6%80%A7%E8%83%BD%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6%E3%80%82%0A%E5%AE%83%E6%94%AF%E6%8C%81%E4%B8%80%E9%94%AE%E5%85%8D%E8%B4%B9%E9%83%A8%E7%BD%B2%E7%A7%81%E4%BA%BA%20ChatGPT%2FLLM%20%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%20%23chatbot%20%23chatGPT%20%23openAI&url=https%3A%2F%2Fgithub.com%2Flobehub%2Flobe-chat

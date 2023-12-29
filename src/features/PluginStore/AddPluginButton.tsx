@@ -1,14 +1,9 @@
-import { Icon } from '@lobehub/ui';
-import { Button } from 'antd';
-import { PackagePlus } from 'lucide-react';
 import { forwardRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import DevModal from '@/features/PluginDevModal';
 import { useToolStore } from '@/store/tool';
 
-const AddPluginButton = forwardRef<HTMLButtonElement>((props, ref) => {
-  const { t } = useTranslation('setting');
+const AddPluginButton = forwardRef<HTMLButtonElement>(() => {
   const [showModal, setModal] = useState(false);
 
   const [installCustomPlugin, updateNewDevPlugin] = useToolStore((s) => [
@@ -31,7 +26,7 @@ const AddPluginButton = forwardRef<HTMLButtonElement>((props, ref) => {
         onValueChange={updateNewDevPlugin}
         open={showModal}
       />
-      <Button
+      {/* <Button
         icon={<Icon icon={PackagePlus} />}
         onClick={() => {
           setModal(true);
@@ -39,7 +34,7 @@ const AddPluginButton = forwardRef<HTMLButtonElement>((props, ref) => {
         ref={ref}
       >
         {t('plugin.addTooltip')}
-      </Button>
+      </Button> */}
     </div>
   );
 });
