@@ -55,7 +55,15 @@ async function handle(req: NextRequest) {
         },
       );
     }
-    return result;
+    return NextResponse.json(
+      {
+        code: 1,
+        msg: `服务器错误请稍后再试`,
+      },
+      {
+        status: 500,
+      },
+    );
   }
   try {
     const fetchUrl = `${baseUrl}${openaiPath}`;
