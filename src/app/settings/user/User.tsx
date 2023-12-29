@@ -504,6 +504,8 @@ const UseList = () => {
         title="积分消耗记录"
         width={600}
       >
+        {' '}
+        <p>只保留最近30天的数据</p>
         <Table
           columns={columns}
           dataSource={dataList}
