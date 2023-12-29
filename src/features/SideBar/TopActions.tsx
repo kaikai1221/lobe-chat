@@ -1,5 +1,5 @@
 import { ActionIcon } from '@lobehub/ui';
-import { Bot, MessageSquare } from 'lucide-react';
+import { Bot, Image, MessageSquare } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -44,6 +44,18 @@ const TopActions = memo<TopActionProps>(({ tab, setTab }) => {
         placement={'right'}
         size="large"
         title={t('tab.market')}
+      />
+      <ActionIcon
+        active={tab === SidebarTabKey.AIImage}
+        icon={Image}
+        onClick={() => {
+          if (pathname?.startsWith('/aiImage')) return;
+          setTab(SidebarTabKey.AIImage);
+          router.push('/aiImage');
+        }}
+        placement={'right'}
+        size="large"
+        title="AI绘图"
       />
     </>
   );

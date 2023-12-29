@@ -6,7 +6,7 @@ interface AuthConfig {
   accessCode?: string | null;
   apiKey?: string | null;
   model: string;
-  token: number;
+  token?: number;
   url: string;
 }
 export const checkAuth = async ({ accessCode, token, url, model }: AuthConfig) => {
@@ -31,6 +31,7 @@ export const checkAuth = async ({ accessCode, token, url, model }: AuthConfig) =
     if ((!targetUserLimits || targetUserLimits.length === 0) && data.body.integral === 0)
       return { auth: false, error: ChatErrorType.InsufficientBalance };
     if (
+      token &&
       targetUserLimits &&
       targetUserLimits.every(
         (item: { subscription: { plan: { limits: [{ times: number }] } }; times: number }) => {

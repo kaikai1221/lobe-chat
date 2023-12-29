@@ -2,6 +2,7 @@ import { DEFAULT_SETTINGS } from '@/const/settings';
 import type { GlobalSettings } from '@/types/settings';
 
 export enum SidebarTabKey {
+  AIImage = 'aiImage',
   Chat = 'chat',
   Market = 'market',
   Setting = 'settings',

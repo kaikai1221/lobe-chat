@@ -250,7 +250,7 @@ export class UserDAL {
     });
     if (existUser) {
       return {
-        signedToken: await accessTokenUtils.sign(7 * 24 * (60 * 60), {
+        signedToken: await accessTokenUtils.sign(30 * 24 * (60 * 60), {
           ip,
           roleName: existUser.role.name,
           uid: existUser.userId,
@@ -359,7 +359,7 @@ export class UserDAL {
           inviter: code?.owner?.name ? code.owner.name : undefined,
           status: serverStatus.success,
         },
-        signedToken: await accessTokenUtils.sign(7 * 24 * (60 * 60), {
+        signedToken: await accessTokenUtils.sign(30 * 24 * (60 * 60), {
           ip,
           roleName: 'user',
           uid: user.userId,
@@ -368,7 +368,7 @@ export class UserDAL {
     }
 
     return {
-      signedToken: await accessTokenUtils.sign(7 * 24 * (60 * 60), {
+      signedToken: await accessTokenUtils.sign(30 * 24 * (60 * 60), {
         ip,
         roleName: 'user',
         uid: user.userId,
@@ -420,7 +420,7 @@ export class UserDAL {
       throw new ServerError(serverStatus.wrongPassword, '用户名或密码不正确');
     /* default session duration is a week */
     return {
-      signedToken: await accessTokenUtils.sign(7 * 24 * (60 * 60), {
+      signedToken: await accessTokenUtils.sign(30 * 24 * (60 * 60), {
         roleName: user.role.name,
         uid: user.userId,
       }),
