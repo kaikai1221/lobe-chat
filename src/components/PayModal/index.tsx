@@ -1,8 +1,7 @@
 import { Icon } from '@lobehub/ui';
-import { InputNumber, Modal, Radio, Spin, message } from 'antd';
+import { Image, InputNumber, Modal, Radio, Spin, message } from 'antd';
 import isEqual from 'fast-deep-equal';
 import { CreditCard } from 'lucide-react';
-import Image from 'next/image';
 import { memo, useEffect, useState } from 'react';
 import { Flexbox } from 'react-layout-kit';
 
@@ -136,7 +135,14 @@ const DataStyleModal = memo<DataStyleModalProps>(({ onOpenChange, open, width = 
               <p>使用微信扫码，或长按识别二维码</p>
               <p>或者保存到相册后使用微信扫码识别</p>
               <p>支付后请刷新页面</p>
-              <Image alt="微信支付" height={200} src={QRcode} width={200} />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                alt="微信支付"
+                height={200}
+                src={QRcode}
+                style={{ height: '200px', width: '200px' }}
+                width={200}
+              />
             </div>
           </div>
         )}
