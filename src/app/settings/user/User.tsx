@@ -1,7 +1,18 @@
 'use client';
 
 import { Form, Icon, type ItemGroup, Snippet } from '@lobehub/ui';
-import { Form as AntForm, Button, Input, Modal, Segmented, Space, Table, Tag, message } from 'antd';
+import {
+  Form as AntForm,
+  Button,
+  Card,
+  Input,
+  Modal,
+  Segmented,
+  Space,
+  Table,
+  Tag,
+  message,
+} from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import isEqual from 'fast-deep-equal';
 import {
@@ -20,6 +31,7 @@ import md5 from 'spark-md5';
 import useSWR from 'swr';
 
 import FullscreenLoading from '@/components/FullscreenLoading';
+import ModelPrice from '@/components/ModelPrice';
 import PayModal from '@/components/PayModal/index';
 import PlanModal from '@/components/PayModal/plan';
 import { LOBE_CHAT_ACCESS_CODE } from '@/const/fetch';
@@ -455,18 +467,19 @@ const UseList = () => {
     {
       dataIndex: 'modelName',
       key: 'modelName',
-      title: '模型',
+      title: '主题',
     },
     {
       dataIndex: 'desc',
       key: 'desc',
       title: '描述',
-      width: 60,
+      width: 90,
     },
     {
       dataIndex: 'useValue',
       key: 'useValue',
-      title: '使用额度',
+      render: (val, record) => (record.modelName ? '-' : '+') + val,
+      title: '额度变化',
     },
     {
       dataIndex: 'createdAt',
@@ -501,10 +514,9 @@ const UseList = () => {
         footer={null}
         onCancel={() => setIsModalOpen(false)}
         open={isModalOpen}
-        title="积分消耗记录"
+        title="积分变动记录"
         width={600}
       >
-        {' '}
         <p>只保留最近30天的数据</p>
         <Table
           columns={columns}
@@ -708,6 +720,7 @@ const User = memo(() => {
                 label: '暂无使用中套餐',
               },
             ],
+        defaultActive: false,
         icon: List,
         title: (
           <>
@@ -727,11 +740,23 @@ const User = memo(() => {
         ),
       }
     : { children: [{}], title: '暂无数据，请先登录' };
+  // const modelList: SettingItemGroup = {
+  //   children: [ModelPrice],
+  //   defaultActive: false,
+  //   icon: Gem,
+  //   title: '模型价格',
+  // };
   if (isLoading) return <FullscreenLoading />;
   return userInfo ? (
     <>
       <Form form={form} items={[info, limit]} {...FORM_STYLE} />
-      <Button onClick={() => setRedeemsModal(true)} style={{ maxWidth: '1024px', width: '100%' }}>
+      <Card bordered={false} style={{ width: '100%' }} title="模型价格">
+        <ModelPrice />
+      </Card>
+      <Button
+        onClick={() => setRedeemsModal(true)}
+        style={{ margin: '10px 0', maxWidth: '1024px', width: '100%' }}
+      >
         兑换码
       </Button>
       <Button danger onClick={logout} style={{ maxWidth: '1024px', width: '100%' }}>

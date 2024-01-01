@@ -39,7 +39,16 @@ export class PlanDAL {
       },
     });
   }
-
+  static async getModel() {
+    return await client.model.findMany({
+      orderBy: {
+        modelId: 'asc',
+      },
+      where: {
+        available: true,
+      },
+    });
+  }
   // static async newPlan(plan: DALType.newPlan): Promise<Plan> {
   //   return await client.plan.create({
   //     data: {

@@ -57,8 +57,8 @@ model IntegralUsed {
   id        Int      @id @default(autoincrement())
   userId    Int
   user      User     @relation("UserIntegralUsed", fields: [userId], references: [userId])
-  modelName String
-  model     Model?    @relation("ModelIntegralUsed", fields: [modelName], references: [modelName])
+  modelName String?
+  model     Model?   @relation("ModelIntegralUsed", fields: [modelName], references: [modelName])
   desc      String
   useValue  Int
   createdAt DateTime @default(now()) @db.Timestamptz(6)
@@ -117,7 +117,7 @@ model Model {
   chatHistory ChatHistory[]  @relation("ChatHistoryWithModel")
   userLimits  UserLimits[]   @relation("UserLimitsWithModel")
   useList     IntegralUsed[] @relation("ModelIntegralUsed")
-
+  desc        String?
   @@unique([modelId, modelName])
 }
 

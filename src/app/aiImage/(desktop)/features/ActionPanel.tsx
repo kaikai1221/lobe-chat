@@ -7,6 +7,9 @@ import type { UploadFile } from 'antd/es/upload/interface';
 import Compressor from 'compressorjs';
 import React, { useEffect, useState } from 'react';
 
+import { LOBE_CHAT_ACCESS_CODE } from '@/const/fetch';
+import { useGlobalStore } from '@/store/global';
+
 const { TextArea } = Input;
 const useStyles = createStyles(({ css, token, isDarkMode }) => ({
   action: css`
@@ -79,10 +82,13 @@ const customUpload = async (data: any) => {
     message.error('图片有问题请换张图片');
   }
 };
-const ActionPanel = (props: { isGenerating: boolean; setGenerating: (data: boolean) => void }) => {
+const ActionPanel = (props: {
+  isGenerating: boolean;
+  mobile?: boolean;
+  setGenerating: (data: boolean) => void;
+}) => {
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   const [previewImage, setPreviewImage] = useState('');
-  const [disabledChat, setDisabledChat] = useState(false);
   const [setting, setSettingConfig] = useState<{
     aspect: string;
     iw: number;
@@ -99,14 +105,9 @@ const ActionPanel = (props: { isGenerating: boolean; setGenerating: (data: boole
     prompt: '',
     quality: '4k',
     user_prompt: '',
-    version: '5',
+    version: '5.2',
     version_name: '',
   });
-  useEffect(() => {
-    if (!disabledChat && props.isGenerating) {
-      setDisabledChat(props.isGenerating);
-    }
-  }, [props.isGenerating, disabledChat]);
   const generateImage = async () => {
     let base64Array: string[] = [];
     if (fileList.length) {
@@ -134,7 +135,7 @@ const ActionPanel = (props: { isGenerating: boolean; setGenerating: (data: boole
       return;
     }
     if (setting.prompt.length > 0 || fileList.length > 0) {
-      setDisabledChat(true);
+      props.setGenerating(true);
       const res = await fetch(
         `/api/user/mj/ai/draw/mj/${
           fileList.length >= 2 && setting.prompt.length === 0 ? 'blend' : 'imagine'
@@ -146,16 +147,19 @@ const ActionPanel = (props: { isGenerating: boolean; setGenerating: (data: boole
             prompt: setting.prompt,
           }),
           cache: 'no-store',
+          headers: {
+            [LOBE_CHAT_ACCESS_CODE]: useGlobalStore.getState().settings.token || '',
+          },
           method: 'POST',
         },
       );
       if (res?.status === 413) {
         message.error('图片过大请删除或压缩后重试');
-        setDisabledChat(false);
+        props.setGenerating(false);
       }
       if (res?.status !== 200) {
         message.error(res.statusText);
-        setDisabledChat(false);
+        props.setGenerating(false);
       }
       const resData = await res?.clone().json();
 
@@ -166,7 +170,7 @@ const ActionPanel = (props: { isGenerating: boolean; setGenerating: (data: boole
         // GetStatus(setChatHistory, 3000);
         message.success('正在生成，请稍等');
       } else {
-        setDisabledChat(false);
+        props.setGenerating(false);
         message.error(resData.msg);
       }
     } else {
@@ -187,9 +191,11 @@ const ActionPanel = (props: { isGenerating: boolean; setGenerating: (data: boole
     setSettingConfig({ ...setting, prompt: sessionStorage.getItem('aiImagePrompt') || '' });
   }, [sessionStorage.getItem('aiImagePrompt')]);
   useEffect(() => {
-    const prompt = `${setting.user_prompt} ${setting.quality} --iw ${setting.iw} --version ${
-      setting.version_name ? setting.version_name + ' ' : ''
-    }${setting.version} --aspect ${setting.aspect}`;
+    const prompt = `${setting.user_prompt} ${setting.quality} ${
+      fileList.length ? '--iw ' + setting.iw : ''
+    } ${setting.version_name ? '--' + setting.version_name + ' ' : '--version '}${
+      setting.version
+    } --aspect ${setting.aspect}`;
     setSettingConfig({ ...setting, prompt });
     sessionStorage.setItem('aiImagePrompt', prompt);
   }, [
@@ -236,8 +242,10 @@ const ActionPanel = (props: { isGenerating: boolean; setGenerating: (data: boole
     {
       Tooltip: '选择Midjourney的版本',
       options:
-        setting.version_name === 'mid'
+        setting.version_name !== 'niji'
           ? [
+              { label: 'V 5.2', value: '5.2' },
+              { label: 'V 5.1', value: '5.1' },
               { label: 'V 5', value: '5' },
               { label: 'V 4', value: '4' },
             ]
@@ -266,32 +274,11 @@ const ActionPanel = (props: { isGenerating: boolean; setGenerating: (data: boole
       title: '画质选择',
       value: 'quality',
     },
-    // {
-    //   Tooltip: '选择生成的图片画质',
-    //   options: [
-    //     { label: '4k', value: '4k' },
-    //     { label: '8k', value: '8k' },
-    //     { label: '16k', value: '16k' },
-    //     { label: '32k', value: '32k' },
-    //     { label: '超高清', value: 'Super-Resolution' },
-    //     { label: 'HD', value: 'HD' },
-    //     { label: 'UHD', value: 'UHD' },
-    //     { label: 'Ultra-HD', value: 'Ultra-HD' },
-    //     { label: 'Full-HD', value: 'Full-HD' },
-    //     { label: '144p', value: '144p' },
-    //     { label: '240p', value: '240p' },
-    //     { label: '480p', value: '480p' },
-    //     { label: '720p', value: '720p' },
-    //     { label: '1080p', value: '1080p' },
-    //   ],
-    //   title: '风格选择',
-    //   value: 'quality',
-    // },
   ];
 
   const { styles } = useStyles();
   return (
-    <>
+    <div style={{ padding: props.mobile ? '16px' : '' }}>
       <p>
         功能选择
         <Tooltip title="MJ是目前最强大简单的的图像生成器，SD是可定制化更高的图像生成器，DALL-E是由 OpenAI 开发的图像生成器">
@@ -344,7 +331,13 @@ const ActionPanel = (props: { isGenerating: boolean; setGenerating: (data: boole
         </Tooltip>
       </p>
       <Segmented
-        onChange={(v) => setSettingConfig({ ...setting, version: '5', version_name: v.toString() })}
+        onChange={(v) =>
+          setSettingConfig({
+            ...setting,
+            version: v.toString() ? '5' : '5.2',
+            version_name: v.toString(),
+          })
+        }
         options={[
           { label: 'Midjourney', value: '' },
           // { label: 'Midjourney 5', value: '5' },
@@ -449,35 +442,42 @@ const ActionPanel = (props: { isGenerating: boolean; setGenerating: (data: boole
           <QuestionCircleOutlined style={{ marginLeft: '5px' }} />
         </Tooltip>
       </p>
-      <TextArea
-        maxLength={1000}
-        onChange={(v) => setSettingConfig({ ...setting, user_prompt: v.currentTarget.value })}
-        placeholder="图像提示词，您想要生成什么样的图像？"
-        rows={4}
-        value={setting.user_prompt}
-      />
+      <div>
+        <TextArea
+          maxLength={1000}
+          onChange={(v) => setSettingConfig({ ...setting, user_prompt: v.currentTarget.value })}
+          placeholder="图像提示词，您想要生成什么样的图像？"
+          rows={4}
+          style={{ resize: 'block' }}
+          value={setting.user_prompt}
+        />
+      </div>
       <p style={{ marginTop: '10px' }}>
         最终提示词
         <Tooltip title="根据选项和输入的提示词整合，最终发送给Midjourney的指令，建议输入英文，中文在发送给Midjourney前会机翻为英文可能会翻译不够精准">
           <QuestionCircleOutlined style={{ marginLeft: '5px' }} />
         </Tooltip>
       </p>
-      <TextArea
-        maxLength={1500}
-        onChange={(v) => setSettingConfig({ ...setting, prompt: v.currentTarget.value })}
-        placeholder="根据选项和输入的提示词整合，最终发送给Midjourney的指令"
-        rows={4}
-        value={setting.prompt}
-      />
+      <div>
+        <TextArea
+          maxLength={1500}
+          onChange={(v) => setSettingConfig({ ...setting, prompt: v.currentTarget.value })}
+          placeholder="根据选项和输入的提示词整合，最终发送给Midjourney的指令"
+          rows={4}
+          style={{ resize: 'block' }}
+          value={setting.prompt}
+        />
+      </div>
+
       <GradientButton
-        disabled={disabledChat}
+        disabled={props.isGenerating}
         onClick={generateImage}
         size="middle"
         style={{ marginTop: '20px', width: '100%' }}
       >
         生成图片
       </GradientButton>
-    </>
+    </div>
   );
 };
 
