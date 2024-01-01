@@ -1,7 +1,8 @@
 import { Icon } from '@lobehub/ui';
-import { Image, InputNumber, Modal, Radio, Spin, message } from 'antd';
+import { InputNumber, Modal, Radio, Spin, message } from 'antd';
 import isEqual from 'fast-deep-equal';
 import { CreditCard } from 'lucide-react';
+import Image from 'next/image';
 import { memo, useEffect, useState } from 'react';
 import { Flexbox } from 'react-layout-kit';
 
