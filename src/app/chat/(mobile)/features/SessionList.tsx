@@ -33,7 +33,6 @@ const Sessions = memo(() => {
         footer={false}
         onCancel={() => setIsModalOpen(false)}
         open={isModalOpen}
-        style={{ maxHeight: '80vh' }}
         title="模型价格"
       >
         <ModelPrice />
