@@ -89,6 +89,7 @@ const ActionPanel = (props: {
 }) => {
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   const [previewImage, setPreviewImage] = useState('');
+  const [disableChat, setDisableChat] = useState(false);
   const [setting, setSettingConfig] = useState<{
     aspect: string;
     iw: number;
@@ -109,6 +110,8 @@ const ActionPanel = (props: {
     version_name: '',
   });
   const generateImage = async () => {
+    props.setGenerating(true);
+    setDisableChat(true);
     let base64Array: string[] = [];
     if (fileList.length) {
       const getBase64 = new Promise<string[]>((req, rej) => {
@@ -135,7 +138,6 @@ const ActionPanel = (props: {
       return;
     }
     if (setting.prompt.length > 0 || fileList.length > 0) {
-      props.setGenerating(true);
       const res = await fetch(
         `/api/user/mj/ai/draw/mj/${
           fileList.length >= 2 && setting.prompt.length === 0 ? 'blend' : 'imagine'
@@ -173,6 +175,7 @@ const ActionPanel = (props: {
         props.setGenerating(false);
         message.error(resData.msg);
       }
+      setDisableChat(false);
     } else {
       message.error('请输入描述或上传图片');
     }
@@ -470,7 +473,7 @@ const ActionPanel = (props: {
       </div>
 
       <GradientButton
-        disabled={props.isGenerating}
+        disabled={props.isGenerating || disableChat}
         onClick={generateImage}
         size="middle"
         style={{ marginTop: '20px', width: '100%' }}
