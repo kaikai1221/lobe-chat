@@ -305,7 +305,7 @@ export class UserDAL {
         },
       },
     });
-    await this.setLimits(1, user);
+    // await this.setLimits(1, user);
     /* Accept Invitation */
     if (invitationCode) {
       const code = await client.invitationCode.findUnique({
@@ -349,7 +349,7 @@ export class UserDAL {
             inviterId: code.ownerId,
           },
         });
-        await this.setLimits(5, code.owner);
+        await this.addIntegral(code.owner.userId, '邀请奖励', 1000);
       }
       /*
        * TODO Some invitation may have some benefit
@@ -634,11 +634,11 @@ export class UserDAL {
       },
     });
   }
-  static async delChat(token: string, model: string, id: string) {
-    const verifyRes = await accessTokenUtils.verify(token);
+  static async delChat(token: string, id: string, model?: string) {
+    const verifyRes = await accessTokenUtils.verifySign(token);
     if (verifyRes.code !== serverStatus.success) return verifyRes;
     // const userId = verifyRes.uid as number;
-    this.subQuota(token, model, -1);
+    if (model) this.subQuota(token, model, -1);
     return await client.chatHistory.delete({
       where: {
         id: id,
@@ -717,6 +717,7 @@ export class UserDAL {
       select: {
         content: true,
         createdAt: true,
+        id: true,
         modelName: true,
         prompt: true,
       },
@@ -999,6 +1000,26 @@ export class UserDAL {
     } else {
       return await changeSubIntegral();
     }
+  }
+  static async addIntegral(userId: number, desc: string, value: number) {
+    await client.user.update({
+      data: {
+        integral: {
+          increment: value,
+        },
+      },
+      where: {
+        userId,
+      },
+    });
+    await client.integralUsed.create({
+      data: {
+        desc,
+        modelName: undefined,
+        useValue: value,
+        userId,
+      },
+    });
   }
   static async getUsed(userId: number, pageNo: number, pageSize: number) {
     return {

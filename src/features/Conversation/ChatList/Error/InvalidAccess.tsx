@@ -102,7 +102,6 @@ const InvalidAccess: RenderErrorMessage['Render'] = memo(({ id }) => {
       method: 'POST',
     });
     const data = await res.json();
-    setLogining(false);
     switch (data.status) {
       case serverStatus.success: {
         message.success('登陆成功');
@@ -125,6 +124,7 @@ const InvalidAccess: RenderErrorMessage['Render'] = memo(({ id }) => {
         break;
       }
     }
+    setLogining(false);
   };
   const handlePasswordLogin = async () => {
     if (!register || !password) return message.warning('请输入账号和密码');

@@ -121,7 +121,7 @@ async function handle(req: NextRequest) {
         },
       );
     } else {
-      await UserDAL.delChat(accessCode || '', reqData.model, chatInfo.id as string);
+      await UserDAL.delChat(accessCode || '', chatInfo.id as string, reqData.model);
       return NextResponse.json(
         {
           msg: mjResData?.description || '服务器错误请刷新后重试',

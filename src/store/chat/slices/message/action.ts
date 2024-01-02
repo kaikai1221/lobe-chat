@@ -9,7 +9,6 @@ import { LOBE_CHAT_ACCESS_CODE } from '@/const/fetch';
 import { GPT4_VISION_MODEL_DEFAULT_MAX_TOKENS } from '@/const/llm';
 import { LOADING_FLAT, isFunctionMessageAtStart, testFunctionMessageAtEnd } from '@/const/message';
 import { CreateMessageParams } from '@/database/models/message';
-import { DB_Message } from '@/database/schemas/message';
 import { chatService } from '@/services/chat';
 import { messageService } from '@/services/message';
 import { topicService } from '@/services/topic';
@@ -260,7 +259,7 @@ export const chatMessage: StateCreator<
     const { model } = getAgentConfig();
 
     // 1. Add an empty message to place the AI response
-    const assistantMessage: DB_Message = {
+    const assistantMessage: CreateMessageParams = {
       role: 'assistant',
       content: LOADING_FLAT,
       fromModel: model,
@@ -410,7 +409,7 @@ export const chatMessage: StateCreator<
     toggleChatLoading(false, undefined, n('generateMessage(end)') as string);
 
     // also exist message like this:
-    // 请稍等，我帮您查询一下。{"function_call": {"name": "plugin-identifier____recommendClothes____standalone", "arguments": "{\n "mood": "",\n "gender": "man"\n}"}}
+    // 请稍等，我帮您查询一下。{"tool_calls": {"name": "plugin-identifier____recommendClothes____standalone", "arguments": "{\n "mood": "",\n "gender": "man"\n}"}}
     if (!isFunctionCall) {
       const { content, valid } = testFunctionMessageAtEnd(output);
 

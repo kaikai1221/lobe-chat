@@ -158,7 +158,7 @@ export const OrderDAL = {
       await client.integralUsed.create({
         data: {
           desc: '充值',
-          modelName: '',
+          modelName: undefined,
           useValue: newOrder.amount * 10,
           userId: newOrder.userId,
         },

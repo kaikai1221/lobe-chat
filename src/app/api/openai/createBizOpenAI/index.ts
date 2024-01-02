@@ -19,8 +19,8 @@ export const createBizOpenAI = async (req: Request, model: string): Promise<Resp
   const { apiKey, accessCode, endpoint, useAzure, apiVersion } = getOpenAIAuthFromRequest(req);
   const reqData = await req.json();
   const allContents = reqData.messages
-    .map((msg: { content: string; role: string }) => msg.content)
-    .join('');
+    ? reqData.messages.map((msg: { content: string; role: string }) => msg.content).join('')
+    : reqData.input;
   let token = 0;
   await encodeAsync(allContents)
     .then((e) => (token = e))

@@ -129,6 +129,18 @@ export const accessTokenUtils = {
       // throw new ServerError(serverStatus.invalidToken, "Invalid token");
     }
   },
+  verifySign: async function verify(
+    token: string,
+  ): Promise<{ code: number; msg: string; uid?: number }> {
+    try {
+      const { payload } = await jwtVerify(token, new TextEncoder().encode(process.env.JWT_SECRET!));
+      return { ...payload, code: serverStatus.success, msg: 'success' };
+    } catch (error) {
+      console.log(error);
+      return { code: serverStatus.invalidToken, msg: '登陆过期或失效' };
+      // throw new ServerError(serverStatus.invalidToken, "Invalid token");
+    }
+  },
 };
 
 export async function parseUserId(token: string) {
