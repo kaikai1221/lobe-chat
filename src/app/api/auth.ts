@@ -48,6 +48,10 @@ export const checkAuth = async ({ accessCode, token, url, model }: AuthConfig) =
           minIntegral = 2000;
           denominator = 5;
         }
+        if (model.includes('midjourney')) {
+          minIntegral = 100;
+          denominator = 1000;
+        }
         if (data.body.integral < token / denominator + minIntegral)
           return { auth: false, error: ChatErrorType.InsufficientBalance };
         await fetch(

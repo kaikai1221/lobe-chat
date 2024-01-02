@@ -30,6 +30,7 @@ async function handle(req: NextRequest) {
   const result = await checkAuth({
     accessCode,
     model: 'midjourney',
+    token: 1000,
     url: req.headers.get('origin') || '',
   });
   if (!result.auth) {
