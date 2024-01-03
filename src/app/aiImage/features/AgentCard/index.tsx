@@ -3,7 +3,8 @@ import { Button, Card, Modal, Progress, Skeleton, Tooltip, message } from 'antd'
 import { createStyles } from 'antd-style';
 import copy from 'copy-to-clipboard';
 import { Copy, Download, RotateCw, Trash2, ZoomIn } from 'lucide-react';
-import Macy from 'macy';
+// import dynamic from 'next/dynamic';
+// import Macy from 'macy';
 import { useRouter } from 'next/navigation';
 import { FC, memo, useEffect, useLayoutEffect, useState } from 'react';
 import { Flexbox } from 'react-layout-kit';
@@ -55,6 +56,11 @@ export interface aiImageProps {
   isGenerating: boolean;
   mobile?: boolean;
   setGenerating: (data: boolean) => void;
+}
+let Macy: any = function () {};
+
+if (typeof window !== 'undefined') {
+  Macy = require('macy');
 }
 
 function HistoryMasonry(props: {
@@ -161,6 +167,7 @@ function HistoryMasonry(props: {
       label: '重新生成',
     },
   };
+
   const [masonry, setMasonry] = useState<null | {
     reInit: () => void;
     recalculate: (data?: boolean) => void;
@@ -211,7 +218,7 @@ function HistoryMasonry(props: {
     }
   };
   useLayoutEffect(() => {
-    if (data.length) getMacy();
+    if (data.length && typeof window === 'object') getMacy();
   });
   return (
     <div className="masonry-wrap">

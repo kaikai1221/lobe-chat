@@ -192,7 +192,7 @@ const ActionPanel = (props: {
   };
   useEffect(() => {
     setSettingConfig({ ...setting, prompt: sessionStorage.getItem('aiImagePrompt') || '' });
-  }, [sessionStorage.getItem('aiImagePrompt')]);
+  }, [typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('aiImagePrompt') : null]);
   useEffect(() => {
     const prompt = `${setting.user_prompt} ${setting.quality} ${
       fileList.length ? '--iw ' + setting.iw : ''
@@ -200,7 +200,9 @@ const ActionPanel = (props: {
       setting.version
     } --aspect ${setting.aspect}`;
     setSettingConfig({ ...setting, prompt });
-    sessionStorage.setItem('aiImagePrompt', prompt);
+    if (typeof sessionStorage !== 'undefined') {
+      sessionStorage.setItem('aiImagePrompt', prompt);
+    }
   }, [
     setting.aspect,
     setting.quality,
