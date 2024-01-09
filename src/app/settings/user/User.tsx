@@ -750,7 +750,7 @@ const User = memo(() => {
   return userInfo ? (
     <>
       <Form form={form} items={[info, limit]} {...FORM_STYLE} />
-      <Card bordered={false} style={{ width: '100%' }} title="模型价格">
+      <Card bordered={false} style={{ maxWidth: '1024px', width: '100%' }} title="模型价格">
         <ModelPrice />
       </Card>
       <Button
