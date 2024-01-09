@@ -36,7 +36,7 @@ import PayModal from '@/components/PayModal/index';
 import PlanModal from '@/components/PayModal/plan';
 import { LOBE_CHAT_ACCESS_CODE } from '@/const/fetch';
 import { FORM_STYLE } from '@/const/layoutTokens';
-import { FormAction } from '@/features/Conversation/ChatList/Error/style';
+import { FormAction } from '@/features/Conversation/Error/style';
 import { serverStatus } from '@/prismaClient/serverStatus';
 import { useGlobalStore } from '@/store/global';
 import { useSwitchSideBarOnInit } from '@/store/global/hooks/useSwitchSettingsOnInit';

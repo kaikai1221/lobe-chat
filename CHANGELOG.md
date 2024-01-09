@@ -2,6 +2,487 @@
 
 # Changelog
 
+### [Version 0.119.12](https://github.com/lobehub/lobe-chat/compare/v0.119.11...v0.119.12)
+
+<sup>Released on **2024-01-09**</sup>
+
+#### 🐛 Bug Fixes
+
+- **misc**: Fix new line after sending messages with enter key.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### What's fixed
+
+- **misc**: Fix new line after sending messages with enter key, closes [#990](https://github.com/lobehub/lobe-chat/issues/990) ([e6ab019](https://github.com/lobehub/lobe-chat/commit/e6ab019))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 0.119.11](https://github.com/lobehub/lobe-chat/compare/v0.119.10...v0.119.11)
+
+<sup>Released on **2024-01-09**</sup>
+
+#### ♻ Code Refactoring
+
+- **misc**: Refactor ChatInput to support cmd+enter.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### Code refactoring
+
+- **misc**: Refactor ChatInput to support cmd+enter, closes [#983](https://github.com/lobehub/lobe-chat/issues/983) ([437a223](https://github.com/lobehub/lobe-chat/commit/437a223))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 0.119.10](https://github.com/lobehub/lobe-chat/compare/v0.119.9...v0.119.10)
+
+<sup>Released on **2024-01-08**</sup>
+
+#### 🐛 Bug Fixes
+
+- **misc**: Debug information cannot be selected.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### What's fixed
+
+- **misc**: Debug information cannot be selected, closes [#980](https://github.com/lobehub/lobe-chat/issues/980) ([f02612d](https://github.com/lobehub/lobe-chat/commit/f02612d))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 0.119.9](https://github.com/lobehub/lobe-chat/compare/v0.119.8...v0.119.9)
+
+<sup>Released on **2024-01-08**</sup>
+
+#### 💄 Styles
+
+- **misc**: Fix ChatInput fullscreen display not correct.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### Styles
+
+- **misc**: Fix ChatInput fullscreen display not correct, closes [#982](https://github.com/lobehub/lobe-chat/issues/982) ([e4012c4](https://github.com/lobehub/lobe-chat/commit/e4012c4))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 0.119.8](https://github.com/lobehub/lobe-chat/compare/v0.119.7...v0.119.8)
+
+<sup>Released on **2024-01-07**</sup>
+
+#### 🐛 Bug Fixes
+
+- **misc**: Fix spotting tool call correctly.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### What's fixed
+
+- **misc**: Fix spotting tool call correctly, closes [#972](https://github.com/lobehub/lobe-chat/issues/972) ([216e700](https://github.com/lobehub/lobe-chat/commit/216e700))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 0.119.7](https://github.com/lobehub/lobe-chat/compare/v0.119.6...v0.119.7)
+
+<sup>Released on **2024-01-07**</sup>
+
+#### 💄 Styles
+
+- **misc**: Improve share modal style.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### Styles
+
+- **misc**: Improve share modal style, closes [#965](https://github.com/lobehub/lobe-chat/issues/965) ([62c0573](https://github.com/lobehub/lobe-chat/commit/62c0573))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 0.119.6](https://github.com/lobehub/lobe-chat/compare/v0.119.5...v0.119.6)
+
+<sup>Released on **2024-01-06**</sup>
+
+#### 💄 Styles
+
+- **misc**: Improve conversation style.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### Styles
+
+- **misc**: Improve conversation style, closes [#962](https://github.com/lobehub/lobe-chat/issues/962) ([b9cc862](https://github.com/lobehub/lobe-chat/commit/b9cc862))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 0.119.5](https://github.com/lobehub/lobe-chat/compare/v0.119.4...v0.119.5)
+
+<sup>Released on **2024-01-06**</sup>
+
+#### 💄 Styles
+
+- **misc**: Fix topic i18n.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### Styles
+
+- **misc**: Fix topic i18n, closes [#961](https://github.com/lobehub/lobe-chat/issues/961) ([4e9ebe2](https://github.com/lobehub/lobe-chat/commit/4e9ebe2))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 0.119.4](https://github.com/lobehub/lobe-chat/compare/v0.119.3...v0.119.4)
+
+<sup>Released on **2024-01-06**</sup>
+
+#### ♻ Code Refactoring
+
+- **misc**: Refactor to virtual list with react-virtuoso.
+
+#### 🐛 Bug Fixes
+
+- **misc**: Fix auto scroll error and BackBottom error.
+
+#### 💄 Styles
+
+- **misc**: Fix BackBottom zIndex, improve chat list on mobile, improve chat list scrolling to bottom at initial render, improve custom model input, improve topic scroll.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### Code refactoring
+
+- **misc**: Refactor to virtual list with react-virtuoso ([d6d63b2](https://github.com/lobehub/lobe-chat/commit/d6d63b2))
+
+#### What's fixed
+
+- **misc**: Fix auto scroll error and BackBottom error ([6100970](https://github.com/lobehub/lobe-chat/commit/6100970))
+
+#### Styles
+
+- **misc**: Fix BackBottom zIndex ([254cc54](https://github.com/lobehub/lobe-chat/commit/254cc54))
+- **misc**: Improve chat list on mobile ([a894fc5](https://github.com/lobehub/lobe-chat/commit/a894fc5))
+- **misc**: Improve chat list scrolling to bottom at initial render ([476304b](https://github.com/lobehub/lobe-chat/commit/476304b))
+- **misc**: Improve custom model input ([1c4722f](https://github.com/lobehub/lobe-chat/commit/1c4722f))
+- **misc**: Improve topic scroll ([8daf3ac](https://github.com/lobehub/lobe-chat/commit/8daf3ac))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 0.119.3](https://github.com/lobehub/lobe-chat/compare/v0.119.2...v0.119.3)
+
+<sup>Released on **2024-01-06**</sup>
+
+#### 🐛 Bug Fixes
+
+- **misc**: Fix deploy error. Changed SquareAsterisk to AsteriskSquare.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### What's fixed
+
+- **misc**: Fix deploy error. Changed SquareAsterisk to AsteriskSquare, closes [#952](https://github.com/lobehub/lobe-chat/issues/952) ([61cbcf1](https://github.com/lobehub/lobe-chat/commit/61cbcf1))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 0.119.2](https://github.com/lobehub/lobe-chat/compare/v0.119.1...v0.119.2)
+
+<sup>Released on **2024-01-05**</sup>
+
+#### 🐛 Bug Fixes
+
+- **misc**: Fix function call error with smooth animation.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### What's fixed
+
+- **misc**: Fix function call error with smooth animation, closes [#946](https://github.com/lobehub/lobe-chat/issues/946) ([7242aee](https://github.com/lobehub/lobe-chat/commit/7242aee))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 0.119.1](https://github.com/lobehub/lobe-chat/compare/v0.119.0...v0.119.1)
+
+<sup>Released on **2024-01-05**</sup>
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+## [Version 0.119.0](https://github.com/lobehub/lobe-chat/compare/v0.118.10...v0.119.0)
+
+<sup>Released on **2024-01-04**</sup>
+
+#### ♻ Code Refactoring
+
+- **misc**: Refactor the ChatList.
+
+#### ✨ Features
+
+- **misc**: Support auto rename topic, support delete and regenerate message, support duplicate session, support duplicate topic.
+
+#### 🐛 Bug Fixes
+
+- **misc**: Fix can't uninstall custom plugin in custom plugin modal.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### Code refactoring
+
+- **misc**: Refactor the ChatList ([20f21de](https://github.com/lobehub/lobe-chat/commit/20f21de))
+
+#### What's improved
+
+- **misc**: Support auto rename topic ([4c5a345](https://github.com/lobehub/lobe-chat/commit/4c5a345))
+- **misc**: Support delete and regenerate message ([a05be1c](https://github.com/lobehub/lobe-chat/commit/a05be1c))
+- **misc**: Support duplicate session ([7a1e011](https://github.com/lobehub/lobe-chat/commit/7a1e011))
+- **misc**: Support duplicate topic ([ecf3e5a](https://github.com/lobehub/lobe-chat/commit/ecf3e5a))
+
+#### What's fixed
+
+- **misc**: Fix can't uninstall custom plugin in custom plugin modal ([acae827](https://github.com/lobehub/lobe-chat/commit/acae827))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 0.118.10](https://github.com/lobehub/lobe-chat/compare/v0.118.9...v0.118.10)
+
+<sup>Released on **2024-01-03**</sup>
+
+#### 🐛 Bug Fixes
+
+- **misc**: Add chat defaultNS.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### What's fixed
+
+- **misc**: Add chat defaultNS, closes [#929](https://github.com/lobehub/lobe-chat/issues/929) ([94c2aa1](https://github.com/lobehub/lobe-chat/commit/94c2aa1))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 0.118.9](https://github.com/lobehub/lobe-chat/compare/v0.118.8...v0.118.9)
+
+<sup>Released on **2024-01-03**</sup>
+
+#### 💄 Styles
+
+- **misc**: Add leaving protect alert.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### Styles
+
+- **misc**: Add leaving protect alert, closes [#927](https://github.com/lobehub/lobe-chat/issues/927) ([ea1d0c0](https://github.com/lobehub/lobe-chat/commit/ea1d0c0))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 0.118.8](https://github.com/lobehub/lobe-chat/compare/v0.118.7...v0.118.8)
+
+<sup>Released on **2024-01-03**</sup>
+
+#### 💄 Styles
+
+- **misc**: Add Vietnamese files and add the vi-VN option in the General Settings.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### Styles
+
+- **misc**: Add Vietnamese files and add the vi-VN option in the General Settings, closes [#860](https://github.com/lobehub/lobe-chat/issues/860) ([c2e5606](https://github.com/lobehub/lobe-chat/commit/c2e5606))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 0.118.7](https://github.com/lobehub/lobe-chat/compare/v0.118.6...v0.118.7)
+
+<sup>Released on **2024-01-03**</sup>
+
+#### 🐛 Bug Fixes
+
+- **misc**: Desensitize openai base url in the error response.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### What's fixed
+
+- **misc**: Desensitize openai base url in the error response, closes [#918](https://github.com/lobehub/lobe-chat/issues/918) ([ab0aeb7](https://github.com/lobehub/lobe-chat/commit/ab0aeb7))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 0.118.6](https://github.com/lobehub/lobe-chat/compare/v0.118.5...v0.118.6)
+
+<sup>Released on **2024-01-03**</sup>
+
+#### ♻ Code Refactoring
+
+- **misc**: Migration the ChatList into Conversation.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### Code refactoring
+
+- **misc**: Migration the ChatList into Conversation, closes [#916](https://github.com/lobehub/lobe-chat/issues/916) ([6ee3795](https://github.com/lobehub/lobe-chat/commit/6ee3795))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
 ### [Version 0.118.5](https://github.com/lobehub/lobe-chat/compare/v0.118.4...v0.118.5)
 
 <sup>Released on **2024-01-02**</sup>

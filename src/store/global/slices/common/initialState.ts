@@ -26,6 +26,10 @@ export interface GlobalPreference {
   showChatSideBar?: boolean;
   showSessionPanel?: boolean;
   showSystemRole?: boolean;
+  /**
+   * whether to use cmd + enter to send message
+   */
+  useCmdEnterToSend?: boolean;
 }
 
 export interface GlobalCommonState {
@@ -50,6 +54,7 @@ export const initialCommonState: GlobalCommonState = {
     showChatSideBar: true,
     showSessionPanel: true,
     showSystemRole: false,
+    useCmdEnterToSend: false,
   },
   settingsTab: SettingsTabs.Common,
   sidebarKey: SidebarTabKey.Chat,
