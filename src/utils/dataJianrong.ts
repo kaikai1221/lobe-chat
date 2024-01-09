@@ -35,6 +35,9 @@ export default async () => {
       });
       topicService.batchCreateTopics(newTopic);
       messageService.batchCreate(newMessage);
+      setTimeout(() => {
+        localStorage.removeItem('chat-next-web-store');
+      }, 1000);
     }
   } else {
     return null;

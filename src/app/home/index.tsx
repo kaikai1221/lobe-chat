@@ -12,10 +12,13 @@ function getQueryString(name: string) {
   }
   return null;
 }
-const InvitationCode = getQueryString('code');
-if (InvitationCode) {
-  localStorage.setItem('InvitationCode', InvitationCode);
+if (typeof window !== 'undefined') {
+  const InvitationCode = getQueryString('code');
+  if (InvitationCode) {
+    localStorage.setItem('InvitationCode', InvitationCode);
+  }
 }
+
 const Loading = () => {
   const { t } = useTranslation('common');
 
