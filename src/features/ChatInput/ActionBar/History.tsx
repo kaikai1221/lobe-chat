@@ -29,6 +29,7 @@ const History = memo(() => {
       description:
         '如果使用积分模式使用gpt，携带历史消息数越多消耗的积分越多，具体看模板价格说明，如果不携带历史消息gpt将无法记住之前的对话内容，请谨慎选择',
       nextButtonProps: { children: '确定' },
+      style: { maxWidth: '80%' },
       target: () => ref.current,
       title: '请注意！',
     },
