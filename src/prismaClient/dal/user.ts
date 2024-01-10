@@ -543,6 +543,11 @@ export class UserDAL {
     const verifyRes: any = await accessTokenUtils.verify(token);
     if (verifyRes.code !== serverStatus.success) return verifyRes;
     const userId = verifyRes.uid as number;
+    let name = model;
+
+    if (model.includes('gpt-3.5') && model !== 'gpt-3.5-turbo') {
+      name = 'gpt-3.5-turbo';
+    }
     const userLimits = await client.userLimits.findMany({
       orderBy: {
         subscription: {
@@ -562,7 +567,7 @@ export class UserDAL {
                     times: true,
                   },
                   where: {
-                    modelName: model,
+                    modelName: name,
                   },
                 },
               },
@@ -575,7 +580,7 @@ export class UserDAL {
         expiredAt: {
           gte: new Date() /* Includes time offset for UTC */,
         },
-        modelName: model,
+        modelName: name,
         startAt: {
           lte: new Date(),
         },
@@ -950,6 +955,11 @@ export class UserDAL {
         },
       });
     };
+    let name = modelName;
+
+    if (modelName.includes('gpt-3.5') && modelName !== 'gpt-3.5-turbo') {
+      name = 'gpt-3.5-turbo';
+    }
     const userLimits =
       (await client.userLimits.findMany({
         orderBy: {
@@ -970,7 +980,7 @@ export class UserDAL {
                       times: true,
                     },
                     where: {
-                      modelName: modelName,
+                      modelName: name,
                     },
                   },
                 },
@@ -983,7 +993,7 @@ export class UserDAL {
           expiredAt: {
             gte: new Date() /* Includes time offset for UTC */,
           },
-          modelName: modelName,
+          modelName: name,
           startAt: {
             lte: new Date(),
           },

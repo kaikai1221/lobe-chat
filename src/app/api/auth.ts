@@ -26,6 +26,9 @@ export const checkAuth = async ({ accessCode, token, url, model }: AuthConfig) =
       return { auth: true };
     }
     const targetUserLimits = (data.body.userLimits || []).filter((item: any) => {
+      if (model.includes('gpt-3.5')) {
+        return item.modelName.includes('gpt-3.5');
+      }
       return item.modelName === model;
     });
     if ((!targetUserLimits || targetUserLimits.length === 0) && data.body.integral === 0)
