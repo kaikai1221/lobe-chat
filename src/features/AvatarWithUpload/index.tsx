@@ -4,6 +4,7 @@ import { createStyles } from 'antd-style';
 import Avatar from 'next/image';
 import { CSSProperties, memo } from 'react';
 
+import { DEFAULT_USER_AVATAR_URL } from '@/const/meta';
 import { useGlobalStore } from '@/store/global';
 import { imageToBase64 } from '@/utils/imageToBase64';
 import { createUploadImageHandler } from '@/utils/uploadFIle';
@@ -47,12 +48,19 @@ const AvatarWithUpload = memo<AvatarWithUploadProps>(
         setSettings({ avatar: webpBase64 });
       });
     });
-
+    if (avatar.includes('com/@lobehub')) {
+      setSettings({ avatar: DEFAULT_USER_AVATAR_URL });
+    }
     return (
       <div className={styles} id={id} style={{ maxHeight: size, maxWidth: size, ...style }}>
         <Upload beforeUpload={handleUploadAvatar} itemRender={() => void 0} maxCount={1}>
-          {avatar ? (
-            <Avatar alt={'avatar'} height={size} src={avatar} width={size} />
+          {avatar || DEFAULT_USER_AVATAR_URL ? (
+            <Avatar
+              alt={'avatar'}
+              height={size}
+              src={avatar || DEFAULT_USER_AVATAR_URL}
+              width={size}
+            />
           ) : (
             <Logo size={size} />
           )}
