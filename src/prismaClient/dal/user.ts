@@ -1053,4 +1053,25 @@ export class UserDAL {
       total: await client.integralUsed.count({ where: { userId } }),
     };
   }
+  static async clearData() {
+    const date30 = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+    await client.integralUsed.deleteMany({
+      where: {
+        createdAt: {
+          lte: date30,
+        },
+      },
+    });
+    await client.chatHistory.deleteMany({
+      where: {
+        createdAt: {
+          lte: date30,
+        },
+        user: {
+          roleId: 1,
+        },
+      },
+    });
+    return true;
+  }
 }
