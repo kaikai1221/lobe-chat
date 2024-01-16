@@ -1,5 +1,23 @@
 # Frequently Asked Questions
 
+## Configuring the `OPENAI_PROXY_URL` Environment Variable but Receiving an Empty Response
+
+### Problem Description
+
+After configuring the `OPENAI_PROXY_URL` environment variable, you may encounter a situation where the response from the AI is empty. This could be due to an incorrect configuration of the `OPENAI_PROXY_URL`.
+
+### Solution
+
+Recheck and confirm if the `OPENAI_PROXY_URL` is set correctly, including the correct addition of the `/v1` suffix (if required).
+
+### Related Discussion Links
+
+- [Why is the response blank after installing and configuring Docker and environment variables?](https://github.com/lobehub/lobe-chat/discussions/623)
+- [Reasons for errors when using third-party APIs](https://github.com/lobehub/lobe-chat/discussions/734)
+- [No response from the chat when the proxy server address is filled](https://github.com/lobehub/lobe-chat/discussions/1065)
+
+If the issue persists, it is recommended to raise the problem in the community with relevant logs and configuration information for other developers or maintainers to provide assistance.
+
 ## When using a proxy(e.g. Surge), I encounter the `UNABLE_TO_VERIFY_LEAF_SIGNATURE` error
 
 ### Problem Description
