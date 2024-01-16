@@ -116,9 +116,9 @@ const ActionPanel = (props: {
     if (fileList.length) {
       const getBase64 = new Promise<string[]>((req, rej) => {
         const baseArr: string[] = [];
-        fileList.forEach((item: any) => {
+        for (const item of fileList) {
           const fileReader = new FileReader();
-          fileReader.readAsDataURL(item);
+          fileReader.readAsDataURL(item.response);
           fileReader.addEventListener('load', function () {
             if (fileReader.result) {
               baseArr.push(fileReader.result as string);
@@ -129,7 +129,7 @@ const ActionPanel = (props: {
               req(baseArr);
             }
           });
-        });
+        }
       });
       base64Array = await getBase64;
     }
@@ -160,7 +160,8 @@ const ActionPanel = (props: {
         props.setGenerating(false);
       }
       if (res?.status !== 200) {
-        message.error(res.statusText);
+        console.log(res.statusText);
+        message.error(res.statusText || '系统异常请稍后再试');
         props.setGenerating(false);
       }
       const resData = await res?.clone().json();
