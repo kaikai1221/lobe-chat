@@ -412,7 +412,7 @@ const ActionPanel = (props: {
           scaleStep: 0.5,
           src: previewImage,
           toolbarRender: () => '',
-          visible: previewImage,
+          visible: !!previewImage,
         }}
         src=""
         style={{ display: 'none' }}
