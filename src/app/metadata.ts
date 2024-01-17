@@ -42,7 +42,7 @@ const metadata: Metadata = {
 
   title: {
     default: title,
-    template: '%s · AI聊天室',
+    template: '%s · 大头博士AI聊天室',
   },
   twitter: {
     card: 'summary_large_image',

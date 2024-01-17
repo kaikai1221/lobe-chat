@@ -1053,6 +1053,52 @@ export class UserDAL {
       total: await client.integralUsed.count({ where: { userId } }),
     };
   }
+  static async getPlanId(token: string) {
+    const verifyRes: any = await accessTokenUtils.verify(token);
+    if (verifyRes.code !== serverStatus.success) return verifyRes;
+    const userId = verifyRes.uid as number;
+    if (userId) {
+      let status = true;
+      const planData = await client.subscription.findMany({
+        select: {
+          planId: true,
+        },
+        where: {
+          expiredAt: {
+            gte: new Date(),
+          },
+          planId: 6,
+          startAt: {
+            lte: new Date(),
+          },
+          userId,
+        },
+      });
+      if (planData.length) {
+        const limitData = await client.userLimits.findMany({
+          where: {
+            modelName: 'gpt-4',
+            userId,
+          },
+        });
+        if (!limitData.length) {
+          const userData = await client.user.findUnique({
+            where: {
+              userId,
+            },
+          });
+          if (userData?.integral && userData?.integral < 1500) {
+            status = false;
+          } else if (!userData?.integral) {
+            status = false;
+          }
+        }
+      }
+      return { code: serverStatus.success, status };
+    } else {
+      return { code: serverStatus.invalidToken, msg: 'token不正确或已失效' };
+    }
+  }
   static async clearData() {
     const date30 = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
     await client.integralUsed.deleteMany({

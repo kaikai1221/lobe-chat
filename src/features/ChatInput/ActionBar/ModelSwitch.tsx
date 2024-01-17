@@ -4,7 +4,9 @@ import isEqual from 'fast-deep-equal';
 import { BrainCog } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import useSWR from 'swr';
 
+import { LOBE_CHAT_ACCESS_CODE } from '@/const/fetch';
 import { useGlobalStore } from '@/store/global';
 import { settingsSelectors } from '@/store/global/selectors';
 import { useSessionStore } from '@/store/session';
@@ -13,13 +15,31 @@ import { LanguageModel } from '@/types/llm';
 
 const ModelSwitch = memo(() => {
   const { t } = useTranslation('setting');
-
+  const { data } = useSWR(useGlobalStore.getState().settings.token ? 'getPlanId' : '', async () => {
+    const res = await fetch('/api/user/getPlanId', {
+      cache: 'no-cache',
+      headers: {
+        [LOBE_CHAT_ACCESS_CODE]: useGlobalStore.getState().settings.token || '',
+      },
+      method: 'GET',
+    });
+    const data = await res.json();
+    return data.body;
+  });
   const [model, updateAgentConfig] = useSessionStore((s) => {
     return [agentSelectors.currentAgentModel(s), s.updateAgentConfig];
   });
 
-  const modelList = useGlobalStore(settingsSelectors.modelList, isEqual);
-
+  let modelList = useGlobalStore(settingsSelectors.modelList, isEqual);
+  if (data && data.status === false) {
+    modelList = [
+      {
+        displayName: 'openai-chatGPT',
+        name: 'gpt-3.5-turbo-16k',
+      },
+    ];
+    console.log(modelList, 999);
+  }
   return (
     <Dropdown
       menu={{
