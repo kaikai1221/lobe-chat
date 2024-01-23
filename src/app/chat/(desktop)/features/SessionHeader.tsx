@@ -64,6 +64,7 @@ const Header = memo(() => {
         open={isModalOpen}
         style={{ maxHeight: '80vh' }}
         title="模型价格"
+        width="70%"
       >
         <ModelPrice />
       </Modal>
