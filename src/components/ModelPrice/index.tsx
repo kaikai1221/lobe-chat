@@ -33,6 +33,7 @@ const ModelPrice = memo(() => {
   return (
     <>
       <p style={{ margin: '10px 0' }}>
+        本站大多模型比官方要更便宜，如claude价格是官方的2/5的价格
         表中价格为每1000个字符（约等于500个汉字）消耗的积分，用英文问答省一半价格
       </p>
       <Table

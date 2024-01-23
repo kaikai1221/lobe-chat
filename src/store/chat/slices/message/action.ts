@@ -190,7 +190,7 @@ export const chatMessage: StateCreator<
     // if message is empty and no files, then stop
     if (!message && (!fileIdList || fileIdList?.length === 0)) return;
 
-    let newMessage: CreateMessageParams = {
+    const newMessage: CreateMessageParams = {
       content: message,
       // if message has attached with files, then add files to message and the agent
       files: fileIdList,
