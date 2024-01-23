@@ -1,9 +1,14 @@
 import { Metadata } from 'next';
 
+import { getServerConfig } from '@/config/server';
+
 import pkg from '../../package.json';
 
 const title = 'AI聊天室';
 const { description, homepage } = pkg;
+
+const { METADATA_BASE_URL = 'https://chat-preview.lobehub.com/' } = getServerConfig();
+
 const metadata: Metadata = {
   appleWebApp: {
     statusBarStyle: 'black-translucent',
@@ -17,6 +22,7 @@ const metadata: Metadata = {
     shortcut: '/icons/favicon-32x32.png',
   },
   manifest: '/manifest.json',
+  metadataBase: new URL(METADATA_BASE_URL),
   openGraph: {
     description: description,
     images: [
