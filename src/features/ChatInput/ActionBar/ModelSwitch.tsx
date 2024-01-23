@@ -32,12 +32,11 @@ const ModelSwitch = memo(() => {
 
   let modelList = useGlobalStore(settingsSelectors.modelList, isEqual);
   if (data && data.status === false) {
-    modelList = [
-      {
-        displayName: 'openai-chatGPT',
-        name: 'gpt-3.5-turbo-16k',
-      },
-    ];
+    modelList = modelList.filter((item) => !item.name.includes('gpt'));
+    modelList.push({
+      displayName: 'openai-chatGPT',
+      name: 'gpt-3.5-turbo-16k',
+    });
     console.log(modelList, 999);
   }
   return (
