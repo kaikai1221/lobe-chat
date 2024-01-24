@@ -12,7 +12,7 @@ import { useToolStore } from '@/store/tool';
 import { toolSelectors } from '@/store/tool/selectors';
 import { LanguageModel } from '@/types/llm';
 
-const Token = memo(() => {
+const Token = memo<{ refT?: any }>(({ refT }) => {
   const { t } = useTranslation('chat');
 
   const [input, messageString] = useChatStore((s) => [
@@ -51,6 +51,7 @@ const Token = memo(() => {
     >
       <TokenTag
         maxValue={ModelTokens[model]}
+        ref={refT}
         style={{ marginLeft: 8 }}
         text={{
           overload: t('tokenTag.overload'),

@@ -28,7 +28,7 @@ const useStyles = createStyles(({ css, prefixCls }) => ({
   `,
 }));
 
-const Tools = memo(() => {
+const Tools = memo<{ refT?: any }>(({ refT }) => {
   const { t } = useTranslation('setting');
   const list = useToolStore(pluginSelectors.installedPluginMetaList, isEqual);
   const builtinList = useToolStore(builtinToolSelectors.metaList, isEqual);
@@ -118,7 +118,7 @@ const Tools = memo(() => {
         placement={'top'}
         trigger={['click']}
       >
-        <ActionIcon icon={Blocks} placement={'bottom'} title={t('tools.title')} />
+        <ActionIcon icon={Blocks} placement={'bottom'} ref={refT} title={t('tools.title')} />
       </Dropdown>
       <PluginStore open={open} setOpen={setOpen} />
     </>
