@@ -16,6 +16,7 @@ export async function GET(req: NextRequest) {
   const desc = params.get('desc')!;
   let res = await UserDAL.subIntegral(userId, Number(token), modelName, desc, type);
   console.log('剩余积分：' + res?.integral);
+  console.log('模型：' + modelName);
   return NextResponse.json({
     body: res,
     status: serverStatus.success,
