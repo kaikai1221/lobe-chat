@@ -21,6 +21,7 @@ export const createBizOpenAI = async (req: Request, model: string): Promise<Resp
   const allContents = reqData.messages
     ? reqData.messages.map((msg: { content: string; role: string }) => msg.content).join('')
     : reqData.input || '';
+  const isTools = !!reqData.tools;
   let token = 0;
   await encodeAsync(allContents)
     .then((e) => (token = e))
@@ -47,7 +48,7 @@ export const createBizOpenAI = async (req: Request, model: string): Promise<Resp
     if (useAzureOpenAI) {
       openai = createAzureOpenai({ apiVersion, endpoint, model, userApiKey: apiKey });
     } else {
-      openai = createOpenai(apiKey, endpoint);
+      openai = createOpenai(apiKey, endpoint, isTools);
     }
   } catch (error) {
     if ((error as Error).cause === ChatErrorType.NoAPIKey) {

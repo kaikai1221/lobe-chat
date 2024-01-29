@@ -913,7 +913,7 @@ export class UserDAL {
     token: number,
     modelName: string,
     desc: string,
-    type: 'in' | 'out',
+    type: 'in' | 'out' | 'order',
   ) {
     const changeSubIntegral = async () => {
       let integral = 0;
@@ -922,8 +922,16 @@ export class UserDAL {
           modelName,
         },
       });
-      const { inputPrice, outPrice } = data || { inputPrice: 10, outPrice: 20 };
+      const { inputPrice, outPrice, unitPrice } = data || {
+        inputPrice: 10,
+        outPrice: 20,
+        unitPrice: 100,
+      };
       switch (type) {
+        case 'order': {
+          integral = unitPrice;
+          break;
+        }
         case 'in': {
           integral = roundUp((token / 1000) * inputPrice);
           break;

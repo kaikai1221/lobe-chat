@@ -6,7 +6,7 @@ import { createImageGeneration } from './createImageGeneration';
 export const runtime = 'edge';
 
 export const POST = async (req: Request) => {
-  const payload = (await req.json()) as OpenAIImagePayload;
+  const payload = (await req.clone().json()) as OpenAIImagePayload;
 
   const openaiOrErrResponse = await createBizOpenAI(req, payload.model);
   // if resOrOpenAI is a Response, it means there is an error,just return it
