@@ -43,7 +43,10 @@ const ModelSwitch = memo(() => {
     <Dropdown
       menu={{
         activeKey: model,
-        items: modelList.map(({ name, displayName }) => ({ key: name, label: displayName })),
+        items: [
+          { key: 'label', label: '带vision字样的模型可以识别图片', type: 'group' },
+          ...modelList.map(({ name, displayName }) => ({ key: name, label: displayName })),
+        ],
         onClick: (e) => {
           updateAgentConfig({ model: e.key as LanguageModel });
         },
