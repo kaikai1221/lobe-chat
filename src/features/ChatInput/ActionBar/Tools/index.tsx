@@ -51,6 +51,22 @@ const Tools = memo<{ refT?: any }>(({ refT }) => {
           className: styles.menu,
           items: [
             {
+              // children: builtinList.map((item) => ({
+              //   icon: <Avatar avatar={item.meta.avatar} size={24} />,
+              //   key: item.identifier,
+              //   label: (
+              //     <ToolItem
+              //       identifier={item.identifier}
+              //       label={item.meta?.title || item.identifier}
+              //     />
+              //   ),
+              // })),
+
+              key: 'builtins',
+              label: '只有gpt系列模型支持使用插件',
+              type: 'group',
+            },
+            {
               children: builtinList.map((item) => ({
                 icon: <Avatar avatar={item.meta.avatar} size={24} />,
                 key: item.identifier,
