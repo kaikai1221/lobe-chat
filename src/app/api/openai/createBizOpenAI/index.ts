@@ -6,7 +6,7 @@ import { getOpenAIAuthFromRequest } from '@/const/fetch';
 import { ChatErrorType, ErrorType } from '@/types/fetch';
 import { encodeAsync } from '@/utils/tokenizer';
 
-import { createErrorResponse } from '../errorResponse';
+import { createErrorResponse } from '../../errorResponse';
 import { createAzureOpenai } from './createAzureOpenai';
 import { createOpenai } from './createOpenai';
 

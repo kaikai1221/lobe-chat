@@ -6,6 +6,7 @@ export enum LanguageModel {
    * other
    */
   CLAUD2 = 'claude-2',
+  GEMINIPRO = 'gemini-pro',
   /**
    * GPT 3.5 Turbo
    */

@@ -6,6 +6,7 @@ import { memo } from 'react';
 
 import { MOBILE_HEADER_ICON_SIZE } from '@/const/layoutTokens';
 import { useGlobalStore } from '@/store/global';
+import { commonSelectors } from '@/store/global/selectors';
 import { useSessionStore } from '@/store/session';
 
 export const useStyles = createStyles(({ css, token }) => ({
@@ -24,7 +25,7 @@ const Header = memo(() => {
   const { styles } = useStyles();
   const [createSession] = useSessionStore((s) => [s.createSession]);
   const router = useRouter();
-  const avatar = useGlobalStore((st) => st.settings.avatar);
+  const avatar = useGlobalStore(commonSelectors.userAvatar);
   return (
     <MobileNavBar
       center={<div className={styles.logo}>AI 聊天室</div>}

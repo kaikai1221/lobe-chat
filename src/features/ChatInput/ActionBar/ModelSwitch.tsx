@@ -8,7 +8,7 @@ import useSWR from 'swr';
 
 import { LOBE_CHAT_ACCESS_CODE } from '@/const/fetch';
 import { useGlobalStore } from '@/store/global';
-import { settingsSelectors } from '@/store/global/selectors';
+import { modelProviderSelectors } from '@/store/global/selectors';
 import { useSessionStore } from '@/store/session';
 import { agentSelectors } from '@/store/session/selectors';
 import { LanguageModel } from '@/types/llm';
@@ -30,7 +30,7 @@ const ModelSwitch = memo(() => {
     return [agentSelectors.currentAgentModel(s), s.updateAgentConfig];
   });
 
-  let modelList = useGlobalStore(settingsSelectors.modelList, isEqual);
+  let modelList = useGlobalStore(modelProviderSelectors.modelList, isEqual);
   if (data && data.status === false) {
     modelList = modelList.filter((item) => !item.name.includes('gpt'));
     modelList.push({
