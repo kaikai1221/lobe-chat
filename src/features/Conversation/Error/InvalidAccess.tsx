@@ -28,6 +28,7 @@ const InvalidAccess: RenderErrorMessage['Render'] = memo(({ id }) => {
   const [logining, setLogining] = useState(false);
   const [password, setPassword] = useState('');
   const [setSettings] = useGlobalStore((s) => [s.setSettings]);
+
   const [resend, deleteMessage] = useChatStore((s) => [s.resendMessage, s.deleteMessage]);
   useEffect(() => {
     if (time > 0) {
