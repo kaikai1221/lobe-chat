@@ -31,4 +31,5 @@ export const ModelTokens: Record<LanguageModel, number> = {
   [LanguageModel.GPT4_32K]: 32_768,
   [LanguageModel.CLAUD2]: 100_000,
   [LanguageModel.QWENPLUS]: 32_000,
+  [LanguageModel.GEMINIPRO]: 30_000,
 };
