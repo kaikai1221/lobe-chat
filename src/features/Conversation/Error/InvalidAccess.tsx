@@ -159,8 +159,10 @@ const InvalidAccess: RenderErrorMessage['Render'] = memo(({ id }) => {
         case serverStatus.success: {
           message.success('登陆成功');
           setSettings({ token: data.signedToken.token });
-          resend(id);
-          deleteMessage(id);
+          setTimeout(() => {
+            resend(id);
+            deleteMessage(id);
+          }, 100);
           localStorage.setItem('InvitationCode', '');
           break;
         }
