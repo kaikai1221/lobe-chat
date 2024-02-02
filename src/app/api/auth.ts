@@ -23,7 +23,7 @@ export const checkAuth = async ({ accessCode, token, url, model }: AuthConfig) =
       return { auth: false, error: ChatErrorType.InvalidAccessCode };
     }
     if (data.body.code === serverStatus.success && data.body.data === 'system') {
-      return { auth: true };
+      return { auth: true, type: 'integral' };
     }
     const targetUserLimits = (data.body.userLimits || []).filter((item: any) => {
       if (model.includes('gpt-3.5')) {
@@ -57,27 +57,27 @@ export const checkAuth = async ({ accessCode, token, url, model }: AuthConfig) =
         }
         if (data.body.integral < token / denominator + minIntegral)
           return { auth: false, error: ChatErrorType.InsufficientBalance };
-        await fetch(
-          `${url}/api/user/subIntegral?token=${token}&modelName=${model}&desc=输入&type=in`,
-          {
-            cache: 'no-cache',
-            headers: {
-              [LOBE_CHAT_ACCESS_CODE]: accessCode || '',
-            },
-            method: 'GET',
-          },
-        );
-        return { auth: true };
+        // await fetch(
+        //   `${url}/api/user/subIntegral?token=${token}&modelName=${model}&desc=输入&type=in`,
+        //   {
+        //     cache: 'no-cache',
+        //     headers: {
+        //       [LOBE_CHAT_ACCESS_CODE]: accessCode || '',
+        //     },
+        //     method: 'GET',
+        //   },
+        // );
+        return { auth: true, type: 'integral' };
       }
     } else {
-      await fetch(`${url}/api/user/subQuota?model=${model}`, {
-        cache: 'no-cache',
-        headers: {
-          [LOBE_CHAT_ACCESS_CODE]: accessCode || '',
-        },
-        method: 'GET',
-      });
-      return { auth: true };
+      // await fetch(`${url}/api/user/subQuota?model=${model}`, {
+      //   cache: 'no-cache',
+      //   headers: {
+      //     [LOBE_CHAT_ACCESS_CODE]: accessCode || '',
+      //   },
+      //   method: 'GET',
+      // });
+      return { auth: true, type: 'quota' };
     }
   } catch {
     return { auth: false, error: ChatErrorType.InternalServerError };

@@ -2,7 +2,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import { checkAuth } from '@/app/api/auth';
-import { getOpenAIAuthFromRequest } from '@/const/fetch';
+import { LOBE_CHAT_ACCESS_CODE , getOpenAIAuthFromRequest } from '@/const/fetch';
 import { UserDAL } from '@/prismaClient';
 import { serverStatus } from '@/prismaClient/serverStatus';
 
@@ -112,6 +112,26 @@ async function handle(req: NextRequest) {
       mjResData = await mjRes.clone().json();
     }
     if (mjResData.code === 1) {
+      if (result.type === 'integral') {
+        await fetch(
+          `${req.headers.get('origin') || ''}/api/user/subIntegral?token=1&modelName=midjourney&desc=生成&type=order`,
+          {
+            cache: 'no-cache',
+            headers: {
+              [LOBE_CHAT_ACCESS_CODE]: accessCode || '',
+            },
+            method: 'GET',
+          },
+        );
+      } else if (result.type === 'quota') {
+        await fetch(`${req.headers.get('origin') || ''}/api/user/subQuota?model=midjourney`, {
+          cache: 'no-cache',
+          headers: {
+            [LOBE_CHAT_ACCESS_CODE]: accessCode || '',
+          },
+          method: 'GET',
+        });
+      }
       return NextResponse.json(
         {
           code: serverStatus.success,

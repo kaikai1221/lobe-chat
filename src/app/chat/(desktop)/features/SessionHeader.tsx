@@ -1,14 +1,18 @@
 import { ActionIcon } from '@lobehub/ui';
-import { Button, Modal } from 'antd';
+import { Button, Modal, Statistic, Tooltip } from 'antd';
 import { createStyles } from 'antd-style';
 import { MessageSquarePlus } from 'lucide-react';
-import { memo, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
+import CountUp from 'react-countup';
 import { useTranslation } from 'react-i18next';
 import { Flexbox } from 'react-layout-kit';
+import useSWR from 'swr';
 
 import ModelPrice from '@/components/ModelPrice';
 import PayModal from '@/components/PayModal/index';
+import { LOBE_CHAT_ACCESS_CODE } from '@/const/fetch';
 import { DESKTOP_HEADER_ICON_SIZE } from '@/const/layoutTokens';
+import { useGlobalStore } from '@/store/global';
 import { useSessionStore } from '@/store/session';
 
 import SessionSearchBar from '../../features/SessionSearchBar';
@@ -24,13 +28,36 @@ export const useStyles = createStyles(({ css, token }) => ({
     top: 0;
   `,
 }));
-
 const Header = memo(() => {
   const { styles } = useStyles();
   const { t } = useTranslation('chat');
   const [createSession] = useSessionStore((s) => [s.createSession]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPayOpen, setIsPayOpen] = useState(false);
+  const { settings } = useGlobalStore.getState();
+  const [integral, setIntegral] = useState(0);
+  const [startValue, setStartValue] = useState(0);
+  // const formatter = (value: any) => (
+  //   <CountUp start={startValue} end={value} separator="," onStart={() => setStartValue(integral)} />
+  // );
+  const [setSettings] = useGlobalStore((s) => [s.setSettings]);
+  const { data, isLoading = true } = useSWR(settings.token ? '/api/user/info' : '', async () => {
+    setStartValue(integral);
+    const res = await fetch('/api/user/info', {
+      cache: 'no-cache',
+      headers: {
+        [LOBE_CHAT_ACCESS_CODE]: settings.token || '',
+      },
+      method: 'GET',
+    });
+    return await res.json();
+  });
+  if (data?.body) {
+    setSettings({ integral: data.body.integral || 0 });
+  }
+  useEffect(() => {
+    setIntegral(data?.body.integral || 0);
+  }, [data?.body]);
   return (
     <Flexbox className={styles.top} gap={16} padding={16}>
       <Flexbox distribution={'space-between'} horizontal>
@@ -48,14 +75,28 @@ const Header = memo(() => {
         <Button onClick={() => setIsModalOpen(true)} size="small" style={{ marginRight: '10px' }}>
           模型价格
         </Button>
-        <Button
-          onClick={() => {
-            setIsPayOpen(true);
-          }}
-          size="small"
-        >
-          充值积分
-        </Button>
+        <Tooltip title="点击充值积分">
+          <Button
+            loading={isLoading}
+            onClick={() => {
+              setIsPayOpen(true);
+            }}
+            size="small"
+          >
+            {!isLoading && (
+              <div style={{ alignContent: 'center', alignItems: 'center', display: 'flex' }}>
+                剩余积分:
+                <Statistic
+                  formatter={(value: any) => (
+                    <CountUp end={value} separator="," start={startValue} />
+                  )}
+                  value={integral}
+                  valueStyle={{ fontSize: '14px' }}
+                />
+              </div>
+            )}
+          </Button>
+        </Tooltip>
       </div>
       <Modal
         centered
