@@ -524,6 +524,23 @@ const AgentCard = memo<aiImageProps>(({ mobile, isGenerating, setGenerating }) =
   };
   useEffect(() => {
     setChatHistory([...(Array.isArray(data?.body) ? data.body : [])]);
+    if (
+      data.body.length &&
+      data.body?.some((item) => {
+        const { status } = JSON.parse(item.content || '{}');
+        if (status && status !== 'SUCCESS' && status !== 'FAILURE') {
+          return true;
+        } else if (!status) {
+          return true;
+        } else {
+          return false;
+        }
+      })
+    ) {
+      setTimeout(() => {
+        GetStatus(setChatHistory);
+      }, 2000);
+    }
   }, [data.body?.length]);
   useEffect(() => {
     if (isGenerating && !getting) {
