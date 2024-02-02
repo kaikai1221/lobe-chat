@@ -12,6 +12,7 @@ import {
 
 export const DEFAULT_BASE_SETTINGS: GlobalBaseSettings = {
   fontSize: 14,
+  integral: 0,
   language: 'auto',
   password: '',
   themeMode: 'auto',

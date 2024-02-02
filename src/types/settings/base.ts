@@ -5,6 +5,7 @@ import { LocaleMode } from '@/types/locale';
 
 export interface GlobalBaseSettings {
   fontSize: number;
+  integral: number;
   language: LocaleMode;
   neutralColor?: NeutralColors;
   password: string;

@@ -106,7 +106,7 @@ const ActionPanel = (props: {
     prompt: '',
     quality: '4k',
     user_prompt: '',
-    version: '5.2',
+    version: '6',
     version_name: '',
   });
   const generateImage = async () => {
@@ -197,7 +197,7 @@ const ActionPanel = (props: {
   useEffect(() => {
     const prompt = `${setting.user_prompt} ${setting.quality} ${
       fileList.length ? '--iw ' + setting.iw : ''
-    } ${setting.version_name ? '--' + setting.version_name + ' ' : '--version '}${
+    } ${setting.version_name ? '--' + setting.version_name + ' ' : '--v '}${
       setting.version
     } --aspect ${setting.aspect}`;
     setSettingConfig({ ...setting, prompt });
@@ -250,12 +250,16 @@ const ActionPanel = (props: {
       options:
         setting.version_name !== 'niji'
           ? [
+              { label: 'V 6', value: '6' },
               { label: 'V 5.2', value: '5.2' },
               { label: 'V 5.1', value: '5.1' },
               { label: 'V 5', value: '5' },
               { label: 'V 4', value: '4' },
             ]
-          : [{ label: 'V 5', value: '5' }],
+          : [
+              { label: 'V 5', value: '5' },
+              { label: 'V 6', value: '6' },
+            ],
       title: '版本选择',
       value: 'version',
     },
@@ -340,7 +344,7 @@ const ActionPanel = (props: {
         onChange={(v) =>
           setSettingConfig({
             ...setting,
-            version: v.toString() ? '5' : '5.2',
+            version: v.toString() ? '6' : '6',
             version_name: v.toString(),
           })
         }

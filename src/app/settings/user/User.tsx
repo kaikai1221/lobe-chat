@@ -647,14 +647,14 @@ const User = memo(() => {
             label: '积分',
             minWidth: undefined,
           },
-          {
-            children: userInfo.subscriptions.length
-              ? new Date(userInfo.subscriptions[0].expiredAt).toLocaleString()
-              : '无',
-            desc: '最长套餐有效期',
-            label: '套餐有效期',
-            minWidth: undefined,
-          },
+          // {
+          //   children: userInfo.subscriptions.length
+          //     ? new Date(userInfo.subscriptions[0].expiredAt).toLocaleString()
+          //     : '无',
+          //   desc: '最长套餐有效期',
+          //   label: '套餐有效期',
+          //   minWidth: undefined,
+          // },
           {
             children: (
               <Snippet
@@ -716,7 +716,7 @@ const User = memo(() => {
             }))
           : [
               {
-                desc: '套餐尚未生效或无套餐',
+                desc: '无套餐',
                 label: '暂无使用中套餐',
               },
             ],

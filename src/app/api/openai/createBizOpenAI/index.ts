@@ -2,7 +2,7 @@ import OpenAI from 'openai';
 
 import { checkAuth } from '@/app/api/auth';
 import { getServerConfig } from '@/config/server';
-import { getOpenAIAuthFromRequest } from '@/const/fetch';
+import { getOpenAIAuthFromRequest , LOBE_CHAT_ACCESS_CODE } from '@/const/fetch';
 import { ChatErrorType, ErrorType } from '@/types/fetch';
 import { encodeAsync } from '@/utils/tokenizer';
 
@@ -57,6 +57,28 @@ export const createBizOpenAI = async (req: Request, model: string): Promise<Resp
 
     console.error(error); // log error to trace it
     return createErrorResponse(ChatErrorType.InternalServerError);
+  }
+  if (result.type) {
+    if (result.type === 'integral') {
+      await fetch(
+        `${req.headers.get('origin') || ''}/api/user/subIntegral?token=${token}&modelName=${model}&desc=输入&type=in`,
+        {
+          cache: 'no-cache',
+          headers: {
+            [LOBE_CHAT_ACCESS_CODE]: accessCode || '',
+          },
+          method: 'GET',
+        },
+      );
+    } else if (result.type === 'quota') {
+      await fetch(`${req.headers.get('origin') || ''}/api/user/subQuota?model=${model}`, {
+        cache: 'no-cache',
+        headers: {
+          [LOBE_CHAT_ACCESS_CODE]: accessCode || '',
+        },
+        method: 'GET',
+      });
+    }
   }
 
   return openai;
