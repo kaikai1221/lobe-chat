@@ -2,7 +2,7 @@ import OpenAI from 'openai';
 
 import { checkAuth } from '@/app/api/auth';
 import { getServerConfig } from '@/config/server';
-import { getOpenAIAuthFromRequest , LOBE_CHAT_ACCESS_CODE } from '@/const/fetch';
+import { LOBE_CHAT_ACCESS_CODE, getOpenAIAuthFromRequest } from '@/const/fetch';
 import { ChatErrorType, ErrorType } from '@/types/fetch';
 import { encodeAsync } from '@/utils/tokenizer';
 
@@ -60,7 +60,7 @@ export const createBizOpenAI = async (req: Request, model: string): Promise<Resp
   }
   if (result.type) {
     if (result.type === 'integral') {
-      await fetch(
+      fetch(
         `${req.headers.get('origin') || ''}/api/user/subIntegral?token=${token}&modelName=${model}&desc=输入&type=in`,
         {
           cache: 'no-cache',
@@ -71,7 +71,11 @@ export const createBizOpenAI = async (req: Request, model: string): Promise<Resp
         },
       );
     } else if (result.type === 'quota') {
-      await fetch(`${req.headers.get('origin') || ''}/api/user/subQuota?model=${model}`, {
+      let modelName = model;
+      if (model.includes('gpt-3.5')) {
+        modelName = 'gpt-3.5-turbo';
+      }
+      fetch(`${req.headers.get('origin') || ''}/api/user/subQuota?model=${modelName}`, {
         cache: 'no-cache',
         headers: {
           [LOBE_CHAT_ACCESS_CODE]: accessCode || '',
