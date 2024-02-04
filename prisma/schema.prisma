@@ -223,6 +223,11 @@ model Subscription {
   UserLimits UserLimits[] @relation("UserLimitsSubscription")
 }
 
+model MidTemplate {
+   id       Int     @id @default(autoincrement())
+   content  String  
+}
+
 enum RegisterType {
   Phone
   Email
