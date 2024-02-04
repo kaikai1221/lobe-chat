@@ -1,6 +1,6 @@
 {
   "name": "@lobehub/chat",
-  "version": "0.122.6",
+  "version": "0.122.8",
   "description": "Lobe Chat - an open-source, high-performance chatbot framework that supports speech synthesis, multimodal, and extensible Function Call plugin system. Supports one-click free deployment of your private ChatGPT/LLM web application.",
   "keywords": [
     "framework",
@@ -81,7 +81,7 @@
     "@lobehub/ui": "latest",
     "@neondatabase/serverless": "^0.6.0",
     "@prisma/adapter-neon": "^5.6.0",
-    "@prisma/client": "^5.6.0",
+    "@prisma/client": "^5.9.1",
     "@vercel/analytics": "^1",
     "ahooks": "3.7.8",
     "ai": "^2",
@@ -182,7 +182,7 @@
     "node-fetch": "^3",
     "p-map": "^7",
     "prettier": "^3",
-    "prisma": "^5.6.0",
+    "prisma": "^5.9.1",
     "remark-cli": "^11",
     "remark-parse": "^10",
     "semantic-release": "^21",
