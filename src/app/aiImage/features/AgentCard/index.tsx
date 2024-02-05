@@ -32,13 +32,14 @@ export const useStyles = createStyles(({ css, token }) => ({
 
     /* 三行显示省略号 */
     display: box;
+    display: box;
+    -webkit-box-orient: vertical;
 
     margin: 5px 0;
 
     color: ${token.colorText};
     word-break: break-all;
 
-    -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
   `,
   skeletonImage: css`
@@ -419,7 +420,14 @@ function HistoryMasonry(props: {
           </Card>
         );
       })}
-      {data.length === 0 && <p style={{ textAlign: 'center', width: '100%' }}>暂无历史记录</p>}
+      {!useGlobalStore.getState().settings.token && (
+        <p style={{ textAlign: 'center', width: '100%' }}>
+          请先 <a href="/settings/user">登录</a>{' '}
+        </p>
+      )}
+      {useGlobalStore.getState().settings.token && data.length === 0 && (
+        <p style={{ textAlign: 'center', width: '100%' }}>暂无历史记录</p>
+      )}
       <div>{contextHolder}</div>
     </div>
   );
@@ -429,7 +437,7 @@ const AgentCard = memo<aiImageProps>(({ mobile, isGenerating, setGenerating }) =
   const router = useRouter();
   const [getting, setGetting] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
-
+  const { settings } = useGlobalStore.getState();
   const [chatHistory, setChatHistory] = useState<
     {
       content: string;
@@ -448,11 +456,11 @@ const AgentCard = memo<aiImageProps>(({ mobile, isGenerating, setGenerating }) =
       },
     ];
     status: number;
-  }>('/api/user/chat-history', async () => {
+  }>(settings.token ? '/api/user/chat-history' : '', async () => {
     const res = await fetch(`/api/user/chat-history`, {
       cache: 'no-cache',
       headers: {
-        [LOBE_CHAT_ACCESS_CODE]: useGlobalStore.getState().settings.token || '',
+        [LOBE_CHAT_ACCESS_CODE]: settings.token || '',
       },
       method: 'GET',
     });

@@ -8,6 +8,8 @@ import { useTranslation } from 'react-i18next';
 import { Flexbox } from 'react-layout-kit';
 
 import PluginStore from '@/features/PluginStore';
+import { useGlobalStore } from '@/store/global';
+import { modelProviderSelectors } from '@/store/global/selectors';
 import { useSessionStore } from '@/store/session';
 import { agentSelectors } from '@/store/session/selectors';
 import { pluginHelpers, useToolStore } from '@/store/tool';
@@ -42,6 +44,9 @@ const Tools = memo<{ refT?: any }>(({ refT }) => {
 
   const [open, setOpen] = useState(false);
   const { styles } = useStyles();
+
+  const model = useSessionStore(agentSelectors.currentAgentModel);
+  const enableFC = useGlobalStore(modelProviderSelectors.modelEnabledFunctionCall(model));
 
   return (
     <>
@@ -134,7 +139,13 @@ const Tools = memo<{ refT?: any }>(({ refT }) => {
         placement={'top'}
         trigger={['click']}
       >
-        <ActionIcon icon={Blocks} placement={'bottom'} ref={refT} title={t('tools.title')} />
+        <ActionIcon
+          disable={!enableFC}
+          icon={Blocks}
+          placement={'bottom'}
+          ref={refT}
+          title={t(enableFC ? 'tools.title' : 'tools.disabled')}
+        />
       </Dropdown>
       <PluginStore open={open} setOpen={setOpen} />
     </>

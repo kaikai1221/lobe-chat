@@ -14,7 +14,10 @@ export const createOpenai = (
   const baseURL = endpoint ? endpoint : OPENAI_PROXY_URL ? OPENAI_PROXY_URL : undefined;
 
   const apiKey = !userApiKey ? `${OPENAI_API_KEY}` + (isTools ? '-2' : '') : userApiKey;
-  if (!apiKey) throw new Error('OPENAI_API_KEY is empty', { cause: ChatErrorType.NoAPIKey });
+  // if (!apiKey) throw new Error('OPENAI_API_KEY is empty', { cause: ChatErrorType.NoAPIKey });
+  // const apiKey = !userApiKey ? OPENAI_API_KEY : userApiKey;
+
+  if (!apiKey) throw new Error('OPENAI_API_KEY is empty', { cause: ChatErrorType.NoOpenAIAPIKey });
 
   return new OpenAI({ apiKey, baseURL });
 };
