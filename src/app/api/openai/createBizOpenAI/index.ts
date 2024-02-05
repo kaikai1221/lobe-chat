@@ -51,8 +51,8 @@ export const createBizOpenAI = async (req: Request, model: string): Promise<Resp
       openai = createOpenai(apiKey, endpoint, isTools);
     }
   } catch (error) {
-    if ((error as Error).cause === ChatErrorType.NoAPIKey) {
-      return createErrorResponse(ChatErrorType.NoAPIKey);
+    if ((error as Error).cause === ChatErrorType.NoOpenAIAPIKey) {
+      return createErrorResponse(ChatErrorType.NoOpenAIAPIKey);
     }
 
     console.error(error); // log error to trace it

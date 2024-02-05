@@ -4,10 +4,14 @@ import { memo, useState } from 'react';
 import PayModal from '@/components/PayModal/index';
 import PlanModal from '@/components/PayModal/plan';
 
-import { RenderErrorMessage } from '../types';
 import { ErrorActionContainer } from './style';
 
-const InvalidAccess: RenderErrorMessage['Render'] = memo(({ id }) => {
+interface InvalidAccessCodeProps {
+  id: string;
+  provider?: string;
+}
+
+const InvalidAccessCode = memo<InvalidAccessCodeProps>(({ id }) => {
   console.log(id);
   const [isPayOpen, setIsPayOpen] = useState(false);
   const [isPlanOpen, setIsPlanOpen] = useState(false);
@@ -59,4 +63,4 @@ const InvalidAccess: RenderErrorMessage['Render'] = memo(({ id }) => {
   );
 });
 
-export default InvalidAccess;
+export default InvalidAccessCode;

@@ -47,8 +47,18 @@
     "InsufficientBalance": "余额不足无法使用此模型，请更换模型或充值",
     "PluginGatewayError": "很抱歉，插件网关出现错误，请检查插件网关配置是否正确",
     "PluginOpenApiInitError": "很抱歉，OpenAPI 客户端初始化失败，请检查 OpenAPI 的配置信息是否正确",
+    "LocationNotSupportError": "很抱歉，你的所在位置不支持此模型服务，可能是由于地区限制或服务未开通。请确认当前位置是否支持使用此服务，或尝试使用其他位置信息。",
     "OpenAIBizError": "请求 OpenAI 服务出错，请根据以下信息排查或重试",
-    "NoAPIKey": "OpenAI API Key 为空，请添加自定义 OpenAI API Key"
+    "NoOpenAIAPIKey": "OpenAI API Key 为空，请添加自定义 OpenAI API Key",
+    "ZhipuBizError": "请求智谱服务出错，请根据以下信息排查或重试",
+    "InvalidZhipuAPIKey": "Zhipu API Key 不正确或为空，请检查 Zhipu API Key 后重试",
+    "GoogleBizError": "请求 Google 服务出错，请根据以下信息排查或重试",
+    "InvalidGoogleAPIKey": "Google API Key 不正确或为空，请检查 Google API Key 后重试",
+    "InvalidBedrockCredentials": "Bedrock 鉴权未通过，请检查 AccessKeyId/SecretAccessKey 后重试",
+    "BedrockBizError": "请求 Bedrock 服务出错，请根据以下信息排查或重试",
+    "InvalidAzureAPIKey": "Azure API Key 不正确或为空，请检查 Azure API Key 后重试",
+    "AzureBizError": "请求 Azure AI 服务出错，请根据以下信息排查或重试",
+    "AgentRuntimeError": "Lobe 语言模型运行时执行出错，请根据以下信息排查或重试"
   },
   "stt": {
     "responseError": "服务请求失败，请检查配置或重试"
@@ -58,9 +68,24 @@
   },
   "unlock": {
     "apikey": {
-      "addProxyUrl": "添加 OpenAI 代理地址（可选）",
-      "description": "输入你的 OpenAI API Key 即可开始会话。应用不会记录你的 API Key",
-      "title": "使用自定义 API Key"
+      "Bedrock": {
+        "customRegion": "自定义服务区域",
+        "description": "输入你的 Aws AccessKeyId / SecretAccessKey 即可开始会话。应用不会记录你的鉴权配置",
+        "title": "使用自定义 Bedrock 鉴权信息"
+      },
+      "Google": {
+        "description": "输入你的 Google API Key 即可开始会话。应用不会记录你的 API Key",
+        "title": "使用自定义 Google API Key"
+      },
+      "OpenAI": {
+        "addProxyUrl": "添加 OpenAI 代理地址（可选）",
+        "description": "输入你的 OpenAI API Key 即可开始会话。应用不会记录你的 API Key",
+        "title": "使用自定义 OpenAI API Key"
+      },
+      "Zhipu": {
+        "description": "输入你的 Zhipu API Key 即可开始会话。应用不会记录你的 API Key",
+        "title": "使用自定义 Zhipu API Key"
+      }
     },
     "closeMessage": "关闭提示",
     "confirm": "登陆并重试",
@@ -68,6 +93,10 @@
       "description": "新用户注册赠送1000积分体验",
       "placeholder": "请输入密码",
       "title": "登陆后解锁使用"
+    },
+    "tabs": {
+      "apiKey": "自定义 API Key",
+      "password": "密码"
     }
   }
 }
