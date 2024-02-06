@@ -150,7 +150,7 @@ const ActionPanel = (props: {
           }),
           cache: 'no-store',
           headers: {
-            [LOBE_CHAT_ACCESS_CODE]: useGlobalStore.getState().settings.token || '',
+            [LOBE_CHAT_ACCESS_CODE]: useGlobalStore.getState().settings?.token || '',
           },
           method: 'POST',
         },
