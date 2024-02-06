@@ -34,17 +34,20 @@ const useStyles = createStyles(({ css, prefixCls }) => ({
 }));
 
 const ModelSwitch = memo(() => {
-  const { data } = useSWR(useGlobalStore.getState().settings.token ? 'getPlanId' : '', async () => {
-    const res = await fetch('/api/user/getPlanId', {
-      cache: 'no-cache',
-      headers: {
-        [LOBE_CHAT_ACCESS_CODE]: useGlobalStore.getState().settings.token || '',
-      },
-      method: 'GET',
-    });
-    const data = await res.json();
-    return data.body;
-  });
+  const { data } = useSWR(
+    useGlobalStore.getState().settings?.token ? 'getPlanId' : '',
+    async () => {
+      const res = await fetch('/api/user/getPlanId', {
+        cache: 'no-cache',
+        headers: {
+          [LOBE_CHAT_ACCESS_CODE]: useGlobalStore.getState().settings?.token || '',
+        },
+        method: 'GET',
+      });
+      const data = await res.json();
+      return data.body;
+    },
+  );
   const model = useSessionStore(agentSelectors.currentAgentModel);
   const updateAgentConfig = useSessionStore((s) => s.updateAgentConfig);
   // let modelList = useGlobalStore(modelProviderSelectors.modelList, isEqual);
