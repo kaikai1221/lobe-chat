@@ -20,7 +20,7 @@ export default memo(() => {
   useEffectAfterGlobalHydrated(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 100);
+    }, 200);
   });
 
   return (

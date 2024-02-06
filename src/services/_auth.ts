@@ -79,7 +79,7 @@ const getProviderAuthPayload = (provider: string) => {
 };
 
 const createAuthTokenWithPayload = async (payload = {}) => {
-  const accessCode = settingsSelectors.token(useGlobalStore.getState());
+  const accessCode = settingsSelectors?.token(useGlobalStore.getState());
 
   return await createJWT({ accessCode, ...payload });
 };
@@ -98,7 +98,7 @@ export const createHeaderWithAuth = async (params?: AuthParams): Promise<Headers
   if (params?.provider) {
     payload = { ...payload, ...getProviderAuthPayload(params?.provider) };
   }
-  const accessCode = settingsSelectors.token(useGlobalStore.getState());
+  const accessCode = settingsSelectors?.token(useGlobalStore.getState());
   const token = await createAuthTokenWithPayload(payload);
   // eslint-disable-next-line no-undef
   return {

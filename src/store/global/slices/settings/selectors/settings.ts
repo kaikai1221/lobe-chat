@@ -13,7 +13,7 @@ export const currentSettings = (s: GlobalStore): GlobalSettings =>
 
 const password = (s: GlobalStore) => currentSettings(s).password;
 
-const token = (s: GlobalStore) => currentSettings(s).token;
+const token = (s: GlobalStore) => currentSettings(s)?.token;
 
 const currentTTS = (s: GlobalStore) => merge(DEFAULT_TTS_CONFIG, currentSettings(s).tts);
 

@@ -57,7 +57,7 @@ export const getProviderConfig = () => {
     OPENAI_PROXY_URL: process.env.OPENAI_PROXY_URL,
     OPENAI_FUNCTION_REGIONS: regions,
 
-    ENABLED_ZHIPU: !!ZHIPU_API_KEY,
+    ENABLED_ZHIPU: true,
     ZHIPU_API_KEY,
 
     ENABLED_GOOGLE: true,

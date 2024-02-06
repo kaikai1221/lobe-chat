@@ -22,7 +22,7 @@ class ImageGenerationService {
     fetch(`/api/user/subIntegral?token=1&modelName=dall-e-3&desc=生成&type=order`, {
       cache: 'no-cache',
       headers: {
-        [LOBE_CHAT_ACCESS_CODE]: useGlobalStore.getState().settings.token || '',
+        [LOBE_CHAT_ACCESS_CODE]: useGlobalStore.getState().settings?.token || '',
       },
       method: 'GET',
     });

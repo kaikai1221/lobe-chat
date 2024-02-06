@@ -70,7 +70,7 @@ const ModelSwitch = memo(() => {
           key: model.id,
           label: <ModelItemRender {...model} />,
           onClick: () => {
-            updateAgentConfig({ model: model.id, provider: provider.id });
+            updateAgentConfig({ model: model.id, provider: 'openai' });
           },
         }));
 
@@ -110,7 +110,7 @@ const ModelSwitch = memo(() => {
         className: styles.menu,
         items,
         onClick: (e) => {
-          updateAgentConfig({ model: e.key as LanguageModel });
+          updateAgentConfig({ model: e.key as LanguageModel, provider: 'openai' });
         },
         style: {
           maxHeight: 500,

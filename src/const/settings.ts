@@ -74,7 +74,7 @@ export const DEFAULT_LLM_CONFIG: GlobalLLMConfig = {
   },
   zhipu: {
     apiKey: '',
-    enabled: false,
+    enabled: true,
   },
 };
 

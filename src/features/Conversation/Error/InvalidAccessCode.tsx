@@ -111,7 +111,7 @@ const InvalidAccessCode = memo<InvalidAccessCodeProps>(({ id }) => {
     switch (data.status) {
       case serverStatus.success: {
         message.success('登陆成功');
-        setSettings({ token: data.signedToken.token });
+        setSettings({ token: data.signedToken?.token });
         resend(id);
         deleteMessage(id);
         localStorage.setItem('InvitationCode', '');
@@ -162,7 +162,7 @@ const InvalidAccessCode = memo<InvalidAccessCodeProps>(({ id }) => {
       switch (data.status) {
         case serverStatus.success: {
           message.success('登陆成功');
-          setSettings({ token: data.signedToken.token });
+          setSettings({ token: data.signedToken?.token });
           setTimeout(() => {
             resend(id);
             deleteMessage(id);

@@ -19,11 +19,11 @@ const Mobile: FC = dynamic(() => import('../(mobile)'), { ssr: false }) as FC;
 export default memo(() => {
   const [isLoading, setLoading] = useState(true);
   const [isGenerating, setGenerating] = useState(false);
-  const [showType, setShowType] = useState(1);
+  const [showType, setShowType] = useState(2);
   useEffectAfterGlobalHydrated(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 100);
+    }, 200);
   });
 
   return (

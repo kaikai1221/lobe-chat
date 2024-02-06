@@ -19,7 +19,17 @@ export const createBizOpenAI = async (req: Request, model: string): Promise<Resp
   const { apiKey, accessCode, endpoint, useAzure, apiVersion } = getOpenAIAuthFromRequest(req);
   const reqData = await req.json();
   const allContents = reqData.messages
-    ? reqData.messages.map((msg: { content: string; role: string }) => msg.content).join('')
+    ? reqData.messages
+        .map((msg: { content: string | [{ text?: string; type: string }]; role: string }) =>
+          Array.isArray(msg.content)
+            ? msg.content
+                .map((content) =>
+                  content.text ? content.text : Array.from({ length: 500 }, () => 1),
+                )
+                .join('')
+            : msg.content,
+        )
+        .join('')
     : reqData.input || '';
   const isTools = !!reqData.tools;
   let token = 0;
