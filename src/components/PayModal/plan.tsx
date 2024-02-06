@@ -82,7 +82,7 @@ const DataStyleModal = memo<DataStyleModalProps>(({ onOpenChange, open, width = 
     const res = await fetch('/api/user/plan', {
       cache: 'no-cache',
       headers: {
-        [LOBE_CHAT_ACCESS_CODE]: settings.token || '',
+        [LOBE_CHAT_ACCESS_CODE]: settings?.token || '',
       },
       method: 'GET',
     });
@@ -102,7 +102,7 @@ const DataStyleModal = memo<DataStyleModalProps>(({ onOpenChange, open, width = 
       }),
       cache: 'no-store',
       headers: {
-        [LOBE_CHAT_ACCESS_CODE]: settings.token || '',
+        [LOBE_CHAT_ACCESS_CODE]: settings?.token || '',
       },
       method: 'POST',
     });

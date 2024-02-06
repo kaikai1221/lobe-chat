@@ -102,7 +102,7 @@ const subIntegral = async (output: string, model: string) => {
   await fetch(`/api/user/subIntegral?token=${token}&modelName=${model}&desc=输出&type=out`, {
     cache: 'no-cache',
     headers: {
-      [LOBE_CHAT_ACCESS_CODE]: useGlobalStore.getState().settings.token || '',
+      [LOBE_CHAT_ACCESS_CODE]: useGlobalStore.getState().settings?.token || '',
     },
     method: 'GET',
   });

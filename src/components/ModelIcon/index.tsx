@@ -18,7 +18,6 @@ interface ModelProviderIconProps {
 }
 
 const ModelIcon = memo<ModelProviderIconProps>(({ model, size = 12 }) => {
-  console.log(model);
   if (!model) return;
 
   if (model.startsWith('gpt-3')) return <OpenAI.Avatar size={size} type={'gpt3'} />;

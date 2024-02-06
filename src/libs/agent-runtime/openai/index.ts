@@ -51,6 +51,11 @@ export class LobeOpenAI implements LobeRuntimeAI {
           messages,
           ...params,
           stream: true,
+          top_p: params.model.includes('glm')
+            ? params.top_p === 1
+              ? 0.99
+              : params.top_p
+            : params.top_p,
         } as unknown as OpenAI.ChatCompletionCreateParamsStreaming,
         { headers: { Accept: '*/*' } },
       );

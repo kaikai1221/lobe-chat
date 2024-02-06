@@ -148,12 +148,12 @@ const InvalidAccess = (props: { setUserInfo: (value: any) => void }) => {
     const data = await res.json();
     switch (data.status) {
       case serverStatus.success: {
-        setSettings({ token: data.signedToken.token });
+        setSettings({ token: data.signedToken?.token });
         localStorage.setItem('InvitationCode', '');
         const res = await fetch('/api/user/info', {
           cache: 'no-cache',
           headers: {
-            [LOBE_CHAT_ACCESS_CODE]: data.signedToken.token || '',
+            [LOBE_CHAT_ACCESS_CODE]: data.signedToken?.token || '',
           },
           method: 'GET',
         });
@@ -208,12 +208,12 @@ const InvalidAccess = (props: { setUserInfo: (value: any) => void }) => {
       const data = await res.json();
       switch (data.status) {
         case serverStatus.success: {
-          setSettings({ token: data.signedToken.token });
+          setSettings({ token: data.signedToken?.token });
           localStorage.setItem('InvitationCode', '');
           const res = await fetch('/api/user/info', {
             cache: 'no-cache',
             headers: {
-              [LOBE_CHAT_ACCESS_CODE]: data.signedToken.token || '',
+              [LOBE_CHAT_ACCESS_CODE]: data.signedToken?.token || '',
             },
             method: 'GET',
           });
@@ -380,7 +380,7 @@ const EditPassword = (props: {
       }),
       cache: 'no-store',
       headers: {
-        [LOBE_CHAT_ACCESS_CODE]: settings.token || '',
+        [LOBE_CHAT_ACCESS_CODE]: settings?.token || '',
       },
       method: 'POST',
     });
@@ -392,7 +392,7 @@ const EditPassword = (props: {
         const InfoRes = await fetch('/api/user/info', {
           cache: 'no-cache',
           headers: {
-            [LOBE_CHAT_ACCESS_CODE]: settings.token || '',
+            [LOBE_CHAT_ACCESS_CODE]: settings?.token || '',
           },
           method: 'GET',
         });
@@ -493,7 +493,7 @@ const UseList = () => {
     const res = await fetch('/api/user/getUsedList?pageNo=' + pageNo, {
       cache: 'no-cache',
       headers: {
-        [LOBE_CHAT_ACCESS_CODE]: settings.token || '',
+        [LOBE_CHAT_ACCESS_CODE]: settings?.token || '',
       },
       method: 'GET',
     });
@@ -557,13 +557,13 @@ const User = memo(() => {
     const res = await fetch('/api/user/info', {
       cache: 'no-cache',
       headers: {
-        [LOBE_CHAT_ACCESS_CODE]: settings.token || '',
+        [LOBE_CHAT_ACCESS_CODE]: settings?.token || '',
       },
       method: 'GET',
     });
     return await res.json();
   };
-  const { data, isLoading = true } = useSWR(settings.token ? '/api/user/info' : '', async () => {
+  const { data, isLoading = true } = useSWR(settings?.token ? '/api/user/info' : '', async () => {
     const res = await fetch('/api/user/info', {
       cache: 'no-cache',
       headers: {
@@ -591,7 +591,7 @@ const User = memo(() => {
       const res = await fetch(`/api/user/redeem?redeemCode=${redeemCode}`, {
         cache: 'no-cache',
         headers: {
-          [LOBE_CHAT_ACCESS_CODE]: settings.token || '',
+          [LOBE_CHAT_ACCESS_CODE]: settings?.token || '',
         },
         method: 'GET',
       });
@@ -601,7 +601,7 @@ const User = memo(() => {
         const InfoRes = await fetch('/api/user/info', {
           cache: 'no-cache',
           headers: {
-            [LOBE_CHAT_ACCESS_CODE]: settings.token || '',
+            [LOBE_CHAT_ACCESS_CODE]: settings?.token || '',
           },
           method: 'GET',
         });

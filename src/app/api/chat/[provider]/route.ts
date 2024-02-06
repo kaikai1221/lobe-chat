@@ -32,7 +32,17 @@ export const POST = async (req: Request, { params }: { params: { provider: strin
     const reqData = await req.clone().json();
     const model = reqData.model;
     const allContents = reqData.messages
-      ? reqData.messages.map((msg: { content: string; role: string }) => msg.content).join('')
+      ? reqData.messages
+          .map((msg: { content: string | [{ text?: string; type: string }]; role: string }) =>
+            Array.isArray(msg.content)
+              ? msg.content
+                  .map((content) =>
+                    content.text ? content.text : Array.from({ length: 500 }, () => 1),
+                  )
+                  .join('')
+              : msg.content,
+          )
+          .join('')
       : reqData.input || '';
     const isTools = !!reqData.tools;
     let token = 0;

@@ -51,7 +51,7 @@ const DataStyleModal = memo<DataStyleModalProps>(({ onOpenChange, open, width = 
       }),
       cache: 'no-store',
       headers: {
-        [LOBE_CHAT_ACCESS_CODE]: settings.token || '',
+        [LOBE_CHAT_ACCESS_CODE]: settings?.token || '',
       },
       method: 'POST',
     });

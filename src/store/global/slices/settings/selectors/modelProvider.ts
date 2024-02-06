@@ -5,7 +5,8 @@ import {
   GoogleProvider,
   LOBE_DEFAULT_MODEL_LIST,
   OpenAIProvider,
-  QwenProvider, // ZhiPuProvider,
+  QwenProvider,
+  ZhiPuProvider,
 } from '@/config/modelProviders';
 import { ChatModelCard, ModelProviderCard } from '@/types/llm';
 import { parseModelString } from '@/utils/parseModels';
@@ -102,7 +103,7 @@ const modelSelectList = (s: GlobalStore): ModelProviderCard[] => {
       chatModels,
     },
     // { ...azureModelList(s), enabled: enableAzure(s) },
-    // { ...ZhiPuProvider, enabled: enableZhipu(s) },
+    { ...ZhiPuProvider, enabled: enableZhipu(s) },
     { ...GoogleProvider, enabled: enableGoogle(s) },
     { ...BedrockProvider, enabled: enableBedrock(s) },
     { ...QwenProvider, enabled: enableBedrock(s) },

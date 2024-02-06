@@ -99,7 +99,7 @@ export const ModelItemRender = memo<ModelItemRenderProps>(({ showInfoTag = true,
                 tokens: numeral(model.tokens).format('0,0'),
               })}
             >
-              <Center className={styles.token}>{Math.floor(model.tokens / 1000)}K</Center>
+              <Center className={styles?.token}>{Math.floor(model.tokens / 1000)}K</Center>
             </Tooltip>
           )}
           {model.isCustom && (

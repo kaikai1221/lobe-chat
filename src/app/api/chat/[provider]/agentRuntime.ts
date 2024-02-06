@@ -92,8 +92,8 @@ class AgentRuntime {
   }
 
   private static initAzureOpenAI(payload: JWTPayload) {
-    const { AZURE_API_KEY, AZURE_API_VERSION, AZURE_ENDPOINT } = getServerConfig();
-    const apiKey = payload?.apiKey || AZURE_API_KEY;
+    const { AZURE_API_KEY, AZURE_API_VERSION, AZURE_ENDPOINT, OPENAI_API_KEY } = getServerConfig();
+    const apiKey = payload?.apiKey || AZURE_API_KEY || OPENAI_API_KEY;
     const endpoint = payload?.endpoint || AZURE_ENDPOINT;
     const apiVersion = payload?.azureApiVersion || AZURE_API_VERSION;
 
@@ -101,24 +101,25 @@ class AgentRuntime {
   }
 
   private static async initZhipu(payload: JWTPayload) {
-    const { ZHIPU_API_KEY } = getServerConfig();
-    const apiKey = payload?.apiKey || ZHIPU_API_KEY;
+    const { ZHIPU_API_KEY, OPENAI_API_KEY } = getServerConfig();
+    const apiKey = payload?.apiKey || ZHIPU_API_KEY || OPENAI_API_KEY;
 
     return LobeZhipuAI.fromAPIKey(apiKey);
   }
 
   private static initGoogle(payload: JWTPayload) {
-    const { GOOGLE_API_KEY } = getServerConfig();
-    const apiKey = payload?.apiKey || GOOGLE_API_KEY;
+    const { GOOGLE_API_KEY, OPENAI_API_KEY } = getServerConfig();
+    const apiKey = payload?.apiKey || GOOGLE_API_KEY || OPENAI_API_KEY!;
 
     return new LobeGoogleAI(apiKey);
   }
 
   private static initBedrock(payload: JWTPayload) {
-    const { AWS_SECRET_ACCESS_KEY, AWS_ACCESS_KEY_ID, AWS_REGION } = getServerConfig();
+    const { AWS_SECRET_ACCESS_KEY, AWS_ACCESS_KEY_ID, AWS_REGION, OPENAI_API_KEY } =
+      getServerConfig();
 
     let accessKeyId: string | undefined = AWS_ACCESS_KEY_ID;
-    let accessKeySecret: string | undefined = AWS_SECRET_ACCESS_KEY;
+    let accessKeySecret: string | undefined = AWS_SECRET_ACCESS_KEY || OPENAI_API_KEY!;
     let region = AWS_REGION;
     // if the payload has the api key, use user
     if (payload.apiKey) {

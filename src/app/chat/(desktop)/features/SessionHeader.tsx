@@ -41,12 +41,12 @@ const Header = memo(() => {
   //   <CountUp start={startValue} end={value} separator="," onStart={() => setStartValue(integral)} />
   // );
   const [setSettings] = useGlobalStore((s) => [s.setSettings]);
-  const { data, isLoading = true } = useSWR(settings.token ? '/api/user/info' : '', async () => {
+  const { data, isLoading = true } = useSWR(settings?.token ? '/api/user/info' : '', async () => {
     setStartValue(integral);
     const res = await fetch('/api/user/info', {
       cache: 'no-cache',
       headers: {
-        [LOBE_CHAT_ACCESS_CODE]: settings.token || '',
+        [LOBE_CHAT_ACCESS_CODE]: settings?.token || '',
       },
       method: 'GET',
     });

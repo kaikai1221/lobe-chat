@@ -11,7 +11,7 @@ import { useGlobalStore } from '@/store/global';
 import { modelProviderSelectors } from '@/store/global/selectors';
 import { useSessionStore } from '@/store/session';
 import { agentSelectors } from '@/store/session/selectors';
-import { LanguageModel , ModelProviderCard } from '@/types/llm';
+import { LanguageModel, ModelProviderCard } from '@/types/llm';
 
 const useStyles = createStyles(({ css, prefixCls }) => ({
   menu: css`
@@ -48,7 +48,7 @@ const ModelSwitch = memo(() => {
           key: model.id,
           label: <ModelItemRender {...model} />,
           onClick: () => {
-            updateAgentConfig({ model: model.id, provider: provider.id });
+            updateAgentConfig({ model: model.id, provider: 'openai' });
           },
         }));
 
@@ -68,22 +68,10 @@ const ModelSwitch = memo(() => {
     <Dropdown
       menu={{
         activeKey: model,
-        
-        
-        
-        
         className: styles.menu,
-        
-
-
-
-items,
-        // items: [
-//   { key: 'label', label: '带vision字样的模型可以识别图片', type: 'group' },
-//   ...modelList.map(({ name, displayName }) => ({ key: name, label: displayName })),
-// ],
-onClick: (e) => {
-          updateAgentConfig({ model: e.key as LanguageModel });
+        items,
+        onClick: (e) => {
+          updateAgentConfig({ model: e.key as LanguageModel, provider: 'openai' });
         },
         style: {
           maxHeight: 500,
