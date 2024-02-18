@@ -109,7 +109,7 @@ function HistoryMasonry(props: {
               <div>将删除以下图片，删除后无法恢复，请谨慎操作</div>
               <Image
                 placeholder
-                src={`https://wsrv.nl/?url=${data.imageUrl}&w=300&output=jpg&il`}
+                src={`https://wsrv.nl/?url=${encodeURIComponent(data.imageUrl)}&w=300&output=jpg&il`}
               />
             </>
           ),
@@ -302,7 +302,7 @@ function HistoryMasonry(props: {
                         'd2ergsujxocdzc.cloudfront.net',
                       ),
                     }}
-                    src={`https://wsrv.nl/?url=${content.imageUrl}&w=300&output=jpg&il`}
+                    src={`https://wsrv.nl/?url=${encodeURIComponent(content.imageUrl)}&w=300&output=jpg&il`}
                   />
                 </ImageGallery>
                 {content.progress === '100%' ? (
@@ -327,9 +327,9 @@ function HistoryMasonry(props: {
                               onLoad={() => masonry?.recalculate(true)}
                               placeholder
                               preview={{
-                                src: `https://wsrv.nl/?url=${item}&output=jpg&il`,
+                                src: `https://wsrv.nl/?url=${encodeURIComponent(item)}&output=jpg&il`,
                               }}
-                              src={`https://wsrv.nl/?url=${item}&w=60&output=jpg&il`}
+                              src={`https://wsrv.nl/?url=${encodeURIComponent(item)}&w=60&output=jpg&il`}
                               style={{ margin: '0 10px 0 0', width: '30px' }}
                               width={30}
                             />
