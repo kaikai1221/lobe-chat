@@ -651,7 +651,7 @@ export class UserDAL {
     });
   }
   static async editMjChat(data: Data) {
-    if (data.imageUrl) data.imageUrl = data.imageUrl.replace(/([#?])[^"']*/, '');
+    // if (data.imageUrl) data.imageUrl = data.imageUrl.replace(/([#?])[^"']*/, '');
     if (data.state) {
       return await client.chatHistory.upsert({
         create: {
