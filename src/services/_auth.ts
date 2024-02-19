@@ -98,7 +98,7 @@ export const createHeaderWithAuth = async (params?: AuthParams): Promise<Headers
   if (params?.provider) {
     payload = { ...payload, ...getProviderAuthPayload(params?.provider) };
   }
-  const accessCode = settingsSelectors?.token(useGlobalStore.getState());
+  const accessCode = useGlobalStore.getState().settings?.token || '';
   const token = await createAuthTokenWithPayload(payload);
   // eslint-disable-next-line no-undef
   return {

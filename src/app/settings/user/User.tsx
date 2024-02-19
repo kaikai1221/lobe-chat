@@ -148,7 +148,7 @@ const InvalidAccess = (props: { setUserInfo: (value: any) => void }) => {
     const data = await res.json();
     switch (data.status) {
       case serverStatus.success: {
-        setSettings({ token: data.signedToken?.token });
+        await setSettings({ token: data.signedToken?.token });
         localStorage.setItem('InvitationCode', '');
         const res = await fetch('/api/user/info', {
           cache: 'no-cache',
@@ -208,7 +208,7 @@ const InvalidAccess = (props: { setUserInfo: (value: any) => void }) => {
       const data = await res.json();
       switch (data.status) {
         case serverStatus.success: {
-          setSettings({ token: data.signedToken?.token });
+          await setSettings({ token: data.signedToken?.token });
           localStorage.setItem('InvitationCode', '');
           const res = await fetch('/api/user/info', {
             cache: 'no-cache',
