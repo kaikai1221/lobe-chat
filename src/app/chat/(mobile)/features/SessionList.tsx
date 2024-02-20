@@ -51,7 +51,7 @@ const Sessions = memo(() => {
                   剩余积分:
                   <Statistic
                     formatter={formatter}
-                    value={settings.integral || 0}
+                    value={settings?.integral || 0}
                     valueStyle={{ fontSize: '14px' }}
                   />
                 </div>
