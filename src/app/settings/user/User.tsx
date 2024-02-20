@@ -39,8 +39,6 @@ import { FORM_STYLE } from '@/const/layoutTokens';
 import { FormAction } from '@/features/Conversation/Error/style';
 import { serverStatus } from '@/prismaClient/serverStatus';
 import { useGlobalStore } from '@/store/global';
-import { useSwitchSideBarOnInit } from '@/store/global/hooks/useSwitchSettingsOnInit';
-import { SettingsTabs } from '@/store/global/initialState';
 import { settingsSelectors } from '@/store/global/selectors';
 
 enum Tab {
@@ -148,7 +146,7 @@ const InvalidAccess = (props: { setUserInfo: (value: any) => void }) => {
     const data = await res.json();
     switch (data.status) {
       case serverStatus.success: {
-        setSettings({ token: data.signedToken?.token });
+        await setSettings({ token: data.signedToken?.token });
         localStorage.setItem('InvitationCode', '');
         const res = await fetch('/api/user/info', {
           cache: 'no-cache',
@@ -208,7 +206,7 @@ const InvalidAccess = (props: { setUserInfo: (value: any) => void }) => {
       const data = await res.json();
       switch (data.status) {
         case serverStatus.success: {
-          setSettings({ token: data.signedToken?.token });
+          await setSettings({ token: data.signedToken?.token });
           localStorage.setItem('InvitationCode', '');
           const res = await fetch('/api/user/info', {
             cache: 'no-cache',
@@ -548,7 +546,6 @@ const User = memo(() => {
   const settings = useGlobalStore(settingsSelectors.currentSettings, isEqual);
   const [isSubmitting, setSubmitting] = useState(false);
   const [redeemCode, setSedeemCode] = useState('');
-  useSwitchSideBarOnInit(SettingsTabs.User);
   const logout = () => {
     setSettings({ token: '' });
     setUserInfo(null);

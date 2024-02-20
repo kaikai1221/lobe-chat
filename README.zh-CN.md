@@ -10,7 +10,7 @@
 
 LobeChat 是开源的高性能聊天机器人框架，支持语音合成、多模态、可扩展的（[Function Call][fc-link]）插件系统。<br/> 支持一键免费部署私人 ChatGPT/LLM 网页应用程序。
 
-[English](./README.md) · **简体中文** · [更新日志](./CHANGELOG.md) · [文档][github-wiki-link] · [报告问题][github-issues-link] · [请求功能][github-issues-link]
+[English](./README.md) · **简体中文** · [更新日志](./CHANGELOG.md) · [文档][github-document-link] · [报告问题][github-issues-link] · [请求功能][github-issues-link]
 
 <!-- SHIELD GROUP -->
 
@@ -155,7 +155,7 @@ LobeChat 支持文字转语音（Text-to-Speech，TTS）和语音转文字（Spe
 LobeChat 的插件生态系统是其核心功能的重要扩展，它极大地增强了 ChatGPT 的实用性和灵活性。通过利用插件，ChatGPT 能够实现实时信息的获取和处理，例如自动获取最新新闻头条，为用户提供即时且相关的资讯。
 此外，这些插件不仅局限于新闻聚合，还可以扩展到其他实用的功能，如快速检索文档、获取电商平台数据、以及其他各式各样的第三方服务。
 
-> 通过 Wiki 了解更多 [📘 插件使用](https://github.com/lobehub/lobe-chat/wiki/Plugins.zh-CN)
+> 通过文档了解更多 [📘 插件使用](https://chat-docs.lobehub.com/zh/usage/plugins/basic)
 
 <video controls src="https://github.com/lobehub/lobe-chat/assets/28616219/f29475a3-f346-4196-a435-41a6373ab9e2" muted="false"></video>
 
@@ -177,7 +177,7 @@ LobeChat 的插件生态系统是其核心功能的重要扩展，它极大地�
 | [TokenInsights](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **feednews** on **2024-01-27**</sup> | 获取实时加密货币价格，BTC，ETH，BNB 和最新见解。最新的币新闻和空投机会。<br/>`加密货币` `btc` `eth` `bnb`                                     |
 | [哔哩哔哩](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **LobeHub** on **2024-01-27**</sup>       | 通过关键词视频搜索、回放访问、互动弹幕、热门视频推荐和热搜洞察等功能，深入体验哔哩哔哩丰富的内容，尽在您的指尖。<br/>`视频` `哔哩哔哩` `搜索` |
 
-> 📊 Total plugins: [<kbd>**62**</kbd>](https://github.com/lobehub/lobe-chat-plugins)
+> 📊 Total plugins: [<kbd>**61**</kbd>](https://github.com/lobehub/lobe-chat-plugins)
 
  <!-- PLUGIN LIST -->
 
@@ -205,16 +205,14 @@ LobeChat 的插件生态系统是其核心功能的重要扩展，它极大地�
 
 <!-- AGENT LIST -->
 
-| 最近新增                                                                                                                                                                                                                                                                                                                 | 助手说明                                                                                                                                      |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| [数据库专家](https://chat-preview.lobehub.com/market?agent=dba)<br/><sup>By **[xuzhen1994](https://github.com/xuzhen1994)** on **2024-02-03**</sup>                                                                                                                                                                      | 角色：数据库专家                                                                                                                              |
-| 专长：具备数据库方面的专业知识。关系型数据库，比如 MySQL、PostgreSQL、Oracle 等的工作原理、优缺点、适用场景以及最佳实践。非关系型数据库，比如 MongoDB、Cassandra、Redis 等的特点和使用场景。列式数据库，例如 ClickHouse、Vertica 等的优势和适用情况。分布式数据库系统，例如 Doris、HBase、CockroachDB 等的原理和应用等。 |                                                                                                                                               |
-| 职责：提供关于数据库设计范式、索引优化、查询性能调优、数据安全、备份与恢复等方面的专业建议。另外还有对于数据库集群部署、容灾设计、数据迁移等高级主题的指导。<br/>`数据库` `dba` `mysql` `clickhouse` `doris` `mongo-db` `oracle`                                                                                         |                                                                                                                                               |
-| [演示向导](https://chat-preview.lobehub.com/market?agent=word)<br/><sup>By **[MYSeaIT](https://github.com/MYSeaIT)** on **2024-02-03**</sup>                                                                                                                                                                             | Word 应用演示制作机器人：帮助在 Microsoft Word 中创建令人印象深刻和专业的应用程序演示。<br/>`应用程序演示` `微软-word` `机器人` `辅助` `模板` |
-| [SagePathfinder](https://chat-preview.lobehub.com/market?agent=sage-pathfinder)<br/><sup>By **[Ajasra](https://github.com/Ajasra)** on **2024-01-31**</sup>                                                                                                                                                              | 专注于斯多葛主义、深度反思和战略性提问的个人成长教练专家。<br/>`个人成长` `教练` `反思` `目标设定` `幸福感`                                   |
-| [变量命名大师](https://chat-preview.lobehub.com/market?agent=variable-naming-assistant)<br/><sup>By **[undefinedZNN](https://github.com/undefinedZNN)** on **2024-01-31**</sup>                                                                                                                                          | 精通编程变量命名，提供多个建议并解释使用场景。<br/>`变量命名` `编程` `建议`                                                                   |
+| 最近新增                                                                                                                                                   | 助手说明                                                                                                              |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| [产品文案撰写](https://chat-preview.lobehub.com/market?agent=copywriting)<br/><sup>By **[pllz7](https://github.com/pllz7)** on **2024-02-14**</sup>        | 精通有说服力的文案撰写和消费者心理学<br/>`电子商务`                                                                   |
+| [私域运营专家](https://chat-preview.lobehub.com/market?agent=gl-syyy)<br/><sup>By **[guling-io](https://github.com/guling-io)** on **2024-02-14**</sup>    | 擅长私域运营、引流、承接、转化和内容策划，熟悉营销理论和相关经典著作。<br/>`私域运营` `引流` `承接` `转化` `内容策划` |
+| [自媒体运营专家](https://chat-preview.lobehub.com/market?agent=gl-zmtyy)<br/><sup>By **[guling-io](https://github.com/guling-io)** on **2024-02-14**</sup> | 擅长自媒体运营与内容创作<br/>`自媒体运营` `社交媒体` `内容创作` `粉丝增长` `品牌推广`                                 |
+| [产品描述](https://chat-preview.lobehub.com/market?agent=product-description)<br/><sup>By **[pllz7](https://github.com/pllz7)** on **2024-02-14**</sup>    | 打造引人入胜的产品描述，提升电子商务销售业绩<br/>`电子商务`                                                           |
 
-> 📊 Total agents: [<kbd>**149**</kbd> ](https://github.com/lobehub/lobe-chat-agents)
+> 📊 Total agents: [<kbd>**177**</kbd> ](https://github.com/lobehub/lobe-chat-agents)
 
  <!-- AGENT LIST -->
 
@@ -617,7 +615,7 @@ This project is [MIT](./LICENSE) licensed.
 [codespaces-link]: https://codespaces.new/lobehub/lobe-chat
 [codespaces-shield]: https://github.com/codespaces/badge.svg
 [deploy-button-image]: https://vercel.com/button
-[deploy-link]: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Flobehub%2Flobe-chat&env=OPENAI_API_KEY&envDescription=Find%20your%20OpenAI%20API%20Key%20by%20click%20the%20right%20Learn%20More%20button.&envLink=https%3A%2F%2Fplatform.openai.com%2Faccount%2Fapi-keys&project-name=lobe-chat&repository-name=lobe-chat
+[deploy-link]: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Flobehub%2Flobe-chat&env=OPENAI_API_KEY,ACCESS_CODE&envDescription=Find%20your%20OpenAI%20API%20Key%20by%20click%20the%20right%20Learn%20More%20button.%20%7C%20Access%20Code%20can%20protect%20your%20website&envLink=https%3A%2F%2Fplatform.openai.com%2Faccount%2Fapi-keys&project-name=lobe-chat&repository-name=lobe-chat
 [deploy-on-sealos-button-image]: https://raw.githubusercontent.com/labring-actions/templates/main/Deploy-on-Sealos.svg
 [deploy-on-sealos-link]: https://cloud.sealos.io/?openapp=system-template%3FtemplateName%3Dlobe-chat
 [deploy-on-zeabur-button-image]: https://zeabur.com/button.svg
@@ -640,6 +638,7 @@ This project is [MIT](./LICENSE) licensed.
 [github-action-test-shield]: https://img.shields.io/github/actions/workflow/status/lobehub/lobe-chat/test.yml?label=test&labelColor=black&logo=githubactions&logoColor=white&style=flat-square
 [github-contributors-link]: https://github.com/lobehub/lobe-chat/graphs/contributors
 [github-contributors-shield]: https://img.shields.io/github/contributors/lobehub/lobe-chat?color=c4f042&labelColor=black&style=flat-square
+[github-document-link]: https://chat-docs.lobehub.com/zh
 [github-forks-link]: https://github.com/lobehub/lobe-chat/network/members
 [github-forks-shield]: https://img.shields.io/github/forks/lobehub/lobe-chat?color=8ae8ff&labelColor=black&style=flat-square
 [github-issues-link]: https://github.com/lobehub/lobe-chat/issues
@@ -655,7 +654,6 @@ This project is [MIT](./LICENSE) licensed.
 [github-stars-shield]: https://img.shields.io/github/stars/lobehub/lobe-chat?color=ffcb47&labelColor=black&style=flat-square
 [github-trending-shield]: https://trendshift.io/api/badge/repositories/2256
 [github-trending-url]: https://trendshift.io/repositories/2256
-[github-wiki-link]: https://github.com/lobehub/lobe-chat/wiki
 [issues-link]: https://img.shields.io/github/issues/lobehub/lobe-chat.svg?style=flat
 [lobe-assets-github]: https://github.com/lobehub/lobe-assets
 [lobe-chat-plugins]: https://github.com/lobehub/lobe-chat-plugins

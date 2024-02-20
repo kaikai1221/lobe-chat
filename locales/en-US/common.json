@@ -2,6 +2,7 @@
   "ModelSelect": {
     "featureTag": {
       "custom": "Custom model, by default, supports both function call and visual recognition. Please verify the availability of the above capabilities based on actual situations.",
+      "file": "This model supports file upload for reading and recognition",
       "functionCall": "This model supports function call.",
       "tokens": "This model supports a maximum of {{tokens}} tokens per session.",
       "vision": "This model supports visual recognition."
@@ -26,6 +27,7 @@
   "defaultAgent": "Default Agent",
   "defaultSession": "Default Agent",
   "delete": "Delete",
+  "document": "User Manual",
   "duplicate": "Create Duplicate",
   "edit": "Edit",
   "export": "Export Configuration",
@@ -101,12 +103,15 @@
     "azure": "Azure",
     "bedrock": "AWS Bedrock",
     "google": "Google",
+    "moonshot": "Moonshot AI",
+    "ollama": "Ollama",
     "oneapi": "One API",
     "openai": "OpenAI",
     "zhipu": "Zhipu AI",
     "qwen": "阿里云"
   },
   "noDescription": "No description available",
+  "oauth": "SSO Login",
   "ok": "OK",
   "password": "Password",
   "pin": "Pin",

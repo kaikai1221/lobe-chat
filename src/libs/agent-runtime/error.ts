@@ -1,16 +1,15 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix */
-
 // ******* Runtime Biz Error ******* //
 export const AgentRuntimeErrorType = {
   AgentRuntimeError: 'AgentRuntimeError', // Agent Runtime 模块运行时错误
   LocationNotSupportError: 'LocationNotSupportError',
-
-  OpenAIBizError: 'OpenAIBizError', // OpenAI 返回的业务错误
+  InsufficientBalance: 'InsufficientBalance', // 余额不足
+  OpenAIBizError: 'OpenAIBizError',
 
   NoOpenAIAPIKey: 'NoOpenAIAPIKey',
 
   InvalidAzureAPIKey: 'InvalidAzureAPIKey',
-  AzureBizError: 'AzureBizError', // Azure 返回的业务错误
+  AzureBizError: 'AzureBizError',
 
   InvalidZhipuAPIKey: 'InvalidZhipuAPIKey',
   ZhipuBizError: 'ZhipuBizError',
@@ -19,7 +18,13 @@ export const AgentRuntimeErrorType = {
   GoogleBizError: 'GoogleBizError',
 
   InvalidBedrockCredentials: 'InvalidBedrockCredentials',
-  BedrockBizError: 'BedrockBizError', // Bedrock 返回的业务错误
+  BedrockBizError: 'BedrockBizError',
+
+  InvalidMoonshotAPIKey: 'InvalidMoonshotAPIKey',
+  MoonshotBizError: 'MoonshotBizError',
+
+  InvalidOllamaArgs: 'InvalidOllamaArgs',
+  OllamaBizError: 'OllamaBizError',
 } as const;
 
 export type ILobeAgentRuntimeErrorType =

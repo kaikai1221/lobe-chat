@@ -2,6 +2,7 @@
   "ModelSelect": {
     "featureTag": {
       "custom": "Aangepast model, standaard ingesteld om zowel functieoproep als visuele herkenning te ondersteunen. Verifieer de beschikbaarheid van deze mogelijkheden op basis van de werkelijke situatie.",
+      "file": "Dit model ondersteunt het uploaden van bestanden voor lezen en herkenning",
       "functionCall": "Dit model ondersteunt functieoproep (Function Call).",
       "tokens": "Dit model ondersteunt maximaal {{tokens}} tokens per sessie.",
       "vision": "Dit model ondersteunt visuele herkenning."
@@ -26,6 +27,7 @@
   "defaultAgent": "Standaard assistent",
   "defaultSession": "Standaard assistent",
   "delete": "Verwijderen",
+  "document": "Gebruiksaanwijzing",
   "duplicate": "Dupliceren",
   "edit": "Bewerken",
   "export": "Exporteren",
@@ -101,12 +103,15 @@
     "azure": "Azure",
     "bedrock": "AWS Bedrock",
     "google": "Google",
+    "moonshot": "Moonshot AI",
+    "ollama": "Ollama",
     "oneapi": "One API",
     "openai": "OpenAI",
     "zhipu": "智谱AI",
     "qwen": "阿里云"
   },
   "noDescription": "Geen beschrijving beschikbaar",
+  "oauth": "SSO inloggen",
   "ok": "Oké",
   "password": "Wachtwoord",
   "pin": "Vastzetten",

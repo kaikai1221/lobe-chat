@@ -76,6 +76,30 @@
         "title": "Clave API"
       }
     },
+    "Moonshot": {
+      "title": "Lado oscuro de la luna",
+      "token": {
+        "desc": "Ingrese la clave API de Moonshot AI",
+        "placeholder": "Clave API de Moonshot AI",
+        "title": "Clave API"
+      }
+    },
+    "Ollama": {
+      "checker": {
+        "desc": "Verifica si la dirección del proxy está correctamente escrita"
+      },
+      "customModelName": {
+        "desc": "Agrega modelos personalizados, separados por comas (,)",
+        "placeholder": "vicuña,llama,codellama,llama2:13b-text",
+        "title": "Nombre del modelo personalizado"
+      },
+      "endpoint": {
+        "desc": "Ingresa la dirección del proxy de la interfaz de Ollama, déjalo en blanco si no se especifica localmente",
+        "placeholder": "http://127.0.0.1:11434/v1",
+        "title": "Dirección del proxy de la interfaz"
+      },
+      "title": "Ollama"
+    },
     "OpenAI": {
       "azureApiVersion": {
         "desc": "Versión de la API de Azure, sigue el formato YYYY-MM-DD, consulta la [última versión](https://learn.microsoft.com/es-es/azure/ai-services/openai/reference#chat-completions)",
@@ -254,6 +278,22 @@
       "desc": "El administrador ha habilitado el acceso cifrado",
       "placeholder": "Ingrese la contraseña de acceso",
       "title": "Contraseña de acceso"
+    },
+    "oauth": {
+      "info": {
+        "desc": "Sesión iniciada",
+        "title": "Información de la cuenta"
+      },
+      "signin": {
+        "action": "Iniciar sesión",
+        "desc": "Inicia sesión con SSO para desbloquear la aplicación",
+        "title": "Iniciar sesión en la cuenta"
+      },
+      "signout": {
+        "action": "Cerrar sesión",
+        "confirm": "¿Confirmar cierre de sesión?",
+        "success": "Sesión cerrada con éxito"
+      }
     },
     "title": "Configuración del sistema"
   },

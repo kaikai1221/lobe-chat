@@ -7,6 +7,7 @@ export interface OpenAIConfig {
    * custom mode name for fine-tuning or openai like model
    */
   customModelName?: string;
+  enabled: boolean;
   endpoint?: string;
   /**
    * @deprecated
@@ -34,6 +35,11 @@ export interface QwenConfig {
   endpoint?: string;
 }
 
+export interface MoonshotConfig {
+  apiKey?: string;
+  enabled: boolean;
+}
+
 export interface GoogleConfig {
   apiKey?: string;
   enabled: boolean;
@@ -47,10 +53,18 @@ export interface AWSBedrockConfig {
   secretAccessKey?: string;
 }
 
+export interface OllamaConfig {
+  customModelName?: string;
+  enabled?: boolean;
+  endpoint?: string;
+}
+
 export interface GlobalLLMConfig {
   azure: AzureOpenAIConfig;
   bedrock: AWSBedrockConfig;
   google: GoogleConfig;
+  moonshot: MoonshotConfig;
+  ollama: OllamaConfig;
   openAI: OpenAIConfig;
   qwen: QwenConfig;
   zhipu: ZhiPuConfig;

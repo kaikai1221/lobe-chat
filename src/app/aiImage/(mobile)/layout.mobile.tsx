@@ -5,7 +5,6 @@ import { PropsWithChildren } from 'react';
 import { Flexbox } from 'react-layout-kit';
 
 import AppLayoutMobile from '@/layout/AppLayout.mobile';
-import { useSwitchSideBarOnInit } from '@/store/global';
 import { SidebarTabKey } from '@/store/global/initialState';
 
 import ActionPanel from '../(desktop)/features/ActionPanel';
@@ -32,11 +31,10 @@ const AIImageLayout = ({
   isGenerating,
   setGenerating,
 }: PropsWithChildren & { isGenerating: boolean; setGenerating: (data: boolean) => void }) => {
-  useSwitchSideBarOnInit(SidebarTabKey.AIImage);
   const { styles } = useStyles();
 
   return (
-    <AppLayoutMobile navBar={<Header />} showTabBar>
+    <AppLayoutMobile navBar={<Header />} showTabBar tabBarKey={SidebarTabKey.AIImage}>
       <ActionPanel isGenerating={isGenerating} mobile setGenerating={setGenerating} />
       <p className={styles.title}>历史记录</p>
       <p className={styles.description}>记录只保留30天，请及时保存</p>

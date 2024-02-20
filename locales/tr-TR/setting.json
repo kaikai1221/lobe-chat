@@ -76,6 +76,30 @@
         "title": "API Anahtarı"
       }
     },
+    "Moonshot": {
+      "title": "月球背面",
+      "token": {
+        "desc": "Moonshot AI 的 API 密钥",
+        "placeholder": "Moonshot AI API 密钥",
+        "title": "API 密钥"
+      }
+    },
+    "Ollama": {
+      "checker": {
+        "desc": "Proxy adresinin doğru şekilde doldurulup doldurulmadığını test edin"
+      },
+      "customModelName": {
+        "desc": "Özel model ekleyin, birden fazla model virgül (,) ile ayrılır",
+        "placeholder": "vicuna,llama,codellama,llama2:13b-text",
+        "title": "Özel Model Adı"
+      },
+      "endpoint": {
+        "desc": "Ollama arayüzü proxy adresini girin, yerel olarak özel bir adres belirtilmemişse boş bırakın",
+        "placeholder": "http://127.0.0.1:11434/v1",
+        "title": "Proxy Adresi"
+      },
+      "title": "Ollama"
+    },
     "OpenAI": {
       "azureApiVersion": {
         "desc": "Azure için API sürümü, YYYY-MM-DD formatını takip eder, [en son sürümü kontrol edin](https://learn.microsoft.com/en-us/azure/ai-services/openai/reference#chat-completions)",
@@ -254,6 +278,22 @@
       "desc": "Yönetici tarafından şifreleme erişimi etkinleştirildi",
       "placeholder": "Erişim şifresini girin",
       "title": "Erişim Şifresi"
+    },
+    "oauth": {
+      "info": {
+        "desc": "Oturum açıldı",
+        "title": "Hesap Bilgisi"
+      },
+      "signin": {
+        "action": "Oturum aç",
+        "desc": "Uygulamayı kilidini açmak için SSO ile oturum açın",
+        "title": "Hesaba Giriş Yap"
+      },
+      "signout": {
+        "action": "Oturumu kapat",
+        "confirm": "Çıkış yapmak istediğinize emin misiniz?",
+        "success": "Oturum kapatma başarılı"
+      }
     },
     "title": "Sistem Ayarları"
   },

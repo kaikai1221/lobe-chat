@@ -8,7 +8,7 @@ import { FC, memo, useState } from 'react';
 import AgentCard from '@/app/aiImage/features/AgentCard';
 import MidTem from '@/app/aiImage/features/MidTem';
 import ResponsiveIndex from '@/components/ResponsiveIndex';
-import { useEffectAfterGlobalHydrated } from '@/store/global';
+import { useEffectAfterGlobalHydrated } from '@/store/global/hooks/useEffectAfterHydrated';
 
 import Loading from '../features/AgentCard/Loading';
 import Index from '../index';
@@ -21,9 +21,7 @@ export default memo(() => {
   const [isGenerating, setGenerating] = useState(false);
   const [showType, setShowType] = useState(2);
   useEffectAfterGlobalHydrated(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 200);
+    setLoading(false);
   });
 
   return (

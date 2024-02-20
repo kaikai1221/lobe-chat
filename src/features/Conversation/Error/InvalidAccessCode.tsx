@@ -14,7 +14,9 @@ import { useGlobalStore } from '@/store/global';
 import { ErrorActionContainer, FormAction } from './style';
 
 enum Tab {
+  Api = 'api',
   Code = 'code',
+  Oauth = 'oauth',
   Password = 'password',
 }
 interface InvalidAccessCodeProps {
@@ -32,6 +34,8 @@ const InvalidAccessCode = memo<InvalidAccessCodeProps>(({ id }) => {
   const [logining, setLogining] = useState(false);
   const [password, setPassword] = useState('');
   const [setSettings] = useGlobalStore((s) => [s.setSettings]);
+  // const isEnabledOAuth = useGlobalStore(commonSelectors.enabledOAuthSSO);
+  // const defaultTab = isEnabledOAuth ? Tab.Oauth : Tab.Password;
 
   const [resend, deleteMessage] = useChatStore((s) => [s.resendMessage, s.deleteMessage]);
   useEffect(() => {
@@ -111,7 +115,7 @@ const InvalidAccessCode = memo<InvalidAccessCodeProps>(({ id }) => {
     switch (data.status) {
       case serverStatus.success: {
         message.success('登陆成功');
-        setSettings({ token: data.signedToken?.token });
+        await setSettings({ token: data.signedToken?.token });
         resend(id);
         deleteMessage(id);
         localStorage.setItem('InvitationCode', '');
@@ -162,11 +166,9 @@ const InvalidAccessCode = memo<InvalidAccessCodeProps>(({ id }) => {
       switch (data.status) {
         case serverStatus.success: {
           message.success('登陆成功');
-          setSettings({ token: data.signedToken?.token });
-          setTimeout(() => {
-            resend(id);
-            deleteMessage(id);
-          }, 100);
+          await setSettings({ token: data.signedToken?.token });
+          resend(id);
+          deleteMessage(id);
           localStorage.setItem('InvitationCode', '');
           break;
         }

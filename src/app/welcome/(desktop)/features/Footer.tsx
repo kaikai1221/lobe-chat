@@ -5,10 +5,12 @@ import { useTheme } from 'antd-style';
 import { BookmarkPlus } from 'lucide-react';
 import Image from 'next/image';
 import { memo, useState } from 'react';
+// import { useTranslation } from 'react-i18next';
 import { Flexbox } from 'react-layout-kit';
 
 const Footer = memo(() => {
   const theme = useTheme();
+  // const { t } = useTranslation('common');
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <Flexbox align={'center'} horizontal justify={'space-between'} style={{ padding: 16 }}>
@@ -36,9 +38,9 @@ const Footer = memo(() => {
         </Modal>
         {/* <ActionIcon
           icon={Book}
-          onClick={() => window.open(WIKI, '__blank')}
+          onClick={() => window.open(DOCUMENTS, '__blank')}
           size={'site'}
-          title={'Wiki'}
+          title={t('document')}
         />
         <ActionIcon
           icon={Github}

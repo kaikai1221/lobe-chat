@@ -1,8 +1,9 @@
 import { LOBE_CHAT_ACCESS_CODE } from '@/const/fetch';
 import { createHeaderWithOpenAI } from '@/services/_header';
-import { OPENAI_URLS } from '@/services/_url';
 import { useGlobalStore } from '@/store/global';
 import { OpenAIImagePayload } from '@/types/openai/image';
+
+import { API_ENDPOINTS } from './_url';
 
 interface FetchOptions {
   signal?: AbortSignal | undefined;
@@ -11,7 +12,7 @@ interface FetchOptions {
 class ImageGenerationService {
   async generateImage(params: Omit<OpenAIImagePayload, 'model' | 'n'>, options?: FetchOptions) {
     const payload: OpenAIImagePayload = { ...params, model: 'dall-e-3', n: 1 };
-    const res = await fetch(OPENAI_URLS.images, {
+    const res = await fetch(API_ENDPOINTS.images, {
       body: JSON.stringify(payload),
       headers: createHeaderWithOpenAI({ 'Content-Type': 'application/json' }),
       method: 'POST',

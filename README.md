@@ -11,7 +11,7 @@
 LobeChat is an open-source, high-performance chatbot framework<br/>that supports speech synthesis, multimodal, and extensible ([Function Call][fc-link]) plugin system. <br/>
 Supports one-click free deployment of your private ChatGPT/LLM web application.
 
-**English** · [简体中文](./README.zh-CN.md) · [Changelog](./CHANGELOG.md) · [Wiki][github-wiki-link] · [Report Bug][github-issues-link] · [Request Feature][github-issues-link]
+**English** · [简体中文](./README.zh-CN.md) · [Changelog](./CHANGELOG.md) · [Documents][github-document-link] · [Report Bug][github-issues-link] · [Request Feature][github-issues-link]
 
 <!-- SHIELD GROUP -->
 
@@ -169,7 +169,7 @@ such as automatically fetching the latest news headlines to provide users with i
 Moreover, these plugins are not limited to news aggregation but can also extend to other practical functions, such as quick document retrieval,
 e-commerce platform data access, and various third-party services.
 
-> Learn More in [📘 Plugin Usage](https://github.com/lobehub/lobe-chat/wiki/Plugins)
+> Learn More in [📘 Plugin Usage](https://chat-docs.lobehub.com/en/usage/plugins/basic)
 
 <video controls src="https://github.com/lobehub/lobe-chat/assets/28616219/f29475a3-f346-4196-a435-41a6373ab9e2" muted="false"></video>
 
@@ -193,7 +193,7 @@ e-commerce platform data access, and various third-party services.
 | [TokenInsights](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **feednews** on **2024-01-27**</sup> | Get realtime crypto price, BTC, ETH, BNB, and the latest insights.The latest coin news and airdrop opportunities.<br/>`crypto` `btc` `eth` `bnb`                                                                                |
 | [Bilibili](https://chat-preview.lobehub.com/settings/agent)<br/><sup>By **LobeHub** on **2024-01-27**</sup>       | Dive into Bilibili's vast content with features like keyword video search, replay access, interactive danmaku, trending video recommendations, and hot-search insights, all at your fingertips.<br/>`video` `bilibili` `search` |
 
-> 📊 Total plugins: [<kbd>**62**</kbd>](https://github.com/lobehub/lobe-chat-plugins)
+> 📊 Total plugins: [<kbd>**61**</kbd>](https://github.com/lobehub/lobe-chat-plugins)
 
  <!-- PLUGIN LIST -->
 
@@ -225,16 +225,14 @@ Our marketplace is not just a showcase platform but also a collaborative space. 
 
 <!-- AGENT LIST -->
 
-| Recent Submits                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Description                                                                                                                                                                                     |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Database Expert](https://chat-preview.lobehub.com/market?agent=dba)<br/><sup>By **[xuzhen1994](https://github.com/xuzhen1994)** on **2024-02-03**</sup>                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Role: Database Expert                                                                                                                                                                           |
-| Expertise: Possesses professional knowledge in the field of databases. Understands the working principles, advantages and disadvantages, applicable scenarios, and best practices of relational databases such as MySQL, PostgreSQL, Oracle, etc. Also familiar with the characteristics and usage scenarios of non-relational databases like MongoDB, Cassandra, Redis, as well as the advantages and applicable situations of columnar databases such as ClickHouse, Vertica, etc. Additionally, has knowledge of distributed database systems like Doris, HBase, CockroachDB, including their principles and applications. |                                                                                                                                                                                                 |
-| Responsibilities: Provides professional advice on database design paradigms, index optimization, query performance tuning, data security, backup and recovery, and advanced topics such as database cluster deployment, disaster recovery design, and data migration.<br/>`database` `dba` `mysql` `clickhouse` `doris` `mongo-db` `oracle`                                                                                                                                                                                                                                                                                   |                                                                                                                                                                                                 |
-| [Presentation Wizard](https://chat-preview.lobehub.com/market?agent=word)<br/><sup>By **[MYSeaIT](https://github.com/MYSeaIT)** on **2024-02-03**</sup>                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | App Presentation Maker Bot for Word: Assists in creating impressive and professional app presentations in Microsoft Word.<br/>`app-presentation` `microsoft-word` `bot` `assistance` `template` |
-| [SagePathfinder](https://chat-preview.lobehub.com/market?agent=sage-pathfinder)<br/><sup>By **[Ajasra](https://github.com/Ajasra)** on **2024-01-31**</sup>                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Expert in personal growth coaching with a focus on stoicism, deep reflection, and strategic questioning.<br/>`personal-growth` `coaching` `reflection` `goal-setting` `well-being`              |
-| [Variable Naming Master](https://chat-preview.lobehub.com/market?agent=variable-naming-assistant)<br/><sup>By **[undefinedZNN](https://github.com/undefinedZNN)** on **2024-01-31**</sup>                                                                                                                                                                                                                                                                                                                                                                                                                                     | Master the art of programming variable naming, providing multiple suggestions and explaining their usage scenarios.<br/>`variable-naming` `programming` `suggestions`                           |
+| Recent Submits                                                                                                                                                              | Description                                                                                                                                                                                                                                                                          |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [Product Copywriting](https://chat-preview.lobehub.com/market?agent=copywriting)<br/><sup>By **[pllz7](https://github.com/pllz7)** on **2024-02-14**</sup>                  | Expert in persuasive copywriting and consumer psychology<br/>`ecommerce`                                                                                                                                                                                                             |
+| [Private Domain Operations Expert](https://chat-preview.lobehub.com/market?agent=gl-syyy)<br/><sup>By **[guling-io](https://github.com/guling-io)** on **2024-02-14**</sup> | Specializing in private domain operations, traffic acquisition, user retention, conversion, and content planning. Familiar with marketing theories and related classic works.<br/>`private-domain-operations` `traffic-acquisition` `user-retention` `conversion` `content-planning` |
+| [Self-Media Operation Expert](https://chat-preview.lobehub.com/market?agent=gl-zmtyy)<br/><sup>By **[guling-io](https://github.com/guling-io)** on **2024-02-14**</sup>     | Specialized in self-media operation and content creation<br/>`self-media-operation` `social-media` `content-creation` `fan-growth` `brand-promotion`                                                                                                                                 |
+| [Product Description](https://chat-preview.lobehub.com/market?agent=product-description)<br/><sup>By **[pllz7](https://github.com/pllz7)** on **2024-02-14**</sup>          | Craft compelling product descriptions that boost e-commerce sales<br/>`ecommerce`                                                                                                                                                                                                    |
 
-> 📊 Total agents: [<kbd>**149**</kbd> ](https://github.com/lobehub/lobe-chat-agents)
+> 📊 Total agents: [<kbd>**177**</kbd> ](https://github.com/lobehub/lobe-chat-agents)
 
  <!-- AGENT LIST -->
 
@@ -601,7 +599,7 @@ This project is [MIT](./LICENSE) licensed.
 [codespaces-link]: https://codespaces.new/lobehub/lobe-chat
 [codespaces-shield]: https://github.com/codespaces/badge.svg
 [deploy-button-image]: https://vercel.com/button
-[deploy-link]: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Flobehub%2Flobe-chat&env=OPENAI_API_KEY&envDescription=Find%20your%20OpenAI%20API%20Key%20by%20click%20the%20right%20Learn%20More%20button.&envLink=https%3A%2F%2Fplatform.openai.com%2Faccount%2Fapi-keys&project-name=lobe-chat&repository-name=lobe-chat
+[deploy-link]: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Flobehub%2Flobe-chat&env=OPENAI_API_KEY,ACCESS_CODE&envDescription=Find%20your%20OpenAI%20API%20Key%20by%20click%20the%20right%20Learn%20More%20button.%20%7C%20Access%20Code%20can%20protect%20your%20website&envLink=https%3A%2F%2Fplatform.openai.com%2Faccount%2Fapi-keys&project-name=lobe-chat&repository-name=lobe-chat
 [deploy-on-sealos-button-image]: https://raw.githubusercontent.com/labring-actions/templates/main/Deploy-on-Sealos.svg
 [deploy-on-sealos-link]: https://cloud.sealos.io/?openapp=system-template%3FtemplateName%3Dlobe-chat
 [deploy-on-zeabur-button-image]: https://zeabur.com/button.svg
@@ -624,6 +622,7 @@ This project is [MIT](./LICENSE) licensed.
 [github-action-test-shield]: https://img.shields.io/github/actions/workflow/status/lobehub/lobe-chat/test.yml?label=test&labelColor=black&logo=githubactions&logoColor=white&style=flat-square
 [github-contributors-link]: https://github.com/lobehub/lobe-chat/graphs/contributors
 [github-contributors-shield]: https://img.shields.io/github/contributors/lobehub/lobe-chat?color=c4f042&labelColor=black&style=flat-square
+[github-document-link]: https://chat-docs.lobehub.com/en
 [github-forks-link]: https://github.com/lobehub/lobe-chat/network/members
 [github-forks-shield]: https://img.shields.io/github/forks/lobehub/lobe-chat?color=8ae8ff&labelColor=black&style=flat-square
 [github-issues-link]: https://github.com/lobehub/lobe-chat/issues
@@ -639,7 +638,6 @@ This project is [MIT](./LICENSE) licensed.
 [github-stars-shield]: https://img.shields.io/github/stars/lobehub/lobe-chat?color=ffcb47&labelColor=black&style=flat-square
 [github-trending-shield]: https://trendshift.io/api/badge/repositories/2256
 [github-trending-url]: https://trendshift.io/repositories/2256
-[github-wiki-link]: https://github.com/lobehub/lobe-chat/wiki
 [issues-link]: https://img.shields.io/github/issues/lobehub/lobe-chat.svg?style=flat
 [lobe-assets-github]: https://github.com/lobehub/lobe-assets
 [lobe-chat-plugins]: https://github.com/lobehub/lobe-chat-plugins

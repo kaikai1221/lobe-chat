@@ -2,11 +2,13 @@ import { Form, type ItemGroup, SelectWithImg, SliderWithInput } from '@lobehub/u
 import { Form as AntForm, App, Button, Select } from 'antd';
 import isEqual from 'fast-deep-equal';
 import { AppWindow, Monitor, Moon, Palette, Sun } from 'lucide-react';
+// import { signIn, signOut } from 'next-auth/react';
 import { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { FORM_STYLE } from '@/const/layoutTokens';
 import { DEFAULT_SETTINGS } from '@/const/settings';
+import { imageUrl } from '@/const/url';
 import AvatarWithUpload from '@/features/AvatarWithUpload';
 import { localeOptions } from '@/locales/resources';
 import { useChatStore } from '@/store/chat';
@@ -23,11 +25,14 @@ type SettingItemGroup = ItemGroup;
 
 export interface SettingsCommonProps {
   showAccessCodeConfig: boolean;
+  showOAuthLogin: boolean;
 }
 
 const Common = memo<SettingsCommonProps>(() => {
   const { t } = useTranslation('setting');
   const [form] = AntForm.useForm();
+
+  // const { user, isOAuthLoggedIn } = useOAuthSession();
 
   const [clearSessions, clearSessionGroups] = useSessionStore((s) => [
     s.clearSessions,
@@ -48,6 +53,22 @@ const Common = memo<SettingsCommonProps>(() => {
   ]);
 
   const { message, modal } = App.useApp();
+
+  // const handleSignOut = useCallback(() => {
+  //   modal.confirm({
+  //     centered: true,
+  //     okButtonProps: { danger: true },
+  //     onOk: () => {
+  //       signOut();
+  //       message.success(t('settingSystem.oauth.signout.success'));
+  //     },
+  //     title: t('settingSystem.oauth.signout.confirm'),
+  //   });
+  // }, []);
+
+  // const handleSignIn = useCallback(() => {
+  //   signIn('auth0');
+  // }, []);
 
   const handleReset = useCallback(() => {
     modal.confirm({
@@ -97,19 +118,19 @@ const Common = memo<SettingsCommonProps>(() => {
             options={[
               {
                 icon: Sun,
-                img: '/images/theme_light.webp',
+                img: imageUrl('theme_light.webp'),
                 label: t('settingTheme.themeMode.light'),
                 value: 'light',
               },
               {
                 icon: Moon,
-                img: '/images/theme_dark.webp',
+                img: imageUrl('theme_dark.webp'),
                 label: t('settingTheme.themeMode.dark'),
                 value: 'dark',
               },
               {
                 icon: Monitor,
-                img: '/images/theme_auto.webp',
+                img: imageUrl('theme_auto.webp'),
                 label: t('settingTheme.themeMode.auto'),
                 value: 'auto',
               },
@@ -190,6 +211,23 @@ const Common = memo<SettingsCommonProps>(() => {
       //   hidden: !showAccessCodeConfig,
       //   label: t('settingSystem.accessCode.title'),
       //   name: 'password',
+      // },
+      // {
+      //   children: isOAuthLoggedIn ? (
+      //     <Button onClick={handleSignOut}>{t('settingSystem.oauth.signout.action')}</Button>
+      //   ) : (
+      //     <Button onClick={handleSignIn} type="primary">
+      //       {t('settingSystem.oauth.signin.action')}
+      //     </Button>
+      //   ),
+      //   desc: isOAuthLoggedIn
+      //     ? `${user?.email} ${t('settingSystem.oauth.info.desc')}`
+      //     : t('settingSystem.oauth.signin.desc'),
+      //   hidden: !showOAuthLogin,
+      //   label: isOAuthLoggedIn
+      //     ? t('settingSystem.oauth.info.title')
+      //     : t('settingSystem.oauth.signin.title'),
+      //   minWidth: undefined,
       // },
       {
         children: (

@@ -76,6 +76,30 @@
         "title": "API-sleutel"
       }
     },
+    "Moonshot": {
+      "title": "月球计划",
+      "token": {
+        "desc": "请输入来自 Moonshot AI 的 API 密钥",
+        "placeholder": "Moonshot AI API 密钥",
+        "title": "API 密钥"
+      }
+    },
+    "Ollama": {
+      "checker": {
+        "desc": "Check of de proxy-adres correct is ingevuld"
+      },
+      "customModelName": {
+        "desc": "Voeg aangepast model toe, gebruik komma's (,) om meerdere modellen te scheiden",
+        "placeholder": "vicuna,llama,codellama,llama2:13b-text",
+        "title": "Aangepaste modelnaam"
+      },
+      "endpoint": {
+        "desc": "Vul het Ollama-interface proxy-adres in, laat leeg als lokaal niet apart is gespecificeerd",
+        "placeholder": "http://127.0.0.1:11434/v1",
+        "title": "Interface proxy-adres"
+      },
+      "title": "Ollama"
+    },
     "OpenAI": {
       "azureApiVersion": {
         "desc": "API-versie van Azure, in het formaat YYYY-MM-DD, zie [laatste versie](https://learn.microsoft.com/zh-cn/azure/ai-services/openai/reference#chat-completions)",
@@ -254,6 +278,22 @@
       "desc": "Beheerder heeft versleutelde toegang ingeschakeld",
       "placeholder": "Voer toegangswachtwoord in",
       "title": "Toegangswachtwoord"
+    },
+    "oauth": {
+      "info": {
+        "desc": "已登录",
+        "title": "Account Information"
+      },
+      "signin": {
+        "action": "Sign In",
+        "desc": "Sign in using SSO to unlock the app",
+        "title": "Sign In to Your Account"
+      },
+      "signout": {
+        "action": "Sign Out",
+        "confirm": "Confirm sign out?",
+        "success": "Sign out successful"
+      }
     },
     "title": "Systeeminstellingen"
   },

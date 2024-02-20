@@ -5,6 +5,8 @@ import {
   LobeAzureOpenAI,
   LobeBedrockAI,
   LobeGoogleAI,
+  LobeMoonshotAI,
+  LobeOllamaAI,
   LobeOpenAI,
   LobeRuntimeAI,
   LobeZhipuAI,
@@ -16,6 +18,7 @@ interface AzureOpenAIParams {
   model: string;
   useAzure?: boolean;
 }
+
 class AgentRuntime {
   private _runtime: LobeRuntimeAI;
 
@@ -57,8 +60,19 @@ class AgentRuntime {
         break;
       }
 
+      case ModelProvider.Moonshot: {
+        runtimeModel = this.initMoonshot(payload);
+        break;
+      }
+
       case ModelProvider.Bedrock: {
         runtimeModel = this.initBedrock(payload);
+        break;
+      }
+
+      case ModelProvider.Ollama: {
+        runtimeModel = this.initOllama(payload);
+        break;
       }
     }
 
@@ -81,7 +95,7 @@ class AgentRuntime {
     const apiVersion = azureOpenAI?.apiVersion || AZURE_API_VERSION;
 
     return new LobeOpenAI({
-      apiKey: azureOpenAI?.useAzure ? azureApiKey : apiKey,
+      apiKey: useAzure ? azureApiKey : apiKey,
       azureOptions: {
         apiVersion,
         model: azureOpenAI?.model,
@@ -107,6 +121,13 @@ class AgentRuntime {
     return LobeZhipuAI.fromAPIKey(apiKey);
   }
 
+  private static initMoonshot(payload: JWTPayload) {
+    const { MOONSHOT_API_KEY, MOONSHOT_PROXY_URL } = getServerConfig();
+    const apiKey = payload?.apiKey || MOONSHOT_API_KEY;
+
+    return new LobeMoonshotAI(apiKey, MOONSHOT_PROXY_URL);
+  }
+
   private static initGoogle(payload: JWTPayload) {
     const { GOOGLE_API_KEY, OPENAI_API_KEY } = getServerConfig();
     const apiKey = payload?.apiKey || GOOGLE_API_KEY || OPENAI_API_KEY!;
@@ -129,6 +150,13 @@ class AgentRuntime {
     }
 
     return new LobeBedrockAI({ accessKeyId, accessKeySecret, region });
+  }
+
+  private static initOllama(payload: JWTPayload) {
+    const { OLLAMA_PROXY_URL } = getServerConfig();
+    const baseUrl = payload?.endpoint || OLLAMA_PROXY_URL;
+
+    return new LobeOllamaAI(baseUrl);
   }
 }
 

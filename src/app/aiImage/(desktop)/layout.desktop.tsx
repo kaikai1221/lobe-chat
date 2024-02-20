@@ -5,7 +5,6 @@ import { Flexbox } from 'react-layout-kit';
 import SafeSpacing from '@/components/SafeSpacing';
 import { IMAGE_SIDEBAR_WIDTH, MARKET_SIDEBAR_WIDTH, MAX_WIDTH } from '@/const/layoutTokens';
 import AppLayoutDesktop from '@/layout/AppLayout.desktop';
-import { useSwitchSideBarOnInit } from '@/store/global';
 import { SidebarTabKey } from '@/store/global/initialState';
 
 import ActionPanel from './features/ActionPanel';
@@ -14,12 +13,11 @@ import Header from './features/Header';
 const AIImageLayout = memo<
   PropsWithChildren & { isGenerating: boolean; setGenerating: (data: boolean) => void }
 >(({ children, isGenerating, setGenerating }) => {
-  useSwitchSideBarOnInit(SidebarTabKey.AIImage);
   const [expand, setExpand] = useState(true);
   const [pin] = useState(true);
   console.log(isGenerating);
   return (
-    <AppLayoutDesktop>
+    <AppLayoutDesktop sidebarKey={SidebarTabKey.AIImage}>
       <DraggablePanel
         expand={expand}
         maxWidth={MARKET_SIDEBAR_WIDTH}

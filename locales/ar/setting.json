@@ -76,6 +76,30 @@
         "title": "مفتاح واجهة برمجة التطبيقات"
       }
     },
+    "Moonshot": {
+      "title": "الجانب المظلم من القمر",
+      "token": {
+        "desc": "أدخل مفتاح API من Moonshot AI",
+        "placeholder": "مفتاح API Moonshot AI",
+        "title": "مفتاح API"
+      }
+    },
+    "Ollama": {
+      "checker": {
+        "desc": "تحقق من صحة عنوان الوكيل"
+      },
+      "customModelName": {
+        "desc": "إضافة نموذج مخصص، استخدم فاصلة (،) للنماذج المتعددة",
+        "placeholder": "فيكونا، للافا، كوديلاما، لاما2:13b-نص",
+        "title": "اسم النموذج المخصص"
+      },
+      "endpoint": {
+        "desc": "أدخل عنوان وكيل واجهة Ollama، اتركه فارغًا إذا لم يتم تحديده محليًا",
+        "placeholder": "http://127.0.0.1:11434/v1",
+        "title": "عنوان وكيل الواجهة"
+      },
+      "title": "أولاما"
+    },
     "OpenAI": {
       "azureApiVersion": {
         "desc": "إصدار واجهة برمجة التطبيقات لـ Azure، يتبع تنسيق YYYY-MM-DD، اطلع على [أحدث الإصدارات](https://learn.microsoft.com/zh-cn/azure/ai-services/openai/reference#chat-completions)",
@@ -254,6 +278,22 @@
       "desc": "قام المسؤول بتمكين الوصول المشفر",
       "placeholder": "الرجاء إدخال كلمة المرور",
       "title": "كلمة المرور"
+    },
+    "oauth": {
+      "info": {
+        "desc": "تم تسجيل الدخول",
+        "title": "معلومات الحساب"
+      },
+      "signin": {
+        "action": "تسجيل الدخول",
+        "desc": "قم بتسجيل الدخول باستخدام SSO لفتح التطبيق",
+        "title": "تسجيل الدخول إلى الحساب"
+      },
+      "signout": {
+        "action": "تسجيل الخروج",
+        "confirm": "هل ترغب في تأكيد الخروج؟",
+        "success": "تم تسجيل الخروج بنجاح"
+      }
     },
     "title": "إعدادات النظام"
   },
