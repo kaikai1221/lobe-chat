@@ -14,7 +14,9 @@ import { useGlobalStore } from '@/store/global';
 import { ErrorActionContainer, FormAction } from './style';
 
 enum Tab {
+  Api = 'api',
   Code = 'code',
+  Oauth = 'oauth',
   Password = 'password',
 }
 interface InvalidAccessCodeProps {
@@ -32,6 +34,8 @@ const InvalidAccessCode = memo<InvalidAccessCodeProps>(({ id }) => {
   const [logining, setLogining] = useState(false);
   const [password, setPassword] = useState('');
   const [setSettings] = useGlobalStore((s) => [s.setSettings]);
+  // const isEnabledOAuth = useGlobalStore(commonSelectors.enabledOAuthSSO);
+  // const defaultTab = isEnabledOAuth ? Tab.Oauth : Tab.Password;
 
   const [resend, deleteMessage] = useChatStore((s) => [s.resendMessage, s.deleteMessage]);
   useEffect(() => {

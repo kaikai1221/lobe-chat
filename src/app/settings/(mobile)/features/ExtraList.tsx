@@ -6,15 +6,17 @@ import { useTranslation } from 'react-i18next';
 
 import { useImportConfig } from '@/hooks/useImportConfig';
 import { configService } from '@/services/config';
-import { useGlobalStore } from '@/store/global';
+import { SettingsTabs } from '@/store/global/initialState';
 
-import Item from '../../features/SideBar/Item';
+import Item from '../../features/SettingList/Item';
 
-const ExtraList = memo(() => {
+interface ExtraListProps {
+  activeTab?: SettingsTabs;
+}
+const ExtraList = memo<ExtraListProps>(({ activeTab }) => {
   const { t } = useTranslation('common');
 
   const { importConfig } = useImportConfig();
-  const tab = useGlobalStore((s) => s.settingsTab);
   const { mobile } = useResponsive();
   const items = [
     {
@@ -58,7 +60,7 @@ const ExtraList = memo(() => {
       </Upload>
       {items.map(({ value, icon, label, onClick }) => (
         <div key={value} onClick={onClick}>
-          <Item active={mobile ? false : tab === value} icon={icon} label={label} />
+          <Item active={mobile ? false : activeTab === value} icon={icon} label={label} />
         </div>
       ))}
     </>

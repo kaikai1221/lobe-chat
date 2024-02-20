@@ -30,10 +30,11 @@ const Token = memo<{ refT?: any }>(({ refT }) => {
     agentSelectors.currentAgentModel(s) as LanguageModel,
   ]);
 
-  const tokens = useGlobalStore(modelProviderSelectors.modelMaxToken(model));
+  const maxTokens = useGlobalStore(modelProviderSelectors.modelMaxToken(model));
 
+  // Tool usage token
+  const canUseTool = useGlobalStore(modelProviderSelectors.modelEnabledFunctionCall(model));
   const plugins = useSessionStore(agentSelectors.currentAgentPlugins);
-
   const toolsString = useToolStore((s) => {
     const pluginSystemRoles = toolSelectors.enabledSystemRoles(plugins)(s);
     const schemaNumber = toolSelectors
@@ -43,13 +44,17 @@ const Token = memo<{ refT?: any }>(({ refT }) => {
 
     return pluginSystemRoles + schemaNumber;
   });
+  const toolsToken = useTokenCount(canUseTool ? toolsString : '');
 
+  // Chat usage token
   const inputTokenCount = useTokenCount(input);
+
   const chatsToken = useTokenCount(messageString) + inputTokenCount;
 
-  const toolsToken = useTokenCount(toolsString);
+  // SystemRole token
   const systemRoleToken = useTokenCount(systemRole);
 
+  // Total token
   const totalToken = systemRoleToken + toolsToken + chatsToken;
   return (
     <Tooltip
@@ -74,11 +79,11 @@ const Token = memo<{ refT?: any }>(({ refT }) => {
           </Flexbox>
           <Flexbox horizontal justify={'space-between'} style={{ marginTop: 8 }}>
             <span>{t('tokenDetails.total')}</span>
-            <span>{format(tokens)}</span>
+            <span>{format(maxTokens)}</span>
           </Flexbox>
           <Flexbox horizontal justify={'space-between'}>
             <span>{t('tokenDetails.rest')}</span>
-            <span>{format(tokens - totalToken)}</span>
+            <span>{format(maxTokens - totalToken)}</span>
           </Flexbox>
         </Flexbox>
       }
@@ -86,7 +91,7 @@ const Token = memo<{ refT?: any }>(({ refT }) => {
       <TokenTag
         // maxValue={ModelTokens[model]}
         displayMode={'used'}
-        maxValue={tokens}
+        maxValue={maxTokens}
         ref={refT}
         style={{ marginLeft: 8 }}
         text={{

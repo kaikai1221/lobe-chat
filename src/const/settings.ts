@@ -64,8 +64,17 @@ export const DEFAULT_LLM_CONFIG: GlobalLLMConfig = {
     apiKey: '',
     enabled: false,
   },
+  moonshot: {
+    apiKey: '',
+    enabled: false,
+  },
+  ollama: {
+    enabled: false,
+    endpoint: '',
+  },
   openAI: {
     OPENAI_API_KEY: '',
+    enabled: true,
     models: [],
   },
   qwen: {

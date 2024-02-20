@@ -24,10 +24,17 @@ declare global {
       // Google Provider
       GOOGLE_API_KEY?: string;
 
+      // Moonshot Provider
+      MOONSHOT_API_KEY?: string;
+      MOONSHOT_PROXY_URL?: string;
+
       // AWS Credentials
       AWS_REGION?: string;
       AWS_ACCESS_KEY_ID?: string;
       AWS_SECRET_ACCESS_KEY?: string;
+
+      // Ollama Provider;
+      OLLAMA_PROXY_URL?: string;
 
       DEBUG_CHAT_COMPLETION?: string;
     }
@@ -43,6 +50,8 @@ export const getProviderConfig = () => {
   const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID || '';
 
   const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY || '';
+
+  const MOONSHOT_API_KEY = process.env.MOONSHOT_API_KEY || '';
 
   // region format: iad1,sfo1
   let regions: string[] = [];
@@ -64,6 +73,10 @@ export const getProviderConfig = () => {
     GOOGLE_API_KEY,
 
     ENABLED_AWS_BEDROCK: true,
+    ENABLED_MOONSHOT: !!MOONSHOT_API_KEY,
+    MOONSHOT_API_KEY,
+    MOONSHOT_PROXY_URL: process.env.MOONSHOT_PROXY_URL,
+
     AWS_REGION: process.env.AWS_REGION,
     AWS_ACCESS_KEY_ID: AWS_ACCESS_KEY_ID,
     AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY || '',
@@ -72,6 +85,9 @@ export const getProviderConfig = () => {
     AZURE_API_VERSION: process.env.AZURE_API_VERSION,
     AZURE_ENDPOINT: process.env.AZURE_ENDPOINT,
     USE_AZURE_OPENAI: process.env.USE_AZURE_OPENAI === '1',
+
+    ENABLE_OLLAMA: !!process.env.OLLAMA_PROXY_URL,
+    OLLAMA_PROXY_URL: process.env.OLLAMA_PROXY_URL || '',
 
     DEBUG_CHAT_COMPLETION: process.env.DEBUG_CHAT_COMPLETION === '1',
   };

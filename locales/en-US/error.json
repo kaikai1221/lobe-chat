@@ -43,9 +43,13 @@
     "InvalidAzureAPIKey": "Azure API Key is incorrect or empty. Please check the Azure API Key and retry.",
     "InvalidBedrockCredentials": "Bedrock authentication failed. Please check the AccessKeyId/SecretAccessKey and retry.",
     "InvalidGoogleAPIKey": "Google API Key is incorrect or empty. Please check the Google API Key and retry.",
+    "InvalidMoonshotAPIKey": "The Moonshot AI API Key is incorrect or empty, please check the Moonshot API Key and try again.",
+    "InvalidOllamaArgs": "Invalid Ollama configuration, please check Ollama configuration and try again",
     "InvalidZhipuAPIKey": "Zhipu API Key is incorrect or empty. Please check the Zhipu API Key and retry.",
     "LocationNotSupportError": "We're sorry, your current location does not support this model service. This may be due to regional restrictions or the service not being available. Please confirm if the current location supports using this service, or try using a different location.",
+    "MoonshotBizError": "There was an error with the Moonshot service, please troubleshoot or retry based on the following information.",
     "NoOpenAIAPIKey": "OpenAI API Key is empty, please add a custom OpenAI API Key",
+    "OllamaBizError": "Error requesting Ollama service, please troubleshoot or retry based on the following information",
     "OpenAIBizError": "Error requesting OpenAI service. Please troubleshoot or retry based on the following information.",
     "PluginApiNotFound": "Sorry, the API does not exist in the plugin's manifest. Please check if your request method matches the plugin manifest API",
     "PluginApiParamsError": "Sorry, the input parameter validation for the plugin request failed. Please check if the input parameters match the API description",
@@ -78,6 +82,10 @@
         "description": "Enter your Google API Key to start the session. The app will not store your API Key.",
         "title": "Use custom Google API Key"
       },
+      "Moonshot": {
+        "description": "Enter your Moonshot AI API Key to start the session. The app will not store your API Key.",
+        "title": "Use Custom Moonshot AI API Key"
+      },
       "OpenAI": {
         "addProxyUrl": "Add OpenAI proxy address (optional)",
         "description": "Enter your OpenAI API Key to start the session. The app will not store your API Key.",
@@ -90,6 +98,12 @@
     },
     "closeMessage": "Close message",
     "confirm": "Confirm and Retry",
+    "oauth": {
+      "description": "The administrator has enabled unified login authentication. Click the button below to log in and unlock the application.",
+      "success": "Login successful",
+      "title": "Log in to your account",
+      "welcome": "Welcome!"
+    },
     "password": {
       "description": "The application encryption has been enabled by the administrator. Enter the application password to unlock the application. The password only needs to be filled in once.",
       "placeholder": "Please enter password",

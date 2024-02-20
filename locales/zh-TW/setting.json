@@ -76,6 +76,30 @@
         "title": "API 金鑰"
       }
     },
+    "Moonshot": {
+      "title": "月球背面",
+      "token": {
+        "desc": "請填入來自 Moonshot AI 的 API 金鑰",
+        "placeholder": "Moonshot AI API 金鑰",
+        "title": "API 金鑰"
+      }
+    },
+    "Ollama": {
+      "checker": {
+        "desc": "檢查代理地址是否正確填寫"
+      },
+      "customModelName": {
+        "desc": "新增自定義模型，多個模型使用逗號（,）隔開",
+        "placeholder": "維庫納,利亞瓦,科迪拉瑪,拉瑪2:13b-文本",
+        "title": "自定義模型名稱"
+      },
+      "endpoint": {
+        "desc": "填入 Ollama 接口代理地址，本地未額外指定可留空",
+        "placeholder": "http://127.0.0.1:11434/v1",
+        "title": "接口代理地址"
+      },
+      "title": "Ollama"
+    },
     "OpenAI": {
       "azureApiVersion": {
         "desc": "Azure 的 API 版本，遵循 YYYY-MM-DD 格式，查閱[最新版本](https://learn.microsoft.com/zh-cn/azure/ai-services/openai/reference#chat-completions)",
@@ -254,6 +278,22 @@
       "desc": "管理員已開啟加密訪問",
       "placeholder": "請輸入訪問密碼",
       "title": "訪問密碼"
+    },
+    "oauth": {
+      "info": {
+        "desc": "已登錄",
+        "title": "帳戶資訊"
+      },
+      "signin": {
+        "action": "登錄",
+        "desc": "使用 SSO 登錄以解鎖應用",
+        "title": "登錄帳號"
+      },
+      "signout": {
+        "action": "退出登錄",
+        "confirm": "確認退出？",
+        "success": "退出登錄成功"
+      }
     },
     "title": "系統設定"
   },

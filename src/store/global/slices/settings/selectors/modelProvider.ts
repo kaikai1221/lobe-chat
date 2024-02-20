@@ -4,17 +4,23 @@ import {
   BedrockProvider,
   GoogleProvider,
   LOBE_DEFAULT_MODEL_LIST,
+  MoonshotProvider,
+  OllamaProvider,
   OpenAIProvider,
   QwenProvider,
   ZhiPuProvider,
 } from '@/config/modelProviders';
 import { ChatModelCard, ModelProviderCard } from '@/types/llm';
+import { GlobalLLMProviderKey } from '@/types/settings';
 import { parseModelString } from '@/utils/parseModels';
 
 import { GlobalStore } from '../../../store';
 import { currentSettings } from './settings';
 
 const modelProvider = (s: GlobalStore) => currentSettings(s).languageModel;
+const providerEnabled = (provider: GlobalLLMProviderKey) => (s: GlobalStore) =>
+  currentSettings(s).languageModel[provider]?.enabled || false;
+
 const openAIConfig = (s: GlobalStore) => modelProvider(s).openAI;
 
 const openAIAPIKey = (s: GlobalStore) => openAIConfig(s).OPENAI_API_KEY;
@@ -34,6 +40,15 @@ const googleProxyUrl = (s: GlobalStore) => modelProvider(s).google.endpoint;
 const enableAzure = (s: GlobalStore) => modelProvider(s).openAI.useAzure;
 const azureConfig = (s: GlobalStore) => modelProvider(s).azure;
 
+const enableMoonshot = (s: GlobalStore) => modelProvider(s).moonshot.enabled;
+const moonshotAPIKey = (s: GlobalStore) => modelProvider(s).moonshot.apiKey;
+
+const enableOllamaConfigInSettings = (s: GlobalStore) =>
+  s.serverConfig.languageModel?.ollama?.enabled || false;
+
+const enableOllama = (s: GlobalStore) => modelProvider(s).ollama.enabled;
+const ollamaProxyUrl = (s: GlobalStore) => modelProvider(s).ollama.endpoint;
+
 // const azureModelList = (s: GlobalStore): ModelProviderCard => {
 //   const azure = azureConfig(s);
 //   return {
@@ -43,8 +58,11 @@ const azureConfig = (s: GlobalStore) => modelProvider(s).azure;
 // };
 
 // 提取处理 chatModels 的专门方法
-const processChatModels = (modelConfig: ReturnType<typeof parseModelString>): ChatModelCard[] => {
-  let chatModels = modelConfig.removeAll ? [] : OpenAIProvider.chatModels;
+const processChatModels = (
+  modelConfig: ReturnType<typeof parseModelString>,
+  defaultChartModels = OpenAIProvider.chatModels,
+): ChatModelCard[] => {
+  let chatModels = modelConfig.removeAll ? [] : defaultChartModels;
 
   // 处理移除逻辑
   if (!modelConfig.removeAll) {
@@ -53,29 +71,31 @@ const processChatModels = (modelConfig: ReturnType<typeof parseModelString>): Ch
 
   return produce(chatModels, (draft) => {
     // 处理添加或替换逻辑
-    for (const customModel of modelConfig.add) {
-      // 首先尝试在 LOBE_DEFAULT_MODEL_LIST 中查找模型
-      const defaultModel = LOBE_DEFAULT_MODEL_LIST.find((model) => model.id === customModel.id);
+    for (const toAddModel of modelConfig.add) {
+      // first try to find the model in LOBE_DEFAULT_MODEL_LIST to confirm if it is a known model
+      const knownModel = LOBE_DEFAULT_MODEL_LIST.find((model) => model.id === toAddModel.id);
 
-      // 如果在默认列表中找到了模型，则基于该模型进行更新
-      if (defaultModel) {
-        const model = draft.find((model) => model.id === customModel.id);
-        // 如果当前 chatModels 中已有该模型，更新它
-        if (model) {
-          if (model.hidden) delete model.hidden;
-          if (customModel.displayName) model.displayName = customModel.displayName;
+      // if the model is known, update it based on the known model
+      if (knownModel) {
+        const modelInList = draft.find((model) => model.id === toAddModel.id);
+
+        // if the model is already in chatModels, update it
+        if (modelInList) {
+          if (modelInList.hidden) delete modelInList.hidden;
+          if (toAddModel.displayName) modelInList.displayName = toAddModel.displayName;
         } else {
-          // 如果当前 chatModels 中没有该模型，添加它
+          // if the model is not in chatModels, add it
           draft.push({
-            ...defaultModel,
-            displayName: customModel.displayName || defaultModel.displayName,
+            ...knownModel,
+            displayName: toAddModel.displayName || knownModel.displayName || knownModel.id,
+            hidden: undefined,
           });
         }
       } else {
-        // 如果在默认列表中未找到模型，作为新的自定义模型添加
+        // if the model is not in LOBE_DEFAULT_MODEL_LIST, add it as a new custom model
         draft.push({
-          ...customModel,
-          displayName: customModel.displayName || customModel.id,
+          ...toAddModel,
+          displayName: toAddModel.displayName || toAddModel.id,
           functionCall: true,
           isCustom: true,
           vision: true,
@@ -97,6 +117,12 @@ const modelSelectList = (s: GlobalStore): ModelProviderCard[] => {
 
   const chatModels = processChatModels(modelConfig);
 
+  const ollamaModelConfig = parseModelString(
+    currentSettings(s).languageModel.ollama.customModelName,
+  );
+
+  const ollamaChatModels = processChatModels(ollamaModelConfig, OllamaProvider.chatModels);
+
   return [
     {
       ...OpenAIProvider,
@@ -104,9 +130,11 @@ const modelSelectList = (s: GlobalStore): ModelProviderCard[] => {
     },
     // { ...azureModelList(s), enabled: enableAzure(s) },
     { ...ZhiPuProvider, enabled: enableZhipu(s) },
+    { ...MoonshotProvider, enabled: enableMoonshot(s) },
     { ...GoogleProvider, enabled: enableGoogle(s) },
     { ...BedrockProvider, enabled: enableBedrock(s) },
     { ...QwenProvider, enabled: enableBedrock(s) },
+    { ...OllamaProvider, chatModels: ollamaChatModels, enabled: enableOllama(s) },
   ];
 };
 
@@ -124,6 +152,11 @@ const modelEnabledFunctionCall = (id: string) => (s: GlobalStore) =>
 const modelEnabledVision = (id: string) => (s: GlobalStore) =>
   modelCardById(id)(s)?.vision || id.includes('vision');
 
+const modelEnabledFiles = (id: string) => (s: GlobalStore) => modelCardById(id)(s)?.files;
+
+const modelEnabledUpload = (id: string) => (s: GlobalStore) =>
+  modelEnabledVision(id)(s) || modelEnabledFiles(id)(s);
+
 const modelHasMaxToken = (id: string) => (s: GlobalStore) =>
   typeof modelCardById(id)(s)?.tokens !== 'undefined';
 
@@ -135,9 +168,16 @@ export const modelProviderSelectors = {
 
   modelCardById,
   modelMaxToken,
+  modelHasMaxToken,
+
   modelEnabledFunctionCall,
   modelEnabledVision,
-  modelHasMaxToken,
+  modelEnabledFiles,
+  modelEnabledUpload,
+
+  modelProviderConfig: modelProvider,
+  providerEnabled,
+
   // OpenAI
   openAIConfig,
   openAIAPIKey,
@@ -156,4 +196,13 @@ export const modelProviderSelectors = {
   // Bedrock
   enableBedrock,
   bedrockConfig,
+
+  // Moonshot
+  enableMoonshot,
+  moonshotAPIKey,
+
+  // Ollama
+  enableOllamaConfigInSettings,
+  enableOllama,
+  ollamaProxyUrl,
 };

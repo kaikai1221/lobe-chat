@@ -61,6 +61,9 @@ export default {
     ZhipuBizError: '请求智谱服务出错，请根据以下信息排查或重试',
     InvalidZhipuAPIKey: 'Zhipu API Key 不正确或为空，请检查 Zhipu API Key 后重试',
 
+    MoonshotBizError: '请求月之暗面服务出错，请根据以下信息排查或重试',
+    InvalidMoonshotAPIKey: 'Moonshot AI API Key 不正确或为空，请检查 Moonshot API Key 后重试',
+
     GoogleBizError: '请求 Google 服务出错，请根据以下信息排查或重试',
     InvalidGoogleAPIKey: 'Google API Key 不正确或为空，请检查 Google API Key 后重试',
 
@@ -69,6 +72,9 @@ export default {
 
     InvalidAzureAPIKey: 'Azure API Key 不正确或为空，请检查 Azure API Key 后重试',
     AzureBizError: '请求 Azure AI 服务出错，请根据以下信息排查或重试',
+
+    InvalidOllamaArgs: 'Ollama 配置不正确，请检查 Ollama 配置后重试',
+    OllamaBizError: '请求 Ollama 服务出错，请根据以下信息排查或重试',
 
     AgentRuntimeError: 'Lobe 语言模型运行时执行出错，请根据以下信息排查或重试',
     /* eslint-enable */
@@ -91,6 +97,10 @@ export default {
         description: '输入你的 Google API Key 即可开始会话。应用不会记录你的 API Key',
         title: '使用自定义 Google API Key',
       },
+      Moonshot: {
+        description: '输入你的 Moonshot AI API Key 即可开始会话。应用不会记录你的 API Key',
+        title: '使用自定义 Moonshot AI API Key',
+      },
       OpenAI: {
         addProxyUrl: '添加 OpenAI 代理地址（可选）',
         description: '输入你的 OpenAI API Key 即可开始会话。应用不会记录你的 API Key',
@@ -103,6 +113,12 @@ export default {
     },
     closeMessage: '关闭提示',
     confirm: '登陆并重试',
+    oauth: {
+      description: '管理员已开启统一登录认证，点击下方按钮登录，即可解锁应用',
+      success: '登录成功',
+      title: '登录账号',
+      welcome: '欢迎你！',
+    },
     password: {
       description: '新用户注册赠送1000积分体验',
       placeholder: '请输入密码',

@@ -2,6 +2,7 @@
   "ModelSelect": {
     "featureTag": {
       "custom": "カスタムモデル、デフォルトでは関数呼び出しとビジョン認識の両方をサポートしています。上記の機能の有効性を実際の状況で検証してください。",
+      "file": "このモデルはファイルのアップロードと認識をサポートしています",
       "functionCall": "このモデルは関数呼び出し（Function Call）をサポートしています。",
       "tokens": "このモデルは1つのセッションあたり最大{{tokens}}トークンをサポートしています。",
       "vision": "このモデルはビジョン認識をサポートしています。"
@@ -26,6 +27,7 @@
   "defaultAgent": "デフォルトエージェント",
   "defaultSession": "デフォルトセッション",
   "delete": "削除",
+  "document": "ドキュメント",
   "duplicate": "コピーを作成する",
   "edit": "編集",
   "export": "エクスポート",
@@ -101,12 +103,15 @@
     "azure": "Azure",
     "bedrock": "AWSベッドロック",
     "google": "Google",
+    "moonshot": "Moonshot AI",
+    "ollama": "オラマ",
     "oneapi": "One API",
     "openai": "OpenAI",
     "zhipu": "智譜AI",
     "qwen": "阿里云"
   },
   "noDescription": "説明はありません",
+  "oauth": "SSO ログイン",
   "ok": "OK",
   "password": "パスワード",
   "pin": "ピン留め",

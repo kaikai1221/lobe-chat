@@ -2,6 +2,7 @@
   "ModelSelect": {
     "featureTag": {
       "custom": "Modèle personnalisé, par défaut prend en charge à la fois l'appel de fonction et la reconnaissance visuelle. Veuillez vérifier la disponibilité de ces capacités selon les besoins réels.",
+      "file": "Ce modèle prend en charge la lecture et la reconnaissance de fichiers",
       "functionCall": "Ce modèle prend en charge l'appel de fonction (Function Call).",
       "tokens": "Ce modèle prend en charge jusqu'à {{tokens}} jetons par session.",
       "vision": "Ce modèle prend en charge la reconnaissance visuelle."
@@ -26,6 +27,7 @@
   "defaultAgent": "Agent par défaut",
   "defaultSession": "Session par défaut",
   "delete": "Supprimer",
+  "document": "Document d'utilisation",
   "duplicate": "Dupliquer",
   "edit": "Modifier",
   "export": "Exporter",
@@ -101,12 +103,15 @@
     "azure": "Azure",
     "bedrock": "AWS Bedrock",
     "google": "Google",
+    "moonshot": "Moonshot IA",
+    "ollama": "Ollama",
     "oneapi": "One API",
     "openai": "OpenAI",
     "zhipu": "Zhipu AI",
     "qwen": "阿里云"
   },
   "noDescription": "Aucune description disponible",
+  "oauth": "Connexion SSO",
   "ok": "OK",
   "password": "Mot de passe",
   "pin": "Épingler",

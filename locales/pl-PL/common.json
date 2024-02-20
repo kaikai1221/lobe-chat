@@ -2,6 +2,7 @@
   "ModelSelect": {
     "featureTag": {
       "custom": "Niestandardowy model, domyślnie obsługujący zarówno wywołania funkcji, jak i rozpoznawanie wizualne. Proszę zweryfikować możliwość użycia tych funkcji w praktyce.",
+      "file": "Ten model obsługuje wczytywanie plików i rozpoznawanie",
       "functionCall": "Ten model obsługuje wywołania funkcji (Function Call).",
       "tokens": "Ten model obsługuje maksymalnie {{tokens}} tokenów w pojedynczej sesji.",
       "vision": "Ten model obsługuje rozpoznawanie wizualne."
@@ -26,6 +27,7 @@
   "defaultAgent": "Domyślny asystent",
   "defaultSession": "Domyślna sesja",
   "delete": "Usuń",
+  "document": "Dokumentacja",
   "duplicate": "Utwórz kopię",
   "edit": "Edytuj",
   "export": "Eksportuj ustawienia",
@@ -101,12 +103,15 @@
     "azure": "Azure",
     "bedrock": "AWS Bedrock",
     "google": "Google",
+    "moonshot": "Moonshot AI",
+    "ollama": "Ollama",
     "oneapi": "One API",
     "openai": "OpenAI",
     "zhipu": "智谱AI",
     "qwen": "阿里云"
   },
   "noDescription": "Brak opisu",
+  "oauth": "Logowanie SSO",
   "ok": "OK",
   "password": "Hasło",
   "pin": "Przypnij",

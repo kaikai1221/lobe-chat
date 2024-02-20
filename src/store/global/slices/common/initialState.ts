@@ -24,12 +24,10 @@ export interface GlobalCommonState {
   isMobile?: boolean;
   latestVersion?: string;
   router?: AppRouterInstance;
-  settingsTab: SettingsTabs;
   sidebarKey: SidebarTabKey;
 }
 
 export const initialCommonState: GlobalCommonState = {
   isMobile: false,
-  settingsTab: SettingsTabs.Common,
   sidebarKey: SidebarTabKey.Chat,
 };
