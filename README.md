@@ -225,14 +225,14 @@ Our marketplace is not just a showcase platform but also a collaborative space. 
 
 <!-- AGENT LIST -->
 
-| Recent Submits                                                                                                                                                              | Description                                                                                                                                                                                                                                                                          |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [Product Copywriting](https://chat-preview.lobehub.com/market?agent=copywriting)<br/><sup>By **[pllz7](https://github.com/pllz7)** on **2024-02-14**</sup>                  | Expert in persuasive copywriting and consumer psychology<br/>`ecommerce`                                                                                                                                                                                                             |
-| [Private Domain Operations Expert](https://chat-preview.lobehub.com/market?agent=gl-syyy)<br/><sup>By **[guling-io](https://github.com/guling-io)** on **2024-02-14**</sup> | Specializing in private domain operations, traffic acquisition, user retention, conversion, and content planning. Familiar with marketing theories and related classic works.<br/>`private-domain-operations` `traffic-acquisition` `user-retention` `conversion` `content-planning` |
-| [Self-Media Operation Expert](https://chat-preview.lobehub.com/market?agent=gl-zmtyy)<br/><sup>By **[guling-io](https://github.com/guling-io)** on **2024-02-14**</sup>     | Specialized in self-media operation and content creation<br/>`self-media-operation` `social-media` `content-creation` `fan-growth` `brand-promotion`                                                                                                                                 |
-| [Product Description](https://chat-preview.lobehub.com/market?agent=product-description)<br/><sup>By **[pllz7](https://github.com/pllz7)** on **2024-02-14**</sup>          | Craft compelling product descriptions that boost e-commerce sales<br/>`ecommerce`                                                                                                                                                                                                    |
+| Recent Submits                                                                                                                                                                                     | Description                                                                                                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Facebook Advertising Writing Expert](https://chat-preview.lobehub.com/market?agent=facebook-advertising-writing-expert)<br/><sup>By **[pllz7](https://github.com/pllz7)** on **2024-02-19**</sup> | Specializing in creating attention-grabbing headlines, compelling primary texts, and effective ad copy<br/>`facebook` `advertising` `writing` `expert` `ecommerce`                                   |
+| [Jira Story Facilitator](https://chat-preview.lobehub.com/market?agent=jira-product-manager)<br/><sup>By **[emad-pg](https://github.com/emad-pg)** on **2024-02-19**</sup>                         | Specialized in transforming feature ideas into comprehensive Jira stories<br/>`technical-product-management` `story-creation` `jira`                                                                 |
+| [ThinkTank360](https://chat-preview.lobehub.com/market?agent=think-tank-business-strategy)<br/><sup>By **[mikelix](https://github.com/mikelix)** on **2024-02-19**</sup>                           | Skilled consultant channeling wisdom of Steve Jobs, Elon Musk, MA Yun, Plato, and Ray Dalio for decision reviews, judgements, and advice.<br/>`innovation` `wisdom` `think-tank` `business-strategy` |
+| [Translation Specialist](https://chat-preview.lobehub.com/market?agent=translation-specialist)<br/><sup>By **[MYSeaIT](https://github.com/MYSeaIT)** on **2024-02-19**</sup>                       | Expert translator fluent in Spanish and English<br/>`translation` `language` `expert` `guidelines`                                                                                                   |
 
-> 📊 Total agents: [<kbd>**177**</kbd> ](https://github.com/lobehub/lobe-chat-agents)
+> 📊 Total agents: [<kbd>**181**</kbd> ](https://github.com/lobehub/lobe-chat-agents)
 
  <!-- AGENT LIST -->
 
@@ -244,7 +244,7 @@ Our marketplace is not just a showcase platform but also a collaborative space. 
 
 ![](https://gw.alipayobjects.com/zos/kitchen/69x6bllkX3/pwa.webp)
 
-#### `6` Progress Web App
+#### `6` Progressive Web App
 
 We deeply understand the importance of providing a seamless experience for users in today's multi-device environment.
 Therefore, we have adopted Progressive Web Application ([PWA](https://support.google.com/chrome/answer/9658361)) technology,
