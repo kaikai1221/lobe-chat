@@ -83,20 +83,22 @@ const ModelSwitch = memo(() => {
     }
     let modelList = enabledList;
     if (data && data.status === false) {
-      modelList = modelList.filter((item) => !item.id.includes('openai'));
+      // modelList = modelList.filter((item) => !item.id.includes('openai'));
       // enabledList = enabledList.filter((item) => !item.model.id.includes('gpt'));
-      modelList.unshift({
-        chatModels: [
-          {
-            displayName: 'openai-chatGPT',
-            functionCall: true,
-            id: 'gpt-3.5-turbo-16k',
-            tokens: 16_385,
-          },
-        ],
-        enabled: true,
-        id: 'openai',
-      });
+      modelList = [
+        {
+          chatModels: [
+            {
+              displayName: 'openai-chatGPT',
+              functionCall: true,
+              id: 'gpt-3.5-turbo-16k',
+              tokens: 16_385,
+            },
+          ],
+          enabled: true,
+          id: 'openai',
+        },
+      ];
       console.log(modelList, 999);
     }
     return modelList.map((provider) => ({
