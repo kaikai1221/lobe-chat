@@ -27,7 +27,7 @@ export const useStyles = createStyles(({ css, token }) => ({
 
     /* 三行显示省略号 */
     display: box;
-    display: box;
+    display: -webkit-box;
     -webkit-box-orient: vertical;
 
     margin: 5px 0;

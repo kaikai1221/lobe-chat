@@ -31,6 +31,6 @@ export default async function sendEmail(to: string, code: string | number) {
     body: formData,
     method: 'POST',
   });
-
+  console.log(await response.json());
   return response.ok;
 }
