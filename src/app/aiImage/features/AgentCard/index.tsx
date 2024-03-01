@@ -246,6 +246,7 @@ function HistoryMasonry(props: {
               }
             });
           }
+          console.log(promptText)
         }
         return (
           <Card
@@ -305,8 +306,24 @@ function HistoryMasonry(props: {
                     src={`https://wsrv.nl/?url=${encodeURIComponent(content.imageUrl)}&w=300&output=jpg&il`}
                   />
                 </ImageGallery>
-                {content.progress === '100%' ? (
-                  ''
+                {content.progress === '100%' || content.status === 'FAILURE' ? (
+                  content.status === 'FAILURE' ? (
+                    <p
+                      style={{
+                        backgroundColor: '#fff2f0',
+                        border: '1px solid #ffccc7',
+                        borderRadius: '5px',
+                        fontSize: '12px',
+                        lineHeight: '1.3',
+                        padding: '5px 8px',
+                      }}
+                    >
+                      <p style={{ fontSize: '14px', lineHeight: '1.6' }}>生成失败，原因：</p>
+                      {content.failReason}
+                    </p>
+                  ) : (
+                    ''
+                  )
                 ) : (
                   <Progress
                     percent={Number((content.progress || '0%').replace('%', ''))}
