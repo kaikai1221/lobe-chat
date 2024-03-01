@@ -1075,7 +1075,7 @@ export class UserDAL {
           expiredAt: {
             gte: new Date(),
           },
-          planId: 6,
+          planId: { in: [4, 6] },
           startAt: {
             lte: new Date(),
           },
