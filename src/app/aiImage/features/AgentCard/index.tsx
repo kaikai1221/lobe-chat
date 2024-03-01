@@ -246,7 +246,7 @@ function HistoryMasonry(props: {
               }
             });
           }
-          console.log(promptText)
+          console.log(promptText);
         }
         return (
           <Card
