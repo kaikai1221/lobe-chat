@@ -10,18 +10,18 @@ const OpenAI: ModelProviderCard = {
       id: 'gpt-3.5-turbo',
       tokens: 4096,
     },
-    // {
-    //   displayName: 'GPT-3.5 Turbo (0125)',
-    //   functionCall: true,
-    //   id: 'gpt-3.5-turbo-16k',
-    //   tokens: 16_385,
-    // },
     {
-      displayName: 'GPT-3.5 Turbo (1106)',
+      displayName: 'GPT-3.5 Turbo (0125)',
       functionCall: true,
-      id: 'gpt-3.5-turbo-1106',
+      id: 'gpt-3.5-turbo-0125',
       tokens: 16_385,
     },
+    // {
+    //   displayName: 'GPT-3.5 Turbo (1106)',
+    //   functionCall: true,
+    //   id: 'gpt-3.5-turbo-1106',
+    //   tokens: 16_385,
+    // },
     {
       hidden: true,
       id: 'gpt-3.5-turbo-instruct',
@@ -67,7 +67,7 @@ const OpenAI: ModelProviderCard = {
       description: 'GPT-4 视觉预览版，支持视觉任务',
       displayName: 'GPT-4 Turbo Vision (Preview)',
       id: 'gpt-4-vision-preview',
-      tokens: 128_000,
+      tokens: 32_000,
       vision: true,
     },
     {
@@ -86,7 +86,7 @@ const OpenAI: ModelProviderCard = {
     },
     {
       functionCall: true,
-      hidden: true,
+      // hidden: true,
       id: 'gpt-4-32k',
       tokens: 32_768,
     },
