@@ -1,7 +1,7 @@
 {
   "name": "@lobehub/chat",
   "version": "0.128.6",
-  "description": "Lobe Chat - an open-source, high-performance chatbot framework that supports speech synthesis, multimodal, and extensible Function Call plugin system. Supports one-click free deployment of your private ChatGPT/LLM web application.",
+  "description": "AI聊天室支持GPT4、Dall、midjourney、智谱、Gemini、claude、通义千问等模型，并且支持函数调用，目前有哔哩哔哩搜索、Steam搜索、网络搜索、思维导图等各种插件",
   "keywords": [
     "framework",
     "chatbot",
