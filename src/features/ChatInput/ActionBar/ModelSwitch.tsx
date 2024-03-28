@@ -81,8 +81,21 @@ const ModelSwitch = memo(() => {
       const provider = enabledList[0];
       return getModelItems(provider);
     }
-    let modelList = enabledList;
-    if (data && data.status === false) {
+    let modelList: ModelProviderCard[] = [
+      {
+        chatModels: [
+          {
+            displayName: 'openai-chatGPT',
+            functionCall: true,
+            id: 'gpt-3.5-turbo-16k',
+            tokens: 16_385,
+          },
+        ],
+        enabled: true,
+        id: 'openai',
+      },
+    ];
+    if (!useGlobalStore.getState().settings?.token || (data && data.status === false)) {
       // modelList = modelList.filter((item) => !item.id.includes('openai'));
       // enabledList = enabledList.filter((item) => !item.model.id.includes('gpt'));
       modelList = [
@@ -99,7 +112,8 @@ const ModelSwitch = memo(() => {
           id: 'openai',
         },
       ];
-      console.log(modelList, 999);
+    } else {
+      modelList = enabledList;
     }
     return modelList.map((provider) => ({
       children: getModelItems(provider),
