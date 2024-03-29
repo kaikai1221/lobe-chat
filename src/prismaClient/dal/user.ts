@@ -703,10 +703,10 @@ export class UserDAL {
     //   }
     //   return result;
     // }
-    // for (let index = 0; index < 100; index++) {
+    // for (let index = 0; index < 900; index++) {
     //   data.push({
     //     redeemCode: generateRandomString(20),
-    //     planId: 7,
+    //     planId: 4,
     //   });
     // }
     // console.log(

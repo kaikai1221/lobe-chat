@@ -37,7 +37,7 @@ const InvalidAccessCode = memo<InvalidAccessCodeProps>(({ id }) => {
   // const isEnabledOAuth = useGlobalStore(commonSelectors.enabledOAuthSSO);
   // const defaultTab = isEnabledOAuth ? Tab.Oauth : Tab.Password;
 
-  const [resend, deleteMessage] = useChatStore((s) => [s.resendMessage, s.deleteMessage]);
+  const [resend, deleteMessage] = useChatStore((s) => [s.internalResendMessage, s.deleteMessage]);
   useEffect(() => {
     if (time > 0) {
       setTimeout(() => {

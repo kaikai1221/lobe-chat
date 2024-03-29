@@ -100,15 +100,20 @@
   },
   "layoutInitializing": "レイアウトを初期化中...",
   "modelProvider": {
+    "anthropic": "Anthropic",
     "azure": "Azure",
     "bedrock": "AWSベッドロック",
     "google": "Google",
+    "groq": "Groq",
+    "mistral": "Mistral AI",
     "moonshot": "Moonshot AI",
     "ollama": "オラマ",
     "oneapi": "One API",
     "openai": "OpenAI",
     "zhipu": "智譜AI",
-    "qwen": "阿里云"
+    "qwen": "阿里云",
+    "openrouter": "OpenRouter",
+    "perplexity": "Perplexity AI"
   },
   "noDescription": "説明はありません",
   "oauth": "SSO ログイン",
@@ -128,6 +133,13 @@
     "chat": "チャット",
     "market": "探す",
     "setting": "設定"
+  },
+  "telemetry": {
+    "allow": "許可する",
+    "deny": "拒否する",
+    "desc": "匿名の使用情報を収集し、LobeChat の改善やより良い製品体験を提供するためにご協力いただけると嬉しいです。いつでも「設定」-「情報」から無効にできます。",
+    "learnMore": "詳細を見る",
+    "title": "LobeChat の改善にご協力ください"
   },
   "temp": "一時的",
   "updateAgent": "エージェント情報を更新",

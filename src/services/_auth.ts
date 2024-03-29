@@ -1,4 +1,3 @@
-
 import { JWTPayload, LOBE_CHAT_AUTH_HEADER } from '@/const/auth';
 import { LOBE_CHAT_ACCESS_CODE } from '@/const/fetch';
 import { ModelProvider } from '@/libs/agent-runtime';
@@ -48,6 +47,28 @@ export const getProviderAuthPayload = (provider: string) => {
       return {
         endpoint,
       };
+    }
+
+    case ModelProvider.Perplexity: {
+      return { apiKey: modelProviderSelectors.perplexityAPIKey(useGlobalStore.getState()) };
+    }
+
+    case ModelProvider.Anthropic: {
+      const apiKey = modelProviderSelectors.anthropicAPIKey(useGlobalStore.getState());
+      const endpoint = modelProviderSelectors.anthropicProxyUrl(useGlobalStore.getState());
+      return { apiKey, endpoint };
+    }
+
+    case ModelProvider.Mistral: {
+      return { apiKey: modelProviderSelectors.mistralAPIKey(useGlobalStore.getState()) };
+    }
+
+    case ModelProvider.Groq: {
+      return { apiKey: modelProviderSelectors.groqAPIKey(useGlobalStore.getState()) };
+    }
+
+    case ModelProvider.OpenRouter: {
+      return { apiKey: modelProviderSelectors.openrouterAPIKey(useGlobalStore.getState()) };
     }
 
     default:

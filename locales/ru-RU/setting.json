@@ -1,4 +1,14 @@
 {
+  "about": {
+    "title": "О нас"
+  },
+  "analytics": {
+    "telemetry": {
+      "desc": "Выбрав отправку телеметрических данных, вы можете помочь нам улучшить общий пользовательский опыт LobeChat",
+      "title": "Отправка анонимных данных использования"
+    },
+    "title": "Аналитика"
+  },
   "danger": {
     "clear": {
       "action": "Очистить сейчас",
@@ -21,6 +31,19 @@
     "sessionWithName": "Настройки сеанса · {{name}}"
   },
   "llm": {
+    "Anthropic": {
+      "endpoint": {
+        "desc": "除默认地址外，必须包含 http(s)://",
+        "placeholder": "https://api.anthropic.com",
+        "title": "API 代理地址"
+      },
+      "title": "Антропный",
+      "token": {
+        "desc": "Введите ключ API от Anthropic",
+        "placeholder": "Ключ API Anthropic",
+        "title": "Ключ API"
+      }
+    },
     "AzureOpenAI": {
       "azureApiVersion": {
         "desc": "Версия API Azure, следуйте формату YYYY-MM-DD, см. [последнюю версию](https://learn.microsoft.com/ru-ru/azure/ai-services/openai/reference#chat-completions)",
@@ -73,6 +96,22 @@
       "token": {
         "desc": "Введите API-ключ от Google",
         "placeholder": "Ключ API Google",
+        "title": "API-ключ"
+      }
+    },
+    "Groq": {
+      "title": "Groq",
+      "token": {
+        "desc": "Введите API-ключ от Groq",
+        "placeholder": "Ключ API Groq",
+        "title": "API-ключ"
+      }
+    },
+    "Mistral": {
+      "title": "Mistral AI",
+      "token": {
+        "desc": "Введите API-ключ от Mistral AI",
+        "placeholder": "Ключ API Mistral AI",
         "title": "API-ключ"
       }
     },
@@ -138,8 +177,32 @@
         "title": "Использовать Azure OpenAI"
       }
     },
+    "OpenRouter": {
+      "checker": {
+        "desc": "Проверьте правильность заполнения адреса прокси"
+      },
+      "customModelName": {
+        "desc": "Добавьте пользовательскую модель, используя запятую (,) для разделения нескольких моделей",
+        "placeholder": "mistralai/mistral-7b-instruct:free,openchat/openchat-7b:free",
+        "title": "Имя пользовательской модели"
+      },
+      "title": "OpenRouter",
+      "token": {
+        "desc": "Введите API-ключ от OpenRouter AI",
+        "placeholder": "Ключ API OpenRouter AI",
+        "title": "API-ключ"
+      }
+    },
+    "Perplexity": {
+      "title": "Perplexity",
+      "token": {
+        "desc": "Введите API-ключ от Perplexity AI",
+        "placeholder": "Ключ API Perplexity AI",
+        "title": "API-ключ"
+      }
+    },
     "Zhipu": {
-      "title": "智谱",
+      "title": "Zhipu AI",
       "token": {
         "desc": "Введите API-ключ от Zhipu",
         "placeholder": "Ключ API Zhipu",
@@ -153,6 +216,14 @@
       "title": "Проверка доступности"
     },
     "waitingForMore": "Больше моделей доступно в <1>плане подключения</1>, ожидайте ✨"
+  },
+  "ollama": {
+    "download": {
+      "desc": "Ollama загружает эту модель. Пожалуйста, не закрывайте эту страницу. Загрузка будет возобновлена с того же места, если вы решите начать её заново.",
+      "remainingTime": "Оставшееся время",
+      "speed": "Скорость загрузки",
+      "title": "Загрузка модели {{model}}"
+    }
   },
   "plugin": {
     "addTooltip": "Добавить настраиваемый плагин",
@@ -370,6 +441,7 @@
     "tooltips": "Поделиться в магазине агентов"
   },
   "tab": {
+    "about": "О нас",
     "agent": "Помощник по умолчанию",
     "common": "Общие настройки",
     "llm": "Языковая модель",

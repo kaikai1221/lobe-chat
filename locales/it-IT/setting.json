@@ -1,4 +1,14 @@
 {
+  "about": {
+    "title": "Informazioni"
+  },
+  "analytics": {
+    "telemetry": {
+      "desc": "Attivando l'invio dei dati di telemetria, ci aiuti a migliorare complessivamente l'esperienza utente di LobeChat",
+      "title": "Invio dati anonimi"
+    },
+    "title": "Analisi"
+  },
   "danger": {
     "clear": {
       "action": "Cancella subito",
@@ -21,6 +31,19 @@
     "sessionWithName": "Impostazioni della sessione · {{name}}"
   },
   "llm": {
+    "Anthropic": {
+      "endpoint": {
+        "desc": "Deve includere http(s):// oltre all'indirizzo predefinito",
+        "placeholder": "https://api.anthropic.com",
+        "title": "Indirizzo dell'API proxy"
+      },
+      "title": "Anthropic",
+      "token": {
+        "desc": "Inserisci la chiave API di Anthropic",
+        "placeholder": "Chiave API di Anthropic",
+        "title": "Chiave API"
+      }
+    },
     "AzureOpenAI": {
       "azureApiVersion": {
         "desc": "Versione dell'API di Azure, nel formato YYYY-MM-DD, consulta la [versione più recente](https://learn.microsoft.com/it-it/azure/ai-services/openai/reference#chat-completions)",
@@ -73,6 +96,22 @@
       "token": {
         "desc": "Inserisci la chiave API da Google",
         "placeholder": "Chiave API Google",
+        "title": "Chiave API"
+      }
+    },
+    "Groq": {
+      "title": "Groq",
+      "token": {
+        "desc": "Inserisci la chiave API da Groq",
+        "placeholder": "Chiave API Groq",
+        "title": "Chiave API"
+      }
+    },
+    "Mistral": {
+      "title": "Mistral AI",
+      "token": {
+        "desc": "Inserisci la chiave API da Mistral AI",
+        "placeholder": "Chiave API Mistral AI",
         "title": "Chiave API"
       }
     },
@@ -138,6 +177,30 @@
         "title": "Usa Azure OpenAI"
       }
     },
+    "OpenRouter": {
+      "checker": {
+        "desc": "Verifica se l'indirizzo del proxy è stato compilato correttamente"
+      },
+      "customModelName": {
+        "desc": "Aggiungi un modello personalizzato, separando più modelli con virgola (,)",
+        "placeholder": "mistralai/mistral-7b-instruct:free,openchat/openchat-7b:free",
+        "title": "Nome del modello personalizzato"
+      },
+      "title": "OpenRouter",
+      "token": {
+        "desc": "Inserisci la chiave API da OpenRouter AI",
+        "placeholder": "Chiave API OpenRouter AI",
+        "title": "Chiave API"
+      }
+    },
+    "Perplexity": {
+      "title": "Perplexity",
+      "token": {
+        "desc": "Inserisci la chiave API di Perplexity AI",
+        "placeholder": "Chiave API di Perplexity AI",
+        "title": "Chiave API"
+      }
+    },
     "Zhipu": {
       "title": "智谱",
       "token": {
@@ -153,6 +216,14 @@
       "title": "Verifica di connettività"
     },
     "waitingForMore": "Altri modelli sono in fase di <1> pianificazione per l'integrazione </1>, resta sintonizzato ✨"
+  },
+  "ollama": {
+    "download": {
+      "desc": "Ollama sta scaricando questo modello. Si prega di non chiudere questa pagina. Il download verrà ripreso dal punto in cui è stato interrotto in caso di riavvio.",
+      "remainingTime": "Tempo rimanente",
+      "speed": "Velocità di download",
+      "title": "Download del modello {{model}} in corso"
+    }
   },
   "plugin": {
     "addTooltip": "Aggiungi plugin personalizzato",
@@ -370,6 +441,7 @@
     "tooltips": "Condividi sul mercato degli assistenti"
   },
   "tab": {
+    "about": "Informazioni",
     "agent": "Assistente predefinito",
     "common": "Impostazioni comuni",
     "llm": "Modello linguistico",
