@@ -9,8 +9,10 @@ import {
   ChatCompletionErrorPayload,
   ILobeAgentRuntimeErrorType,
 } from '@/libs/agent-runtime';
+import { ChatErrorType } from '@/types/fetch';
 import { ChatStreamPayload } from '@/types/openai/chat';
 import { encodeAsync } from '@/utils/tokenizer';
+import { getTracePayload } from '@/utils/trace';
 
 import { getJWTPayload } from '../auth';
 import AgentRuntime from './agentRuntime';
@@ -20,11 +22,11 @@ export const runtime = 'edge';
 export const preferredRegion = getPreferredRegion();
 
 export const POST = async (req: Request, { params }: { params: { provider: string } }) => {
+  const { provider } = params;
   let agentRuntime: AgentRuntime;
-
-  // ============  1. init chat model   ============ //
-
   try {
+    // ============  1. init chat model   ============ //
+
     // get Authorization from header
     const authorization = req.headers.get(LOBE_CHAT_AUTH_HEADER);
     const accessCode = req.headers.get(LOBE_CHAT_ACCESS_CODE);
@@ -62,18 +64,21 @@ export const POST = async (req: Request, { params }: { params: { provider: strin
     // if (!result.auth) {
     //   return createErrorResponse(result.error as ErrorType);
     // }
-    if (!result.auth) throw AgentRuntimeError.createError(result.error as string);
+    const { auth, error } = result;
+    if (!auth) throw AgentRuntimeError.createError(error as string);
     // check the Auth With payload
     const payload = await getJWTPayload(authorization || '');
     // checkPasswordOrUseUserApiKey(payload.accessCode, payload.apiKey);
     // const body = await req.clone().json();
+    const { azureApiVersion, useAzure } = payload;
+    const { provider } = params;
     agentRuntime = await AgentRuntime.initializeWithUserPayload(
-      params.provider,
+      provider,
       payload,
       {
-        apiVersion: payload.azureApiVersion,
+        apiVersion: azureApiVersion,
         model,
-        useAzure: payload.useAzure,
+        useAzure,
       },
       isTools,
     );
@@ -107,10 +112,10 @@ export const POST = async (req: Request, { params }: { params: { provider: strin
     console.log('错误：' + e);
     // if catch the error, just return it
     const err = e as AgentInitErrorPayload;
-
+    const { provider } = params;
     return createErrorResponse(err.errorType as ILobeAgentRuntimeErrorType, {
       error: err.error,
-      provider: params.provider,
+      provider,
     });
   }
 
@@ -118,14 +123,23 @@ export const POST = async (req: Request, { params }: { params: { provider: strin
 
   try {
     const payload = (await req.json()) as ChatStreamPayload;
-
-    return await agentRuntime.chat(payload);
+    const tracePayload = getTracePayload(req);
+    return await agentRuntime.chat(payload, {
+      enableTrace: tracePayload?.enabled,
+      provider,
+      trace: tracePayload,
+    });
   } catch (e) {
-    const { errorType, provider, error: errorContent, ...res } = e as ChatCompletionErrorPayload;
+    const {
+      errorType = ChatErrorType.InternalServerError,
+      error: errorContent,
+      ...res
+    } = e as ChatCompletionErrorPayload;
 
+    const error = errorContent || e;
     // track the error at server side
-    console.error(`Route: [${provider}] ${errorType}:`, errorContent);
+    console.error(`Route: [${provider}] ${errorType}:`, error);
 
-    return createErrorResponse(errorType, { error: errorContent, provider, ...res });
+    return createErrorResponse(errorType, { error, ...res, provider });
   }
 };

@@ -1,4 +1,14 @@
 {
+  "about": {
+    "title": "Hakkında"
+  },
+  "analytics": {
+    "telemetry": {
+      "desc": "Anonim kullanım verilerini göndererek LobeChat'in genel kullanıcı deneyimini iyileştirmemize yardımcı olabilirsiniz",
+      "title": "Anonim Kullanım Verileri Gönder"
+    },
+    "title": "Analitik"
+  },
   "danger": {
     "clear": {
       "action": "Temizle",
@@ -21,6 +31,19 @@
     "sessionWithName": "Oturum Ayarları · {{name}}"
   },
   "llm": {
+    "Anthropic": {
+      "endpoint": {
+        "desc": "默认地址以外，必须包含 http(s)://",
+        "placeholder": "https://api.anthropic.com",
+        "title": "API Proxy Adresi"
+      },
+      "title": "Anthropic",
+      "token": {
+        "desc": "Anthropic 的 API 密钥",
+        "placeholder": "Anthropic API 密钥",
+        "title": "API 密钥"
+      }
+    },
     "AzureOpenAI": {
       "azureApiVersion": {
         "desc": "Azure'nin API sürümü, YYYY-MM-DD biçimini takip eder, [en son sürümü buradan bulabilirsiniz](https://learn.microsoft.com/tr-tr/azure/ai-services/openai/reference#chat-completions)",
@@ -74,6 +97,22 @@
         "desc": "Google'dan alınan API Anahtarını girin",
         "placeholder": "Google API Anahtarı",
         "title": "API Anahtarı"
+      }
+    },
+    "Groq": {
+      "title": "Groq",
+      "token": {
+        "desc": "Groq'dan alınan API Anahtarını girin",
+        "placeholder": "Groq API Anahtarı",
+        "title": "API Anahtarı"
+      }
+    },
+    "Mistral": {
+      "title": "Mistral AI",
+      "token": {
+        "desc": "Mistral AI 的 API 密钥",
+        "placeholder": "Mistral AI API 密钥",
+        "title": "API 密钥"
       }
     },
     "Moonshot": {
@@ -138,8 +177,32 @@
         "title": "Azure OpenAI"
       }
     },
+    "OpenRouter": {
+      "checker": {
+        "desc": "测试代理地址是否正确填写"
+      },
+      "customModelName": {
+        "desc": "增加自定义模型，多个模型使用逗号（,）隔开",
+        "placeholder": "mistralai/mistral-7b-instruct:free,openchat/openchat-7b:free",
+        "title": "自定义模型名称"
+      },
+      "title": "OpenRouter",
+      "token": {
+        "desc": "填入来自 OpenRouter AI 的 API Key",
+        "placeholder": "OpenRouter AI API Key",
+        "title": "API Key"
+      }
+    },
+    "Perplexity": {
+      "title": "Perplexity",
+      "token": {
+        "desc": "Perplexity AI'dan gelen API Anahtarı'nı girin",
+        "placeholder": "Perplexity AI API Anahtarı",
+        "title": "API Anahtarı"
+      }
+    },
     "Zhipu": {
-      "title": "智谱",
+      "title": "Zhipu AI",
       "token": {
         "desc": "Zhipu'dan alınan API Anahtarını girin",
         "placeholder": "Zhipu API Anahtarı",
@@ -153,6 +216,14 @@
       "title": "Bağlantı Kontrolü"
     },
     "waitingForMore": "Daha fazla model eklenmesi planlanıyor ✨"
+  },
+  "ollama": {
+    "download": {
+      "desc": "Ollama bu modeli indiriyor, lütfen bu sayfayı kapatmamaya çalışın. Yeniden indirme durumunda kaldığı yerden devam edecektir.",
+      "remainingTime": "Kalan Zaman",
+      "speed": "İndirme Hızı",
+      "title": "{{model}} Modeli İndiriliyor"
+    }
   },
   "plugin": {
     "addTooltip": "Eklenti Ekle",
@@ -370,6 +441,7 @@
     "tooltips": "Asistan pazarına paylaşın"
   },
   "tab": {
+    "about": "Hakkında",
     "agent": "Varsayılan Asistan",
     "common": "Genel Ayarlar",
     "llm": "Modeller",

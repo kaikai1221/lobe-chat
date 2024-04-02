@@ -100,15 +100,20 @@
   },
   "layoutInitializing": "Layout wird geladen...",
   "modelProvider": {
+    "anthropic": "Anthropic",
     "azure": "Azure",
     "bedrock": "AWS Bedrock",
     "google": "Google",
+    "groq": "Groq",
+    "mistral": "Mistral KI",
     "moonshot": "Moonshot KI",
     "ollama": "Ollama",
     "oneapi": "One API",
     "openai": "OpenAI",
     "zhipu": "Zhipu AI",
-    "qwen": "阿里云"
+    "qwen": "阿里云",
+    "openrouter": "OpenRouter",
+    "perplexity": "Perplexity"
   },
   "noDescription": "Keine Beschreibung vorhanden",
   "oauth": "SSO-Anmeldung",
@@ -128,6 +133,13 @@
     "chat": "Chat",
     "market": "Entdecken",
     "setting": "Einstellung"
+  },
+  "telemetry": {
+    "allow": "Erlauben",
+    "deny": "Verweigern",
+    "desc": "Wir möchten anonyme Nutzungsdaten sammeln, um uns bei der Verbesserung von LobeChat zu helfen und dir ein besseres Produkterlebnis zu bieten. Du kannst dies jederzeit in den „Einstellungen“ - „Über“ deaktivieren.",
+    "learnMore": "Mehr erfahren",
+    "title": "Hilf LobeChat, besser zu werden"
   },
   "temp": "Temporär",
   "updateAgent": "Assistentenprofil aktualisieren",

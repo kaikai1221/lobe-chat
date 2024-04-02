@@ -15,7 +15,7 @@ import Layout from './layout.mobile';
 export default memo(() => {
   const [isLoading, setLoading] = useState(true);
   const [isGenerating, setGenerating] = useState(false);
-  const [showType, setShowType] = useState(1);
+  const [showType, setShowType] = useState(2);
 
   useEffectAfterGlobalHydrated(() => {
     setLoading(false);

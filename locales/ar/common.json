@@ -100,15 +100,20 @@
   },
   "layoutInitializing": "جاري تحميل التخطيط...",
   "modelProvider": {
+    "anthropic": "Anthropic",
     "azure": "أزور",
     "bedrock": "بيدروك لأمازون ويب سيرفيس",
     "google": "جوجل",
+    "groq": "Groq",
+    "mistral": "Mistral AI",
     "moonshot": "مونشوت الذكاء الاصطناعي",
     "ollama": "أولاما",
     "oneapi": "وان آبي آي",
     "openai": "أوبن إيه آي",
     "zhipu": "زهيبو",
-    "qwen": "阿里云"
+    "qwen": "阿里云",
+    "openrouter": "OpenRouter",
+    "perplexity": "Perplexity"
   },
   "noDescription": "لا توجد وصف",
   "oauth": "تسجيل الدخول SSO",
@@ -128,6 +133,13 @@
     "chat": "الدردشة",
     "market": "الاكتشاف",
     "setting": "الإعدادات"
+  },
+  "telemetry": {
+    "allow": "السماح",
+    "deny": "رفض",
+    "desc": "نحن نأمل في الحصول على معلومات استخدامك بشكل مجهول لمساعدتنا في تحسين LobeChat وتوفير تجربة منتج أفضل لك. يمكنك إيقاف ذلك في أي وقت من \"الإعدادات\" - \"حول\".",
+    "learnMore": "معرفة المزيد",
+    "title": "مساعدة LobeChat في التحسن"
   },
   "temp": "مؤقت",
   "updateAgent": "تحديث معلومات الوكيل",

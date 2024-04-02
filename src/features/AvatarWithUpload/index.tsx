@@ -1,10 +1,10 @@
-import { Logo } from '@lobehub/ui';
 import { Upload } from 'antd';
 import { createStyles } from 'antd-style';
 import Avatar from 'next/image';
 import { CSSProperties, memo } from 'react';
 
 import { DEFAULT_USER_AVATAR_URL } from '@/const/meta';
+// import { imageUrl } from '@/const/url';
 import { useGlobalStore } from '@/store/global';
 import { commonSelectors } from '@/store/global/selectors';
 import { imageToBase64 } from '@/utils/imageToBase64';
@@ -66,7 +66,7 @@ const AvatarWithUpload = memo<AvatarWithUploadProps>(
               width={size}
             />
           ) : (
-            <Logo size={size} />
+            ''
           )}
         </Upload>
       </div>

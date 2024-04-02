@@ -1,5 +1,3 @@
-import { Callout } from 'nextra/components';
-
 # Model Service Providers
 
 When deploying LobeChat, a rich set of environment variables related to model service providers is provided, allowing you to easily define the model service providers to be enabled in LobeChat.
@@ -23,14 +21,14 @@ When deploying LobeChat, a rich set of environment variables related to model se
 <Callout type={'warning'}>
   Please check the request suffix of your proxy service provider. Some proxy service providers may
   add `/v1` to the request suffix, while others may not. If you find that the AI returns an empty
-  message during testing, try adding the `/v1` suffix and retry.{' '}
+  message during testing, try adding the `/v1` suffix and retry.
 </Callout>
 
 <Callout type={'info'}>
   Whether to fill in `/v1` is closely related to the model service provider. For example, the
   default address of openai is `api.openai.com/v1`. If your proxy forwards the `/v1` interface, you
   can simply fill in `proxy.com`. However, if the model service provider directly forwards the
-  `api.openai.com` domain, then you need to add `/v1` to the URL yourself.{' '}
+  `api.openai.com` domain, then you need to add `/v1` to the URL yourself.
 </Callout>
 
 Related discussions:
@@ -53,6 +51,17 @@ You can find all current model names in [modelProviders](https://github.com/lobe
 ## Azure OpenAI
 
 If you need to use Azure OpenAI to provide model services, you can refer to the [Deploying with Azure OpenAI](../Deployment/Deploy-with-Azure-OpenAI.en-US.md) section for detailed steps. Here, we will list the environment variables related to Azure OpenAI.
+
+### `API_KEY_SELECT_MODE`
+
+- Type：Optional
+- Description：Controls the mode for selecting the API Key when multiple API Keys are available. Currently supports `random` and `turn`.
+- Default：`random`
+- Example：`random` or `turn`
+
+When using the `random` mode, a random API Key will be selected from the available multiple API Keys.
+
+When using the `turn` mode, the API Keys will be retrieved in a round-robin manner according to the specified order.
 
 ### `USE_AZURE_OPENAI`
 
@@ -133,3 +142,51 @@ If you need to use Azure OpenAI to provide model services, you can refer to the 
 - Description: Used to enable the Ollama service, setting this will display optional open-source language models in the language model list and can also specify custom language models
 - Default: -
 - Example: `http://127.0.0.1:11434/v1`
+
+## Perplexity AI
+
+### `PERPLEXITY_API_KEY`
+
+- Type: Required
+- Description: This is the API key you applied from Perplexity AI
+- Default: -
+- Example: `pplx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
+
+## Anthropic AI
+
+### `ANTHROPIC_API_KEY`
+
+- Type: Required
+- Description: This is the API key you applied from Anthropic AI
+- Default: -
+- Example: `sk-ant-apixx-xxxxxxxxx-xxxxxxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-xxxxxxxx`
+
+## Mistral AI
+
+### `MISTRAL_API_KEY`
+
+- Type: Required
+- Description: This is the API key you applied for in the Mistral AI service
+- Default: -
+- Example: `xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=`
+
+## Groq AI
+
+### `GROQ_API_KEY`
+
+- Type: Required
+- Description: This is the API key you applied from Groq AI
+- Default: -
+- Example: `gsk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
+
+## OpenRouter AI
+
+### `OPENROUTER_API_KEY`
+
+- Type: Required
+- Description: This is the API key you applied for in the OpenRouter AI service
+- Default: -
+- Example: `sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=`
+
+
+[azure-api-verion-url]: https://docs.microsoft.com/zh-cn/azure/developer/javascript/api-reference/es-modules/azure-sdk/ai-translation/translationconfiguration?view=azure-node-latest#api-version
