@@ -84,7 +84,7 @@ const ModelSwitchPanel = memo<PropsWithChildren>(({ children }) => {
         id: 'openai',
       },
     ];
-    if (!useGlobalStore.getState().settings?.token || (data && data.status === false)) {
+    if (!useGlobalStore.getState().settings?.token || data?.code !== 0 || data?.status === false) {
       // modelList = modelList.filter((item) => !item.id.includes('openai'));
       // enabledList = enabledList.filter((item) => !item.model.id.includes('gpt'));
       modelList = [
