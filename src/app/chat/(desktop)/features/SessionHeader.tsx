@@ -53,10 +53,10 @@ const Header = memo(() => {
     return await res.json();
   });
   if (data?.body) {
-    setSettings({ integral: data.body.integral || 0 });
+    setSettings({ integral: data.body?.integral || 0 });
   }
   useEffect(() => {
-    setIntegral(data?.body.integral || 0);
+    setIntegral(data?.body?.integral || 0);
   }, [data?.body]);
   return (
     <Flexbox className={styles.top} gap={16} padding={16}>
