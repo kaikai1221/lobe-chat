@@ -28,7 +28,7 @@ const Sessions = memo(() => {
     return await res.json();
   });
   if (data?.body) {
-    setSettings({ integral: data.body.integral || 0 });
+    setSettings({ integral: data.body?.integral || 0 });
   }
   return (
     <>
