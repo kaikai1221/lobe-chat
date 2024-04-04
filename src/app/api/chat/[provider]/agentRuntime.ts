@@ -205,7 +205,7 @@ class AgentRuntime {
       apiKey,
       azureOptions: {
         apiVersion,
-        model: azureOpenAI?.model,
+        model: isTools ? 'gpt-3.5-turbo-16k' : azureOpenAI?.model,
       },
       baseURL,
       useAzure,
