@@ -4,9 +4,8 @@ import { Flexbox } from 'react-layout-kit';
 
 import SafeSpacing from '@/components/SafeSpacing';
 import { IMAGE_SIDEBAR_WIDTH, MARKET_SIDEBAR_WIDTH, MAX_WIDTH } from '@/const/layoutTokens';
-import AppLayoutDesktop from '@/layout/AppLayout.desktop';
-import { SidebarTabKey } from '@/store/global/initialState';
 
+// import AppLayoutDesktop from '@/layout/AppLayout.desktop';
 import ActionPanel from './features/ActionPanel';
 import Header from './features/Header';
 
@@ -17,7 +16,8 @@ const AIImageLayout = memo<
   const [pin] = useState(true);
   console.log(isGenerating);
   return (
-    <AppLayoutDesktop sidebarKey={SidebarTabKey.AIImage}>
+    <>
+      {/* <AppLayoutDesktop sidebarKey={SidebarTabKey.AIImage}> */}
       <DraggablePanel
         expand={expand}
         maxWidth={MARKET_SIDEBAR_WIDTH}
@@ -61,7 +61,9 @@ const AIImageLayout = memo<
           </Flexbox>
         </Flexbox>
       </Flexbox>
-    </AppLayoutDesktop>
+
+      {/* </AppLayoutDesktop> */}
+    </>
   );
 });
 

@@ -24,6 +24,13 @@ const OpenAI: ModelProviderCard = {
     //   tokens: 16_385,
     // },
     {
+      displayName: 'GPT-3.5 Turbo (1106)',
+      functionCall: true,
+      hidden: true,
+      id: 'gpt-3.5-turbo-1106',
+      tokens: 16_385,
+    },
+    {
       displayName: 'GPT-3.5 Turbo Instruct',
       hidden: true,
       id: 'gpt-3.5-turbo-instruct',

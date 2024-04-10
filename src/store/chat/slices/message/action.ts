@@ -388,7 +388,6 @@ export const chatMessage: StateCreator<
       toggleChatLoading,
       refreshMessages,
       internalUpdateMessageContent,
-      // dispatchMessage,
       createSmoothMessage,
     } = get();
 
@@ -450,16 +449,6 @@ export const chatMessage: StateCreator<
     let functionCallContent = '';
     let msgTraceId: string | undefined;
 
-    //       await updateMessageContent(assistantId, output);
-
-    //       // is this message is just a function call
-    //       if (isFunctionMessageAtStart(output)) isFunctionCall = true;
-    //     },
-    //   });
-    // } catch {
-    //   console.log('终止输出');
-    //   subIntegral(output, config.model);
-    // }
     const { startAnimation, stopAnimation, outputQueue } = createSmoothMessage(assistantId);
     try {
       await chatService.createAssistantMessageStream({
@@ -486,8 +475,8 @@ export const chatMessage: StateCreator<
         },
         onFinish: async (content, { traceId, observationId }) => {
           stopAnimation();
-          subIntegral(output, config.model);
           // if there is traceId, update it
+          subIntegral(output, config.model);
           if (traceId) {
             msgTraceId = traceId;
             await messageService.updateMessage(assistantId, {

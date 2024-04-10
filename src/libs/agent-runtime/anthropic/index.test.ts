@@ -44,7 +44,7 @@ describe('LobeAnthropicAI', () => {
     it('should return a StreamingTextResponse on successful API call', async () => {
       const result = await instance.chat({
         messages: [{ content: 'Hello', role: 'user' }],
-        model: 'claude-instant-1.2',
+        model: 'claude-3-haiku-20240307',
         temperature: 0,
       });
 
@@ -66,7 +66,7 @@ describe('LobeAnthropicAI', () => {
       // Act
       const result = await instance.chat({
         messages: [{ content: 'Hello', role: 'user' }],
-        model: 'claude-instant-1.2',
+        model: 'claude-3-haiku-20240307',
         temperature: 0,
         top_p: 1,
       });
@@ -75,7 +75,7 @@ describe('LobeAnthropicAI', () => {
       expect(instance['client'].messages.create).toHaveBeenCalledWith({
         max_tokens: 4096,
         messages: [{ content: 'Hello', role: 'user' }],
-        model: 'claude-instant-1.2',
+        model: 'claude-3-haiku-20240307',
         stream: true,
         temperature: 0,
         top_p: 1,
@@ -100,7 +100,7 @@ describe('LobeAnthropicAI', () => {
           { content: 'You are an awesome greeter', role: 'system' },
           { content: 'Hello', role: 'user' },
         ],
-        model: 'claude-instant-1.2',
+        model: 'claude-3-haiku-20240307',
         temperature: 0,
       });
 
@@ -108,7 +108,7 @@ describe('LobeAnthropicAI', () => {
       expect(instance['client'].messages.create).toHaveBeenCalledWith({
         max_tokens: 4096,
         messages: [{ content: 'Hello', role: 'user' }],
-        model: 'claude-instant-1.2',
+        model: 'claude-3-haiku-20240307',
         stream: true,
         system: 'You are an awesome greeter',
         temperature: 0,
@@ -131,7 +131,7 @@ describe('LobeAnthropicAI', () => {
       const result = await instance.chat({
         max_tokens: 2048,
         messages: [{ content: 'Hello', role: 'user' }],
-        model: 'claude-instant-1.2',
+        model: 'claude-3-haiku-20240307',
         temperature: 0.5,
         top_p: 1,
       });
@@ -140,7 +140,7 @@ describe('LobeAnthropicAI', () => {
       expect(instance['client'].messages.create).toHaveBeenCalledWith({
         max_tokens: 2048,
         messages: [{ content: 'Hello', role: 'user' }],
-        model: 'claude-instant-1.2',
+        model: 'claude-3-haiku-20240307',
         stream: true,
         temperature: 0.5,
         top_p: 1,
@@ -164,7 +164,7 @@ describe('LobeAnthropicAI', () => {
         frequency_penalty: 0.5, // Unsupported option
         max_tokens: 2048,
         messages: [{ content: 'Hello', role: 'user' }],
-        model: 'claude-instant-1.2',
+        model: 'claude-3-haiku-20240307',
         presence_penalty: 0.5,
         temperature: 0.5,
         top_p: 1,
@@ -174,7 +174,7 @@ describe('LobeAnthropicAI', () => {
       expect(instance['client'].messages.create).toHaveBeenCalledWith({
         max_tokens: 2048,
         messages: [{ content: 'Hello', role: 'user' }],
-        model: 'claude-instant-1.2',
+        model: 'claude-3-haiku-20240307',
         stream: true,
         temperature: 0.5,
         top_p: 1,
@@ -210,7 +210,7 @@ describe('LobeAnthropicAI', () => {
       // Act
       await instance.chat({
         messages: [{ content: 'Hello', role: 'user' }],
-        model: 'claude-instant-1.2',
+        model: 'claude-3-haiku-20240307',
         temperature: 0,
       });
 
@@ -240,7 +240,7 @@ describe('LobeAnthropicAI', () => {
           // Act
           await instance.chat({
             messages: [{ content: 'Hello', role: 'user' }],
-            model: 'claude-instant-1.2',
+            model: 'claude-3-haiku-20240307',
             temperature: 0,
           });
         } catch (e) {
@@ -271,7 +271,7 @@ describe('LobeAnthropicAI', () => {
           // Act
           await instance.chat({
             messages: [{ content: 'Hello', role: 'user' }],
-            model: 'claude-instant-1.2',
+            model: 'claude-3-haiku-20240307',
             temperature: 0,
           });
         } catch (e) {

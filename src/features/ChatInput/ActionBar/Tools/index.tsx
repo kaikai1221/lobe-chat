@@ -135,6 +135,10 @@ const Tools = memo<{ refT?: any }>(({ refT }) => {
           onClick: (e) => {
             e.domEvent.preventDefault();
           },
+          style: {
+            maxHeight: 500,
+            overflowY: 'scroll',
+          },
         }}
         placement={'top'}
         trigger={['click']}

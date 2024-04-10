@@ -24,6 +24,7 @@ export const preferredRegion = getPreferredRegion();
 export const POST = async (req: Request, { params }: { params: { provider: string } }) => {
   const { provider } = params;
   let agentRuntime: AgentRuntime;
+
   try {
     // ============  1. init chat model   ============ //
 

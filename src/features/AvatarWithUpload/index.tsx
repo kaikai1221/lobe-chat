@@ -1,6 +1,5 @@
 import { Upload } from 'antd';
 import { createStyles } from 'antd-style';
-import Avatar from 'next/image';
 import { CSSProperties, memo } from 'react';
 
 import { DEFAULT_USER_AVATAR_URL } from '@/const/meta';
@@ -59,7 +58,7 @@ const AvatarWithUpload = memo<AvatarWithUploadProps>(
       <div className={styles} id={id} style={{ maxHeight: size, maxWidth: size, ...style }}>
         <Upload beforeUpload={handleUploadAvatar} itemRender={() => void 0} maxCount={1}>
           {avatar || DEFAULT_USER_AVATAR_URL ? (
-            <Avatar
+            <img
               alt={'avatar'}
               height={size}
               src={avatar || DEFAULT_USER_AVATAR_URL}
