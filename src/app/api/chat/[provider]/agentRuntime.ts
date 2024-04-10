@@ -117,7 +117,9 @@ class AgentRuntime {
     isTools?: boolean,
   ) {
     let runtimeModel: LobeRuntimeAI;
-    switch (provider) {
+    let type = provider;
+    type = 'oneapi';
+    switch (type) {
       default:
       case 'oneapi':
       case ModelProvider.OpenAI: {
