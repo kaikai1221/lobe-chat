@@ -118,10 +118,10 @@ class AgentRuntime {
   ) {
     let runtimeModel: LobeRuntimeAI;
     let type = provider;
-    type = 'oneapi';
+    type = 'openai';
     switch (type) {
       default:
-      case 'oneapi':
+      case 'openai':
       case ModelProvider.OpenAI: {
         runtimeModel = this.initOpenAI(payload, azureOpenAI, isTools);
         break;
