@@ -40,6 +40,7 @@ export class LobeAzureOpenAI implements LobeRuntimeAI {
         params as GetChatCompletionsOptions,
       );
 
+      // TODO: we need to refactor this part in the future
       const stream = OpenAIStream(response as any);
 
       const [debug, prod] = stream.tee();

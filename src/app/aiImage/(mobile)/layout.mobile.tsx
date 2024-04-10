@@ -1,14 +1,14 @@
 'use client';
 
+// import AppLayoutMobile from '@/layout/AppLayout.mobile';
+import { MobileNavBar } from '@lobehub/ui';
 import { createStyles } from 'antd-style';
 import { PropsWithChildren } from 'react';
 import { Flexbox } from 'react-layout-kit';
 
-import AppLayoutMobile from '@/layout/AppLayout.mobile';
-import { SidebarTabKey } from '@/store/global/initialState';
+import { mobileHeaderSticky } from '@/styles/mobileHeader';
 
 import ActionPanel from '../(desktop)/features/ActionPanel';
-import Header from './features/Header';
 
 const useStyles = createStyles(({ css, token }) => ({
   description: css`
@@ -16,6 +16,12 @@ const useStyles = createStyles(({ css, token }) => ({
     font-size: ${token.fontSizeSM}px;
     color: ${token.colorTextDescription};
     text-align: center;
+  `,
+  logo: css`
+    font-size: 16px;
+    font-weight: bolder;
+    color: ${token.colorText};
+    fill: ${token.colorText};
   `,
   title: css`
     width: 100%;
@@ -34,14 +40,21 @@ const AIImageLayout = ({
   const { styles } = useStyles();
 
   return (
-    <AppLayoutMobile navBar={<Header />} showTabBar tabBarKey={SidebarTabKey.AIImage}>
+    <>
+      <MobileNavBar
+        center={<>AI 聊天室</>}
+        // right={<ShareAgentButton mobile />}
+        style={mobileHeaderSticky}
+      />
+      {/* <AppLayoutMobile navBar={<Header />} showTabBar tabBarKey={SidebarTabKey.AIImage}> */}
       <ActionPanel isGenerating={isGenerating} mobile setGenerating={setGenerating} />
       <p className={styles.title}>历史记录</p>
       <p className={styles.description}>记录只保留30天，请及时保存</p>
       <Flexbox flex={1} gap={16} style={{ padding: 16 }}>
         {children}
       </Flexbox>
-    </AppLayoutMobile>
+      {/* </AppLayoutMobile> */}
+    </>
   );
 };
 

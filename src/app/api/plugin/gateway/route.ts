@@ -28,9 +28,6 @@ const defaultPluginSettings = parserPluginSettings(PLUGIN_SETTINGS);
 const handler = createGatewayOnEdgeRuntime({ defaultPluginSettings, pluginsIndexUrl });
 
 export const POST = async (req: Request) => {
-  // const { accessCode } = getOpenAIAuthFromRequest(req);
-
-  // const result = checkAuth(accessCode);
   // get Authorization from header
   // const authorization = req.headers.get(LOBE_CHAT_AUTH_HEADER);
   // if (!authorization) throw AgentRuntimeError.createError(ChatErrorType.Unauthorized);
@@ -40,9 +37,16 @@ export const POST = async (req: Request) => {
 
   // const result = checkAuth(payload.accessCode!, oauthAuthorized);
 
+  // const oauthAuthorized = !!req.headers.get(OAUTH_AUTHORIZED);
+  // const payload = await getJWTPayload(authorization);
+
+  // const result = checkAuth(payload.accessCode!, oauthAuthorized);
+
   // if (!result.auth) {
   //   return createErrorResponse(result.error as ErrorType);
   // }
+
+  // add trace
 
   // add trace
   const tracePayload = getTracePayload(req);

@@ -33,7 +33,7 @@ const Sessions = memo(() => {
   return (
     <>
       <div style={{ padding: '8px 16px' }}>
-        <SessionSearchBar />
+        <SessionSearchBar mobile />
         <div style={{ marginTop: '10px' }}>
           <Button onClick={() => setIsModalOpen(true)} size="small" style={{ marginRight: '10px' }}>
             模型价格

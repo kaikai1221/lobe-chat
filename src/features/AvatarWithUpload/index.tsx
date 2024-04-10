@@ -1,7 +1,7 @@
 import { Upload } from 'antd';
 import { createStyles } from 'antd-style';
-import Avatar from 'next/image';
-import { CSSProperties, memo } from 'react';
+import NextImage from 'next/image';
+import { CSSProperties, memo, useCallback } from 'react';
 
 import { imageUrl } from '@/const/url';
 import { useGlobalStore } from '@/store/global';
@@ -43,22 +43,26 @@ const AvatarWithUpload = memo<AvatarWithUploadProps>(
       s.updateAvatar,
     ]);
 
-    const handleUploadAvatar = createUploadImageHandler((avatar) => {
-      const img = new Image();
-      img.src = avatar;
-      img.addEventListener('load', () => {
-        const webpBase64 = imageToBase64({ img, size: compressSize });
-        updateAvatar(webpBase64);
-      });
-    });
+    const handleUploadAvatar = useCallback(
+      createUploadImageHandler((avatar) => {
+        const img = new Image();
+        img.src = avatar;
+        img.addEventListener('load', () => {
+          const webpBase64 = imageToBase64({ img, size: compressSize });
+          updateAvatar(webpBase64);
+        });
+      }),
+      [],
+    );
 
     return (
       <div className={styles} id={id} style={{ maxHeight: size, maxWidth: size, ...style }}>
         <Upload beforeUpload={handleUploadAvatar} itemRender={() => void 0} maxCount={1}>
-          <Avatar
+          <NextImage
             alt={avatar ? 'userAvatar' : 'LobeChat'}
             height={size}
             src={!!avatar ? avatar : imageUrl('logo.png')}
+            unoptimized
             width={size}
           />
         </Upload>

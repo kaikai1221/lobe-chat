@@ -11,6 +11,8 @@ import OpenAIProvider from './openai';
 import OpenRouterProvider from './openrouter';
 import PerplexityProvider from './perplexity';
 import QwenProvider from './qwen';
+import TogetherAIProvider from './togetherai';
+import ZeroOneProvider from './zeroone';
 import ZhiPuProvider from './zhipu';
 
 export const LOBE_DEFAULT_MODEL_LIST: ChatModelCard[] = [
@@ -26,6 +28,10 @@ export const LOBE_DEFAULT_MODEL_LIST: ChatModelCard[] = [
   OpenRouterProvider.chatModels,
   PerplexityProvider.chatModels,
   AnthropicProvider.chatModels,
+  TogetherAIProvider.chatModels,
+  PerplexityProvider.chatModels,
+  AnthropicProvider.chatModels,
+  ZeroOneProvider.chatModels,
 ].flat();
 
 export { default as AnthropicProvider } from './anthropic';
@@ -39,4 +45,6 @@ export { default as OpenAIProvider } from './openai';
 export { default as OpenRouterProvider } from './openrouter';
 export { default as PerplexityProvider } from './perplexity';
 export { default as QwenProvider } from './qwen';
+export { default as TogetherAIProvider } from './togetherai';
+export { default as ZeroOneProvider } from './zeroone';
 export { default as ZhiPuProvider } from './zhipu';
