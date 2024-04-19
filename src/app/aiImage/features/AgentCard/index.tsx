@@ -472,7 +472,7 @@ const AgentCard = memo<aiImageProps>(({ mobile, isGenerating, setGenerating }) =
       },
     ];
     status: number;
-  }>(settings.token ? '/api/user/chat-history' : '', async () => {
+  }>(settings?.token ? '/api/user/chat-history' : '', async () => {
     const res = await fetch(`/api/user/chat-history`, {
       cache: 'no-cache',
       headers: {
