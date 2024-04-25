@@ -18,7 +18,7 @@ const Desktop = memo<PropsWithChildren>(({ children }) => {
       style={{ position: 'relative' }}
     >
       {/* <Logo className={styles.logo} size={36} type={'text'} /> */}
-      <h2>大头博士AI聊天室</h2>
+      <h2 className={styles.logo}>大头博士AI聊天室</h2>
       <Flexbox className={styles.view} flex={1}>
         {children}
       </Flexbox>
