@@ -1,13 +1,12 @@
 import OpenAI from 'openai';
 
 import { checkAuth } from '@/app/api/auth';
-import { getServerConfig } from '@/config/server';
 import { LOBE_CHAT_ACCESS_CODE, getOpenAIAuthFromRequest } from '@/const/fetch';
+// import { getOpenAIAuthFromRequest } from '@/const/fetch';
 import { ChatErrorType, ErrorType } from '@/types/fetch';
 import { encodeAsync } from '@/utils/tokenizer';
 
 import { createErrorResponse } from '../../errorResponse';
-import { createAzureOpenai } from './createAzureOpenai';
 import { createOpenai } from './createOpenai';
 
 /**
@@ -16,7 +15,7 @@ import { createOpenai } from './createOpenai';
  */
 export const runtime = 'nodejs';
 export const createBizOpenAI = async (req: Request, model: string): Promise<Response | OpenAI> => {
-  const { apiKey, accessCode, endpoint, useAzure, apiVersion } = getOpenAIAuthFromRequest(req);
+  const { apiKey, accessCode, endpoint } = getOpenAIAuthFromRequest(req);
   const reqData = await req.json();
   const allContents = reqData.messages
     ? reqData.messages
@@ -51,15 +50,8 @@ export const createBizOpenAI = async (req: Request, model: string): Promise<Resp
 
   let openai: OpenAI;
 
-  const { USE_AZURE_OPENAI } = getServerConfig();
-  const useAzureOpenAI = useAzure || USE_AZURE_OPENAI;
-
   try {
-    if (useAzureOpenAI) {
-      openai = createAzureOpenai({ apiVersion, endpoint, model, userApiKey: apiKey });
-    } else {
-      openai = createOpenai(apiKey, endpoint, isTools);
-    }
+    openai = createOpenai(apiKey, endpoint, isTools);
   } catch (error) {
     if ((error as Error).cause === ChatErrorType.NoOpenAIAPIKey) {
       return createErrorResponse(ChatErrorType.NoOpenAIAPIKey);

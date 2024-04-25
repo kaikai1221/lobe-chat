@@ -1,7 +1,6 @@
 import { checkAuth } from '@/app/api/auth';
 import { getPreferredRegion } from '@/app/api/config';
 import { createErrorResponse } from '@/app/api/errorResponse';
-import { LOBE_CHAT_AUTH_HEADER } from '@/const/auth';
 import { LOBE_CHAT_ACCESS_CODE } from '@/const/fetch';
 import {
   AgentInitErrorPayload,
@@ -14,14 +13,12 @@ import { ChatStreamPayload } from '@/types/openai/chat';
 import { encodeAsync } from '@/utils/tokenizer';
 import { getTracePayload } from '@/utils/trace';
 
-import { getJWTPayload } from '../auth';
-import AgentRuntime from './agentRuntime';
+import AgentRuntime from '../agentRuntime';
 
 export const runtime = 'edge';
 
 export const preferredRegion = getPreferredRegion();
-
-export const POST = async (req: Request, { params }: { params: { provider: string } }) => {
+export const POST = async (req: Request, { params, jwtPayload }: any) => {
   const { provider } = params;
   let agentRuntime: AgentRuntime;
 
@@ -29,9 +26,7 @@ export const POST = async (req: Request, { params }: { params: { provider: strin
     // ============  1. init chat model   ============ //
 
     // get Authorization from header
-    const authorization = req.headers.get(LOBE_CHAT_AUTH_HEADER);
     const accessCode = req.headers.get(LOBE_CHAT_ACCESS_CODE);
-    // const { apiKey, accessCode, endpoint, useAzure, apiVersion } = getOpenAIAuthFromRequest(req);
     const reqData = await req.clone().json();
     const model = reqData.model;
     const allContents = reqData.messages
@@ -62,27 +57,20 @@ export const POST = async (req: Request, { params }: { params: { provider: strin
       token,
       url: req.headers.get('origin') || '',
     });
-    // if (!result.auth) {
-    //   return createErrorResponse(result.error as ErrorType);
-    // }
     const { auth, error } = result;
     if (!auth) throw AgentRuntimeError.createError(error as string);
-    // check the Auth With payload
-    const payload = await getJWTPayload(authorization || '');
-    // checkPasswordOrUseUserApiKey(payload.accessCode, payload.apiKey);
-    // const body = await req.clone().json();
-    const { azureApiVersion, useAzure } = payload;
     const { provider } = params;
-    agentRuntime = await AgentRuntime.initializeWithUserPayload(
-      provider,
-      payload,
-      {
-        apiVersion: azureApiVersion,
-        model,
-        useAzure,
-      },
-      isTools,
-    );
+    agentRuntime = await AgentRuntime.initializeWithUserPayload(provider, jwtPayload, isTools);
+    // agentRuntime = await AgentRuntime.initializeWithUserPayload(
+    //   provider,
+    //   payload,
+    //   {
+    //     apiVersion: azureApiVersion,
+    //     model,
+    //     useAzure,
+    //   },
+    //   isTools,
+    // );
     if (result.type) {
       if (result.type === 'integral') {
         fetch(

@@ -1,14 +1,17 @@
 import { ModelProviderCard } from '@/types/llm';
 
+// ref https://ai.google.dev/models/gemini
 const Google: ModelProviderCard = {
   chatModels: [
     {
       displayName: 'Gemini Pro',
+      enabled: true,
       id: 'gemini-pro',
       tokens: 32_768,
     },
     {
       displayName: 'Gemini Pro Vision',
+      enabled: true,
       id: 'gemini-pro-vision',
       tokens: 16_384,
       vision: true,

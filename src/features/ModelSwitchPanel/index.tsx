@@ -1,7 +1,12 @@
+import { Icon } from '@lobehub/ui';
 import { Dropdown } from 'antd';
 import { createStyles } from 'antd-style';
 import isEqual from 'fast-deep-equal';
+import { LucideArrowRight } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { PropsWithChildren, memo, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Flexbox } from 'react-layout-kit';
 import useSWR from 'swr';
 
 import { ModelItemRender, ProviderItemRender } from '@/components/ModelSelect';
@@ -11,6 +16,7 @@ import { modelProviderSelectors } from '@/store/global/selectors';
 import { useSessionStore } from '@/store/session';
 import { agentSelectors } from '@/store/session/selectors';
 import { ModelProviderCard } from '@/types/llm';
+import { withBasePath } from '@/utils/basePath';
 
 const useStyles = createStyles(({ css, prefixCls }) => ({
   menu: css`
@@ -34,12 +40,30 @@ const useStyles = createStyles(({ css, prefixCls }) => ({
 }));
 
 const ModelSwitchPanel = memo<PropsWithChildren>(({ children }) => {
-  const { styles } = useStyles();
+  const { t } = useTranslation('components');
+  const { styles, theme } = useStyles();
   const model = useSessionStore(agentSelectors.currentAgentModel);
   const updateAgentConfig = useSessionStore((s) => s.updateAgentConfig);
 
-  const select = useGlobalStore(modelProviderSelectors.modelSelectList, isEqual);
-  const enabledList = select.filter((s) => s.enabled);
+  const router = useRouter();
+  const enabledList = useGlobalStore(
+    modelProviderSelectors.modelProviderListForModelSelect,
+    isEqual,
+  );
+  let modelList: ModelProviderCard[] = [
+    {
+      chatModels: [
+        {
+          displayName: 'openai-chatGPT',
+          functionCall: true,
+          id: 'gpt-3.5-turbo-16k',
+          tokens: 16_385,
+        },
+      ],
+      enabled: true,
+      id: 'openai',
+    },
+  ];
   const { data } = useSWR(
     useGlobalStore.getState().settings?.token ? 'getPlanId' : '',
     async () => {
@@ -55,35 +79,41 @@ const ModelSwitchPanel = memo<PropsWithChildren>(({ children }) => {
     },
   );
   const items = useMemo(() => {
-    const getModelItems = (provider: ModelProviderCard) =>
-      provider.chatModels
-        .filter((c) => !c.hidden)
-        .map((model) => ({
-          key: model.id,
-          label: <ModelItemRender {...model} />,
-          onClick: () => {
-            updateAgentConfig({ model: model.id, provider: provider.id });
-          },
-        }));
+    const getModelItems = (provider: ModelProviderCard) => {
+      const items = provider.chatModels.map((model) => ({
+        key: model.id,
+        label: <ModelItemRender {...model} />,
+        onClick: () => {
+          updateAgentConfig({ model: model.id, provider: provider.id });
+        },
+      }));
 
+      // if there is empty items, add a placeholder guide
+      if (items.length === 0)
+        return [
+          {
+            key: 'empty',
+            label: (
+              <Flexbox gap={8} horizontal style={{ color: theme.colorTextTertiary }}>
+                {t('ModelSwitchPanel.emptyModel')}
+                <Icon icon={LucideArrowRight} />
+              </Flexbox>
+            ),
+            onClick: () => {
+              router.push(withBasePath('/settings/llm'));
+            },
+          },
+        ];
+
+      return items;
+    };
+
+    // If there is only one provider, just remove the group, show model directly
     if (enabledList.length === 1) {
       const provider = enabledList[0];
       return getModelItems(provider);
     }
-    let modelList: ModelProviderCard[] = [
-      {
-        chatModels: [
-          {
-            displayName: 'openai-chatGPT',
-            functionCall: true,
-            id: 'gpt-3.5-turbo-16k',
-            tokens: 16_385,
-          },
-        ],
-        enabled: true,
-        id: 'openai',
-      },
-    ];
+
     if (!useGlobalStore.getState().settings?.token || data?.code !== 0 || data?.status === false) {
       // modelList = modelList.filter((item) => !item.id.includes('openai'));
       // enabledList = enabledList.filter((item) => !item.model.id.includes('gpt'));
@@ -110,7 +140,7 @@ const ModelSwitchPanel = memo<PropsWithChildren>(({ children }) => {
       label: <ProviderItemRender provider={provider.id} />,
       type: 'group',
     }));
-  }, [enabledList]);
+  }, [modelList]);
 
   return (
     <Dropdown

@@ -7,6 +7,10 @@ import { useTranslation } from 'react-i18next';
 import { Center, Flexbox } from 'react-layout-kit';
 
 import { useFileStore } from '@/store/file';
+import { useGlobalStore } from '@/store/global';
+import { modelProviderSelectors } from '@/store/global/selectors';
+import { useSessionStore } from '@/store/session';
+import { agentSelectors } from '@/store/session/selectors';
 
 const useStyles = createStyles(({ css, token, stylish }) => {
   return {
@@ -71,12 +75,16 @@ const DragUpload = memo(() => {
 
   const uploadFile = useFileStore((s) => s.uploadFile);
 
+  const model = useSessionStore(agentSelectors.currentAgentModel);
+
+  const enabledFiles = useGlobalStore(modelProviderSelectors.isModelEnabledFiles(model));
+
   const uploadImages = async (fileList: FileList | undefined) => {
     if (!fileList || fileList.length === 0) return;
 
     const pools = Array.from(fileList).map(async (file) => {
       // skip none-file items
-      if (!file.type.startsWith('image')) return;
+      if (!file.type.startsWith('image') && !enabledFiles) return;
       await uploadFile(file);
     });
 
@@ -140,7 +148,7 @@ const DragUpload = memo(() => {
       window.removeEventListener('drop', handleDrop);
       window.removeEventListener('paste', handlePaste);
     };
-  }, []);
+  }, [handleDrop, handlePaste]);
 
   return (
     isDragging && (
