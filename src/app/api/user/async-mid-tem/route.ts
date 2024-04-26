@@ -47,8 +47,13 @@ const getMjTem = async (page: number) => {
     },
     method: 'GET',
   });
-  const data: { jobs: JobDetails[] } = (await res.json()) as { jobs: JobDetails[] };
-  return data.jobs || [];
+  let data = {
+    jobs: [] as JobDetails[],
+  };
+  if (res && res.json) {
+    data = (await res?.json()) as { jobs: JobDetails[] };
+  }
+  return data?.jobs || [];
 };
 export async function GET() {
   console.log('async begin');
@@ -61,7 +66,7 @@ export async function GET() {
   if (isRight) await UserDAL.asyncMidTem(JSON.stringify(allData));
   console.log('async end');
   return NextResponse.json({
-    body: isRight,
+    body: { data: allData, state: isRight },
     status: serverStatus.success,
   });
 }
