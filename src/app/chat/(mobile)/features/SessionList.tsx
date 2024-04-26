@@ -1,3 +1,4 @@
+import { CloseCircleOutlined } from '@ant-design/icons';
 import { Button, Modal, Statistic, Tooltip } from 'antd';
 import { memo, useState } from 'react';
 import CountUp from 'react-countup';
@@ -6,6 +7,7 @@ import useSWR from 'swr';
 import ModelPrice from '@/components/ModelPrice';
 import PayModal from '@/components/PayModal/index';
 import { LOBE_CHAT_ACCESS_CODE } from '@/const/fetch';
+import { imageUrl } from '@/const/url';
 import { useGlobalStore } from '@/store/global';
 
 import SessionListContent from '../../features/SessionListContent';
@@ -16,6 +18,7 @@ const Sessions = memo(() => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPayOpen, setIsPayOpen] = useState(false);
   const { settings } = useGlobalStore.getState();
+  const [isShowAd, setisShowAd] = useState(true);
   const [setSettings] = useGlobalStore((s) => [s.setSettings]);
   const { data, isLoading = true } = useSWR(settings?.token ? '/api/user/info' : '', async () => {
     const res = await fetch('/api/user/info', {
@@ -59,6 +62,44 @@ const Sessions = memo(() => {
             </Button>
           </Tooltip>
         </div>
+        {isShowAd && (
+          <a
+            href="https://www.biguo.cn/details/652f4d7962a5e12b4c06cf50"
+            rel="noopener noreferrer"
+            style={{
+              background: 'linear-gradient(to right, #8145db 0%, #6829c6 100%)',
+              borderRadius: '5px',
+              display: 'inline-block',
+              marginTop: '5px',
+              position: 'relative',
+              textAlign: 'center',
+              width: '100%',
+            }}
+            target="_blank"
+          >
+            <CloseCircleOutlined
+              onClick={(e) => {
+                e.preventDefault();
+                setisShowAd(false);
+              }}
+              style={{
+                color: '#aaa',
+                cursor: 'pointer',
+                fontSize: '18px',
+                position: 'absolute',
+                right: '10px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                transition: 'all 0.2s',
+              }}
+            />
+            <img
+              alt="大头ai课"
+              src={imageUrl('ad_small.jpg')}
+              style={{ borderRadius: '5px', height: '36px' }}
+            />
+          </a>
+        )}
       </div>
       <Modal
         centered

@@ -1,3 +1,4 @@
+import { CloseCircleOutlined } from '@ant-design/icons';
 import { ActionIcon } from '@lobehub/ui';
 import { Button, Modal, Statistic, Tooltip } from 'antd';
 import { createStyles } from 'antd-style';
@@ -12,12 +13,30 @@ import ModelPrice from '@/components/ModelPrice';
 import PayModal from '@/components/PayModal/index';
 import { LOBE_CHAT_ACCESS_CODE } from '@/const/fetch';
 import { DESKTOP_HEADER_ICON_SIZE } from '@/const/layoutTokens';
+import { imageUrl } from '@/const/url';
 import { useGlobalStore } from '@/store/global';
 import { useSessionStore } from '@/store/session';
 
 import SessionSearchBar from '../../features/SessionSearchBar';
 
 export const useStyles = createStyles(({ css, token }) => ({
+  close: css`
+    cursor: pointer;
+
+    position: absolute;
+    top: 3px;
+    right: 3px;
+
+    font-size: 14px;
+    color: #aaa;
+
+    transition: all 0.2s;
+
+    &:hover {
+      scale: 1.2;
+      color: #fff;
+    }
+  `,
   logo: css`
     font-size: 16px;
     font-weight: bolder;
@@ -33,6 +52,7 @@ const Header = memo(() => {
   const { t } = useTranslation('chat');
   const [createSession] = useSessionStore((s) => [s.createSession]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isShowAd, setisShowAd] = useState(true);
   const [isPayOpen, setIsPayOpen] = useState(false);
   const { settings } = useGlobalStore.getState();
   const [integral, setIntegral] = useState(0);
@@ -98,6 +118,33 @@ const Header = memo(() => {
           </Button>
         </Tooltip>
       </div>
+      {isShowAd && (
+        <a
+          href="https://www.biguo.cn/details/652f4d7962a5e12b4c06cf50"
+          rel="noopener noreferrer"
+          style={{
+            background: 'linear-gradient(to right, #8145db 0%, #6829c6 100%)',
+            borderRadius: '5px',
+            position: 'relative',
+            textAlign: 'center',
+            width: '100%',
+          }}
+          target="_blank"
+        >
+          <CloseCircleOutlined
+            className={styles.close}
+            onClick={(e) => {
+              e.preventDefault();
+              setisShowAd(false);
+            }}
+          />
+          <img
+            alt="大头ai课"
+            src={imageUrl('ad_small.jpg')}
+            style={{ borderRadius: '5px', height: '36px' }}
+          />
+        </a>
+      )}
       <Modal
         centered
         footer={false}
