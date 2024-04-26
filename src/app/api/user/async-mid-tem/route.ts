@@ -50,7 +50,7 @@ const getMjTem = async (page: number) => {
   let data = {
     jobs: [] as JobDetails[],
   };
-  if (res && res.json) {
+  if (res && res.status === 200 && res.json) {
     data = (await res?.json()) as { jobs: JobDetails[] };
   }
   return data?.jobs || [];
