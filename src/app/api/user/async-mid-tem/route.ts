@@ -47,8 +47,8 @@ const getMjTem = async (page: number) => {
     },
     method: 'GET',
   });
-  const data: { jobs: JobDetails[] } = (await res.json()) as { jobs: JobDetails[] };
-  return data.jobs || [];
+  const data: { jobs: JobDetails[] } = (await res?.json()) as { jobs: JobDetails[] };
+  return data?.jobs || [];
 };
 export async function GET() {
   console.log('async begin');
