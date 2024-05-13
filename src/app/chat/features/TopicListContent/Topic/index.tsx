@@ -45,7 +45,7 @@ export const Topic = memo(() => {
   const virtuosoRef = useRef<VirtuosoHandle>(null);
   const { isDarkMode } = useThemeMode();
   const clientWidth = document.body.clientWidth;
-  const [isShowAd, setisShowAd] = useState(true);
+  const [isShowAd, setisShowAd] = useState(false);
   const [topicsInit, activeTopicId, topicLength] = useChatStore((s) => [
     s.topicsInit,
     s.activeTopicId,

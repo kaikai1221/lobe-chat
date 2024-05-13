@@ -18,7 +18,7 @@ const Sessions = memo(() => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPayOpen, setIsPayOpen] = useState(false);
   const { settings } = useGlobalStore.getState();
-  const [isShowAd, setisShowAd] = useState(true);
+  const [isShowAd, setisShowAd] = useState(false);
   const [setSettings] = useGlobalStore((s) => [s.setSettings]);
   const { data, isLoading = true } = useSWR(settings?.token ? '/api/user/info' : '', async () => {
     const res = await fetch('/api/user/info', {

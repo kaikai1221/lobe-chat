@@ -52,7 +52,7 @@ const Header = memo(() => {
   const { t } = useTranslation('chat');
   const [createSession] = useSessionStore((s) => [s.createSession]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isShowAd, setisShowAd] = useState(true);
+  const [isShowAd, setisShowAd] = useState(false);
   const [isPayOpen, setIsPayOpen] = useState(false);
   const { settings } = useGlobalStore.getState();
   const [integral, setIntegral] = useState(0);
