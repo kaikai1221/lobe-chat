@@ -1,25 +1,20 @@
 import { ModelProviderCard } from '@/types/llm';
 
+// ref https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html
 const Bedrock: ModelProviderCard = {
   chatModels: [
-    // {
-    //   description:
-    //     'Amazon Titan Text G1 - Express v1，上下文长度可达 8000 个 token，适合广泛的用途。',
-    //   displayName: 'Titan Text G1 - Express',
-    //   hidden: true,
-    //   id: 'amazon.titan-text-express-v1:0:8k',
-    //   tokens: 8000,
-    // },
     {
       description:
         'claude-1-100k，上下文大小等于 100k，一个更快更便宜但仍然非常能干的模型，可以处理包括随意对话在内的多种任务。',
       displayName: 'claude-1-100k',
+      enabled: true,
       id: 'claude-1-100k',
       tokens: 100_000,
     },
     {
       description: 'claude-1.3-100k，Claude 1 的更新版本，在可靠性方面有所提升提升。',
       displayName: 'claude-1.3-100k',
+      enabled: true,
       id: 'claude-1.3-100k',
       tokens: 100_000,
     },
@@ -29,6 +24,14 @@ const Bedrock: ModelProviderCard = {
       id: 'claude-2',
       tokens: 100_000,
     },
+    // {
+    //   description: 'claude-2，Claude 1 的最新版本，具有最先进的语言处理技术。',
+    //   id: 'claude-2',
+    //   displayName: 'Titan Text G1 - Express',
+    //   hidden: true,
+    //   id: 'amazon.titan-text-express-v1:0:8k',
+    //   tokens: 8000,
+    // },
     // {
     //   description:
     //     'Anthropic 推出的 Claude 3 Sonnet 模型在智能和速度之间取得理想的平衡，尤其是在处理企业工作负载方面。该模型提供最大的效用，同时价格低于竞争产品，并且其经过精心设计，是大规模部署人工智能的可信赖、高耐久性骨干模型。 Claude 3 Sonnet 可以处理图像和返回文本输出，并且提供 200K 上下文窗口。',
@@ -58,18 +61,6 @@ const Bedrock: ModelProviderCard = {
     //   displayName: 'Claude Instant 1.2',
     //   id: 'anthropic.claude-instant-v1',
     //   tokens: 100_000,
-    // },
-    // {
-    //   description: 'Llama 2 Chat 13B v1，上下文大小为 4k，Llama 2 模型的对话用例优化变体。',
-    //   displayName: 'Llama 2 Chat 13B',
-    //   id: 'meta.llama2-13b-chat-v1',
-    //   tokens: 4000,
-    // },
-    // {
-    //   description: 'Llama 2 Chat 70B v1，上下文大小为 4k，Llama 2 模型的对话用例优化变体。',
-    //   displayName: 'Llama 2 Chat 70B',
-    //   id: 'meta.llama2-70b-chat-v1',
-    //   tokens: 4000,
     // },
     // {
     //   description: 'Llama 2 Chat 13B v1，上下文大小为 4k，Llama 2 模型的对话用例优化变体。',

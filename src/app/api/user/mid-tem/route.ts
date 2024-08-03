@@ -7,7 +7,7 @@ export const runtime = 'nodejs';
 
 export async function GET() {
   const res = await UserDAL.midTem();
-
+  console.log(res?.content);
   return NextResponse.json({
     body: JSON.parse(res?.content || '[]'),
     status: serverStatus.success,

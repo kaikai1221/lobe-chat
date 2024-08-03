@@ -46,7 +46,7 @@ const Tools = memo<{ refT?: any }>(({ refT }) => {
   const { styles } = useStyles();
 
   const model = useSessionStore(agentSelectors.currentAgentModel);
-  const enableFC = useGlobalStore(modelProviderSelectors.modelEnabledFunctionCall(model));
+  const enableFC = useGlobalStore(modelProviderSelectors.isModelEnabledFunctionCall(model));
 
   return (
     <>
@@ -134,6 +134,10 @@ const Tools = memo<{ refT?: any }>(({ refT }) => {
           ],
           onClick: (e) => {
             e.domEvent.preventDefault();
+          },
+          style: {
+            maxHeight: 500,
+            overflowY: 'scroll',
           },
         }}
         placement={'top'}

@@ -8,10 +8,9 @@ import { StateCreator } from 'zustand/vanilla';
 import { LOBE_CHAT_ACCESS_CODE } from '@/const/fetch';
 import { LOADING_FLAT, isFunctionMessageAtStart, testFunctionMessageAtEnd } from '@/const/message';
 import { TraceEventType, TraceNameMap } from '@/const/trace';
-import { CreateMessageParams } from '@/database/models/message';
 import { useClientDataSWR } from '@/libs/swr';
 import { chatService } from '@/services/chat';
-import { messageService } from '@/services/message';
+import { CreateMessageParams, messageService } from '@/services/message';
 import { topicService } from '@/services/topic';
 import { traceService } from '@/services/trace';
 import { chatHelpers } from '@/store/chat/helpers';
@@ -187,7 +186,7 @@ export const chatMessage: StateCreator<
   },
   clearAllMessages: async () => {
     const { refreshMessages } = get();
-    await messageService.clearAllMessage();
+    await messageService.removeAllMessages();
     await refreshMessages();
   },
   internalResendMessage: async (messageId, traceId) => {
@@ -246,7 +245,7 @@ export const chatMessage: StateCreator<
       topicId: activeTopicId,
     };
 
-    const id = await messageService.create(newMessage);
+    const id = await messageService.createMessage(newMessage);
     await get().refreshMessages();
 
     // if only add user message, then stop
@@ -338,7 +337,7 @@ export const chatMessage: StateCreator<
       topicId: activeTopicId, // if there is activeTopicId，then add it to topicId
     };
 
-    const mid = await messageService.create(assistantMessage);
+    const mid = await messageService.createMessage(assistantMessage);
     await refreshMessages();
 
     // 2. fetch the AI response
@@ -367,7 +366,7 @@ export const chatMessage: StateCreator<
           traceId,
         };
 
-        functionId = await messageService.create(functionMessage);
+        functionId = await messageService.createMessage(functionMessage);
       }
 
       await refreshMessages();
@@ -388,7 +387,6 @@ export const chatMessage: StateCreator<
       toggleChatLoading,
       refreshMessages,
       internalUpdateMessageContent,
-      // dispatchMessage,
       createSmoothMessage,
     } = get();
 
@@ -450,16 +448,6 @@ export const chatMessage: StateCreator<
     let functionCallContent = '';
     let msgTraceId: string | undefined;
 
-    //       await updateMessageContent(assistantId, output);
-
-    //       // is this message is just a function call
-    //       if (isFunctionMessageAtStart(output)) isFunctionCall = true;
-    //     },
-    //   });
-    // } catch {
-    //   console.log('终止输出');
-    //   subIntegral(output, config.model);
-    // }
     const { startAnimation, stopAnimation, outputQueue } = createSmoothMessage(assistantId);
     try {
       await chatService.createAssistantMessageStream({
@@ -486,8 +474,8 @@ export const chatMessage: StateCreator<
         },
         onFinish: async (content, { traceId, observationId }) => {
           stopAnimation();
-          subIntegral(output, config.model);
           // if there is traceId, update it
+          subIntegral(output, config.model);
           if (traceId) {
             msgTraceId = traceId;
             await messageService.updateMessage(assistantId, {
