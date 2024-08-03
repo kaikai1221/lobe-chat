@@ -1061,6 +1061,20 @@ export class UserDAL {
       total: await client.integralUsed.count({ where: { userId } }),
     };
   }
+  static async getAllHistory() {
+    return await client.chatHistory.findMany();
+  }
+  static async updateHistory(data: any[]) {
+    data.forEach(async (item) => {
+      await client.chatHistory.update({
+        data: { content: item.content },
+        where: {
+          id: item.id,
+        },
+      });
+    });
+    return true;
+  }
   static async clearData() {
     const date30 = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
     await client.integralUsed.deleteMany({
